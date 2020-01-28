@@ -1,0 +1,35 @@
+\usepackage{indentfirst}
+\parindent=2em
+\linespread{1.25}
+
+% names in chinese
+\def\abstractname{摘\quad 要}
+\def\contentsname{目录}
+\def\proofname{证明}
+\def\refname{参考文献}
+
+% theorems & proofs
+\newtheoremstyle{cjk-theorem}{}{}{\KaiTi}{}{\bfseries}{.}{.5em}{}
+\newtheoremstyle{cjk-definition}{}{}{}{}{\bfseries}{.}{.5em}{}
+\newtheoremstyle{cjk-remark}{}{}{}{}{\KaiTi}{.}{.5em}{}
+
+\theoremstyle{cjk-theorem}
+\renewtheorem{theorem}{定理}[section]
+\renewtheorem{lemma}[theorem]{引理}
+\renewtheorem{corollary}[theorem]{推论}
+\renewtheorem{proposition}[theorem]{命题}
+\renewtheorem{definition}[theorem]{定义}
+
+\theoremstyle{cjk-definition}
+\renewtheorem{remark}[theorem]{注}
+\renewtheorem{example}[theorem]{例}
+\theoremstyle{cjk-theorem}
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+    \pushQED{\qed}%
+    \normalfont \topsep6\p@\@plus6\p@\relax
+    \trivlist
+    \item\relax{\bfseries#1}\hspace{1em}\ignorespaces
+}{\popQED\endtrivlist\@endpefalse}
+\makeatother

@@ -1,0 +1,463 @@
+The following two sections will be focused on 
+the study of homological algebra. 
+Our goal is to establish homological algebra 
+as a special case of homotopical algebra.
+We will construct and study the $\infty$-category of chain complexes,
+and the $\infty$-categorical version of the derived category.
+
+In this section, we start from the Dold--Kan correspondence,
+which is a classical result in homological algebra
+that establishes an equivalence
+between chain complexes in an abelian category~$\cat{A}$
+and simplicial objects in~$\cat{A}$.
+It gives an equivalence of (ordinary) categories
+\[ \cat{Ch}(\cat{A})_{\geq0}\xrightarrow[\textstyle\widetilde{\phantom{......}}]{\operatorname{DK}}
+\operatorname{Fun}(\bfDelta\op,\cat{A}), \]
+where $\cat{Ch}(\cat{A})_{\geq0}$ denotes the full subcategory of~$\cat{Ch}(\cat{A})$
+consisting of chain complexes that terminate at the $0$th term.
+This equivalence will
+relate the homotopy theory of chain complexes
+to the homotopy theory of simplicial sets.
+
+\subsection{t-structures}
+
+\begin{definition}
+    Let $\cat{C}$ be a triangulated category.
+    A \term{t-structure} on~$\cat{C}$ consists of two full subcategories
+    \[ \cat{C}^{\leq0},\ \cat{C}^{\geq0}\subset\cat C, \]
+    satisfying the following axioms: if we denote
+    \[ \cat{C}^{\leq n}:=\cat{C}^{\leq0}[n]\quad\text{and}\quad
+    \cat{C}^{\geq n}:=\cat{C}^{\geq0}[n] \]
+    for $n\in\mathbb Z$, then
+    \begin{itms}
+        \item $\cat{C}^{\leq0}$ and $\cat{C}^{\geq0}$
+        are stable under isomorphisms.
+        \item $\cat{C}^{\leq0}\subset\cat{C}^{\leq1}$ and $\cat{C}^{\geq1}\subset\cat{C}^{\geq0}$.
+        \item If $X\in\cat{C}^{\leq0}$ and $Y\in\cat{C}^{\geq1}$, then
+        $\Hom_{\cat{C}}(X,Y)=0$.
+        \item For every $X\in\cat{C}$, there exists a distinguished triangle 
+        \[X^{\leq0}\to X\to X^{\geq1},\]
+        such that $X^{\leq0}\in\cat{C}^{\leq0}$ and $X^{\geq1}\in\cat{C}^{\geq1}$.
+    \end{itms}
+\end{definition}
+
+For example, if $\cat{C}=\cat{Ch}(\cat{A})$ is the category of
+cochain complexes in an abelian category~$\cat{A}$,
+then we may take $\cat{C}^{\leq0}$ to be those cochain complexes~$X$
+with $X_n=0$ for all $n>0$. Similarly we can define $\cat{C}^{\geq0}$.
+Then the first three axioms are immediate, and for the fourth one, we may take 
+\[ X^{\leq0}:=\tau^{\leq0}X\quad\text{and}\quad X^{\geq1}:=\tau^{\geq1}X, \]
+where $\tau^{\leq n}$ and $\tau^{\geq n}$ are the truncation functors, defined by
+\[ \begin{aligned}
+    \tau^{\leq n}X&:=\bigl(\cdots\to X^{n-2}\xrightarrow{d_{n-2}}X^{n-1}\xrightarrow{d_{n-1}}
+    \operatorname{ker}d_{n}\to0\to\cdots\bigr), \\
+    \tau^{\geq n}X&:=\bigl(\cdots\to0\to\operatorname{coker}d_{n-1}\xrightarrow{d_n}X^{n+1}
+    \xrightarrow{d_{n+1}}X^{n+2}\to\cdots\bigr).
+\end{aligned} \]
+
+\begin{remark}
+    If $X\in\cat{C}^{\leq0}$ and $Y\in\cat{C}^{\geq1}$, we require that
+    $\Hom_{\cat{C}}(X,Y)=0$, but not $\Hom_{\cat{C}}(Y,X)=0$,
+    and here is a justification.
+    Let us look at $\cat{C}=\cat{Ch}(\cat{A})$ as an example.
+    In this case, although the only chain map from $Y$ to $X$ is zero,
+    there may exist nonzero chain homotopies and higher homotopies. \varqed
+\end{remark}
+
+\begin{notation}
+    Sometimes it is more convenient to use homological indexing instead of cohomological indexing.
+    Therefore, we introduce the following notation.
+    For a triangulated category~$\cat{C}$ with a t-structure, we denote 
+    \[ \cat{C}_{\geq n}:=\cat{C}^{\leq-n}\quad\text{and}\quad\cat{C}_{\leq n}:=\cat{C}^{\geq-n}. \]
+    Using this notation, we have $\cat{C}_{\geq n}=\cat{C}_{\geq0}[-n]$, etc. \varqed
+\end{notation}
+
+\begin{definition}
+    Let $\cat{C}$ be a stable $\infty$-category.
+    A \term{t-structure} on~$\cat{C}$ is a t-structure on
+    the triangulated category~$\Ho(\cat{C})$.
+\end{definition}
+
+An important property of a t-structure is that 
+it establishes $\cat{C}^{\geq n}$ as a \emph{localisation} of~$\cat{C}$,
+in the sense that it is equivalent to $\cat{C}[\cat{W}^{-1}]$ 
+for some collection~$\cat{W}$ of arrows in~$\cat{C}$.
+
+\begin{definition}
+    A functor $f\:\cat{C}\to\cat{D}$ between $\infty$-categories
+    is called a \term{localisation functor}, if 
+    it has a fully faithful right adjoint.
+\end{definition}
+
+\begin{remark}
+    This definition of localisation
+    is narrower than what we called localisations before,
+    i.e.\ functors obtained by inverting some of the arrows.
+    In fact, if $f$ is a localisation functor in this new sense,
+    then $f$ is obtained by inverting all morphisms in~$\cat{C}$
+    which are sent to equivalences in~$\cat{D}$.
+    For a proof of this fact, see \cite[Proposition~5.2.7.12]{htt}. \varqed
+\end{remark}
+
+\begin{theorem}
+    Let $\cat{C}$ be a stable $\infty$-category with a t-structure,
+    and let $n\in\mathbb Z$. Then there exists a localisation functor
+    \[ \tau^{\geq n}\:\cat{C}\to\cat{C}^{\geq n}, \]
+    called the \term{truncation functor}, which is left adjoint
+    to the inclusion functor.
+\end{theorem}
+
+\begin{proof}
+    Omitted. See \cite[Proposition~1.2.1.5]{ha}.
+\end{proof}
+
+As a corollary, the subcategory $\cat{C}^{\geq n}$ of $\cat{C}$
+is stable under limits which exist in $\cat{C}$.
+Dually, $\cat{C}^{\leq n}$ is stable under colimits.
+
+\begin{remark}
+    One might expect that $\cat{C}$ is the stabilisation of
+    the subcategory $\cat{C}_{\geq0}=\cat{C}^{\leq0}$.
+    However, by (\ref{rmk-7-o}), this is true if and only if 
+    \[\cat{C}\simeq\lim_{n\to+\infty}\cat{C}_{\geq-n}.\]
+    For example, this is true for the category of chain complexes,
+    but not for the category of bounded chain complexes.
+\end{remark}
+
+\begin{definition}
+    Let $\cat{C}$ be a stable $\infty$-category with a t-structure.
+    The \term{heart} of $\cat{C}$ is defined to be 
+    \[ \cat{C}^\heartsuit:=\cat{C}^{\geq0}\cap\cat{C}^{\leq0}\subset\cat{C}. \]
+    We define a family of functors
+    \[ \pi_n\:\cat{C}\to\cat{C}^\heartsuit \]
+    by $\pi_0:=\tau^{\geq0}\tau^{\leq0}\simeq\tau^{\leq0}\tau^{\geq0}$,
+    and $\pi_n:=\pi_0\circ[-n]$.
+\end{definition}
+
+For a proof of $\tau^{\geq0}\tau^{\leq0}\simeq\tau^{\leq0}\tau^{\geq0}$,
+see \cite[Proposition~1.2.1.10]{ha}.
+
+For example, if $\cat{C}=\cat{Ch}(\cat{A})$,
+then $\cat{C}^\heartsuit\simeq\cat{A}$,
+and $\pi_n$ takes the $(-n)$-th cohomology group,
+i.e.\ the $n$-th homology group, of a chain complex.
+
+\subsection{Dold--Kan correspondence}
+
+Let $\cat{A}$ be an abelian category.
+In this section, we will define a functor 
+\[\operatorname{DK}\:\cat{Ch}(\cat{A})_{\geq0} \to \operatorname{Fun}(\bfDelta\op,\cat{A}),\]
+and we will prove that this functor 
+is an equivalence of categories.
+
+\begin{construction}
+    Let $\cat{A}$ be an abelian category,
+    and let $X_\bullet\in\cat{Ch}(\cat{A})_{\geq0}$.
+    The simplicial object 
+    \[\operatorname{DK}_\bullet(X)\in\operatorname{Fun}(\bfDelta\op,\cat{A})\]
+    is represented by the following picture.
+    
+    \begin{center}
+        \begin{tikzpicture}[>={Straight Barb}, line width=.5pt]
+            \node (P0) at (0,0) {};
+            \node (P1) at (3.5,-1) {};
+            \node (P2) at (5,.2) {};
+            \node (P3) at (2.8,3.7) {};
+
+            \node (X0) at (-.3,-.2) {$X_0$};
+            \node (X1) at (1.4,-.7) {$X_1$};
+            \node (X2) at (2.8,-.4) {\smash{$X_2$}};
+            \node (X3) at (2.6,1.1) {$X_3$};
+            \node (X4) at (1.6,1.4) {$\cdots$};
+            \node at (3.5,-1.3) {$0$};
+            \node at (5.3,.2) {$0$};
+            \node at (2.8,4) {$0$};
+            \node at (4.4,-.6) {$0$};
+            \node at (2.2,-.1) {$0$};
+            \node at (1.2,2) {$0$};
+            \node at (3.3,1.8) {$0$};
+            \node at (4.2,2) {$0$};
+
+            \fill (P0) ellipse (.05);
+            \fill (P1) ellipse (.05);
+            \fill (P2) ellipse (.05);
+            \fill (P3) ellipse (.05);
+
+            \draw [->] (X2) to[bend left=40] (X1);
+
+            \draw [line width=5pt, white, shorten <=10pt, shorten >=10pt] (P1) -- (P0);
+            \draw [->, shorten <=5pt, shorten >=3pt] (P1) -- (P0);
+            \draw [->, shorten <=5pt, shorten >=3pt] (P2) -- (P0);
+            \draw [->, shorten <=5pt, shorten >=3pt] (P2) -- (P1);
+            \draw [->, shorten <=5pt, shorten >=3pt] (P3) -- (P0);
+            \draw [line width=5pt, white, shorten <=5pt, shorten >=5pt] (P3) -- (P1);
+            \draw [->, shorten <=5pt, shorten >=3pt] (P3) -- (P1);
+            \draw [->, shorten <=5pt, shorten >=3pt] (P3) -- (P2);
+
+            \draw [->] (X1) to[bend left=40] (X0);
+            \draw [line width=5pt, white, shorten >=5pt] (X3) to[bend left=20] (X2);
+            \draw [->, shorten >=5pt] (X3) to[bend left=20] (X2);
+            \draw [->, dashed] (X4) to[bend left=40] (X3);
+
+            \node at (.6,-1.1) {$\scriptstyle d_0=\partial_1$};
+            \node at (2.2,-1.1) {$\scriptstyle d_0=\partial_2$};
+            \node at (2.45,.4) {$\scriptstyle d_0=\partial_3$};
+        \end{tikzpicture}
+    \end{center}
+
+    A formal definition may go as follows. 
+    \begin{itms}
+        \item For every $n\geq0$, the space of $n$-simplices is given by
+        \[\operatorname{DK}_n(X):=\bigoplus_{\substack{\alpha\:[n]\to[k]\\\text{surjective}}}X_k.\]
+        \item For every morphism $\beta\:[n']\to[n]$ in $\bfDelta$,
+        the induced map
+        \[\beta^*\:\operatorname{DK}_{n}(X)\to\operatorname{DK}_{n'}(X)\]
+        is given by the maps 
+        \[f_{\alpha,\alpha'}\:X_k\to X_{k'}\]
+        for surjective maps $\alpha\:[n]\to[k]$ and $\alpha'\:[n']\to[k']$ in $\bfDelta$,
+        where 
+        \[f_{\alpha,\alpha'}:=\begin{cases}
+            1_{X_k}, & \text{if }k'=k\text{ and }
+            \begin{tikzcd}[cramped, sep=.9em]
+                \scriptstyle[n']\ar[r]\ar[d] & \scriptstyle[n]\ar[d] \\{}
+                \scriptstyle[k']\ar[r] & \scriptstyle[k]
+            \end{tikzcd}\text{ commutes},\\[15pt]
+            \partial_k, & \text{if }k'=k-1\text{ and }
+            \begin{tikzcd}[cramped, sep=.9em]
+                \scriptstyle[n']\ar[r]\ar[d] & \scriptstyle[n]\ar[d] \\{}
+                \scriptstyle[k']\ar[r,"d^0"] & \scriptstyle[k]
+            \end{tikzcd}\text{ commutes},\\
+            0, & \text{otherwise},
+        \end{cases}\]
+        where $\partial_k\:X_k\to X_{k-1}$ denotes the differential,
+        and $d^0\:[k-1]\to[k]$ is the map sending $i\in[k-1]$ to $i+1\in[k]$. \varqed
+    \end{itms}
+\end{construction}
+
+By construction, every non-degenerate simplex in $\operatorname{DK}_n(X)$
+can be written as the sum of a nonzero element in $X_n$
+and some degenerate $n$-simplices.
+
+\begin{example}
+    Let $X$ be the chain complex whose only nonzero term
+    is a $\mathbb{Z}$ at the $n$-th place. Then 
+    \[\operatorname{DK}_\bullet(X)\simeq
+    \mathbb{Z}\Delta[n]\/\mathbb{Z}\partial\Delta[n],\]
+    where $\mathbb{Z}(-)\:\cat{sSet}\to\cat{sAb}$
+    denotes the free functor.
+    This is quite obvious if we consider the picture above. \varqed
+\end{example}
+
+Next, we construct an inverse to the functor $\operatorname{DK}$,
+sending a simplicial object to its corresponding chain complex.
+
+\begin{definition}
+    Let $X$ be a simplicial object in $\cat{A}$.
+    
+    \begin{itms}
+        \item
+        The \term{simplicial chain complex} of $X$ is the chain complex 
+        \[C_\bullet(X)\in\cat{Ch}(\cat{A})_{\geq0},\]
+        given by 
+        \[C_n(X):=X_n\quad\text{and}\quad\partial_n:=\sum_{i=0}^n(-1)^id_i.\]
+
+        \item 
+        The \term{normalised chain complex} of $X$, or the
+        \term{inverse Dold--Kan construction} of $X$, is the chain complex 
+        \[\KD_\bullet(X)\in\cat{Ch}(\cat{A})_{\geq0},\]
+        given by 
+        \[\KD_n(X):=\bigcap_{0<i\leq n}\ker\bigl(d_i\:X_n\to X_{n-1}\bigr)
+        \quad\text{and}\quad\partial_n:=d_0.\]
+    \end{itms}
+\end{definition}
+
+It might look as if $\KD(X)$ contains less information than $X$.
+However, we will prove that the lost information is inessential,
+and can be recovered from the group structure of $X$
+(referring to the case $\cat{A}=\cat{Ab}$, of course).
+
+\begin{theorem}
+    The functors
+    \[\begin{tikzcd}
+        \cat{Ch}(\cat{A})_{\geq0}
+        \ar[r,bend left,start anchor=north east,end anchor=north west,"\operatorname{DK}"] 
+        \ar[r,phantom,"\simeq"] &
+        \operatorname{Fun}(\bfDelta\op,\cat{A})
+        \ar[l,bend left,start anchor=south west,end anchor=south east,"\KD"]
+    \end{tikzcd}\]
+    are inverse to each other,
+    up to a natural isomorphism.
+\end{theorem}
+
+\begin{proof}
+    It is clear that $\KD\circ\operatorname{DK}=\mathbb{1}$.
+    We need to show that $\operatorname{DK}\circ\KD=\mathbb{1}$.
+    The proof is elementary and not very inspiring,
+    so we omit the argument here.
+    See \cite[Lemma~1.2.3.13]{ha}.
+\end{proof}
+
+\subsection{For stable \texorpdfstring{$\infty$}{∞}-categories}
+
+There is an analogous result of the Dold--Kan correspondence
+in the context of stable $\infty$-categories.
+Namely, for a stable $\infty$-category $\cat{C}$,
+we will define the category $\cat{Ch}(\cat{C})_{\geq0}$ of \emph{filtered objects}
+in $\cat{C}$, and the result states that
+\[ \cat{Ch}(\cat{C})_{\geq0}\simeq\operatorname{Fun}(\mathfrak N\bfDelta\op,\cat{C}) \]
+as $\infty$-categories.
+
+Let $I$ be a linearly ordered set (typically, one takes
+$I=\mathbb Z$ or $\mathbb Z_{\geq0}$). Denote
+\[I^{[1]}:=\{(i,j)\mid i\leq j\in I\},\] 
+with $(i,j)\leq(i',j')$ if and only if $i\leq i'$ and $j\leq j'$.
+
+\begin{definition}
+    Let $\cat{C}$ be a pointed $\infty$-category,
+    and let $I$ be a linearly ordered set.
+    An \term{$I$-complex} in $\cat{C}$ is a functor 
+    \[F\:\mathfrak{N}(I^{[1]})\to\cat{C},\]
+    such that 
+    \begin{itms}
+        \item For any $i\in I$, we have $F(i,i)\simeq0$.
+        \item For any $i\leq j\leq k$, the diagram 
+        \[\begin{tikzcd}
+            F(i,j)\ar[r]\ar[d]\ar[dr,phantom,pos=.75,"\lrcorner"] & F(i,k)\ar[d] \\
+            \llap{$0\simeq{}$}F(j,j)\ar[r] & F(j,k)
+        \end{tikzcd}\]
+        is a pushout square, i.e.\ a cofibre sequence.
+    \end{itms}
+    Let $\cat{Ch}(I,\cat{C})$ denote the full subcategory of
+    $\operatorname{Fun}(\mathfrak N(I^{[1]}),\cat{C})$
+    spanned by all the $I$-complexes.
+\end{definition}
+
+This terminology is justified by the following example.
+
+\begin{example}
+    Let $\cat{C}$ be a stable $\infty$-category,
+    and let $X\in\cat{Ch}(\mathbb{Z},\cat{C})$ be a $\mathbb{Z}$-complex in $\cat{C}$.
+    Then for any $n\in\mathbb{Z}$, we have a diagram
+    \[\begin{tikzcd}
+        X(n-1,n)\ar[r]\ar[d]\ar[dr,phantom,end anchor=north,pos=.75,"\lrcorner"] &
+        X(n-1,n+1)\ar[r]\ar[d]\ar[dr,phantom,end anchor=north,pos=.75,"\lrcorner"] & 0\ar[d] \\
+        0\ar[r] & X(n,n+1)\ar[r,"\partial"] & X(n-1,n)[1]
+    \end{tikzcd}\]
+    in $\cat{C}$. Therefore, if we set 
+    \[X_n:=X(n-1,n)[-n],\]
+    then we obtain a chain complex 
+    \[ \cdots\to X_1\xrightarrow{\partial}X_0\xrightarrow{\partial}X_{-1}\to\cdots \]
+    in $\Ho(\cat{C})$. The fact that $\partial^2=0$ follows from the equalities
+    \[\begin{aligned}
+        \partial^2
+        &=\bigl(X(n,n+1)\to X(n-1,n)[1]\to X(n-2,n-1)[2]\bigr)\\
+        &=\bigl(X(n,n+1)\to X(n-2,n)[1]\to X(n-1,n)[1]\to X(n-2,n-1)[2]\bigr)\\
+        &=\bigl(X(n,n+1)\to X(n-2,n)[1]\smash{{}\xrightarrow0{}}X(n-2,n-1)[2]\bigr)\\
+        &=0
+    \end{aligned}\]
+    in $\Ho(\cat{C})$. \varqed
+\end{example}
+
+\begin{remark}
+    If $I$ has a least object $-\infty$, then
+    \[ \cat{Ch}(I,\cat{C})\simeq\operatorname{Fun}(I\setminus\{-\infty\},\cat{C}), \]
+    since every $I$-complex $X$ is determined by the values $X(-\infty,i)$
+    for all $i\in I\setminus\{-\infty\}$. Namely, one has 
+    \[ X(i,j)\simeq\operatorname{cofibre}\bigl(X(-\infty,i)\to X(-\infty,j)\bigr) \]
+    for all $i\leq j$ in $I$. \varqed
+\end{remark}
+
+\begin{example}
+    Let us consider the case
+    \[I=\mathbb{Z}_{\geq0}\cup\{-\infty\}\quad\text{and}\quad
+    \cat{C}=\cat{Ch}(\cat{Ab}).\]
+    Then by the previous example, 
+    an $I$-complex in $\cat{C}$ can be seen as
+    a chain complex of chain complexes in $\cat{Ab}$.
+    Let $X$ be an $I$-complex, which is a diagram 
+    \[\begin{tikzcd}[column sep={5.5em,between origins}]
+        0\ar[r] & X_0\ar[r]\ar[d]\ar[dr,phantom,end anchor={[xshift=-.5em]north},pos=.75,"\lrcorner"] &
+        X(-\infty,1)\ar[r]\ar[d]\ar[dr,phantom,end anchor={[xshift=-.5em]north},pos=.75,"\lrcorner"] &
+        X(-\infty,2)\ar[r]\ar[d] & \cdots \\
+        & 0\ar[r] & X_1[1]\ar[r]\ar[d]\ar[dr,phantom,end anchor={[xshift=-.5em]north},pos=.75,"\lrcorner"] &
+        X(0,2) \ar[r]\ar[d] & \cdots \\
+        && 0\ar[r] & X_2[2]\ar[r]\ar[d] & \cdots \\
+        &&& 0\ar[r] & \cdots
+    \end{tikzcd}\]
+    in $\cat{C}$. The upper-left pushout square implies that we must have
+    \[X(-\infty,1)\simeq\operatorname{cofibre}\bigl(\partial\:X_1\to X_0\bigr).\]
+    However, as we will show in the next section,
+    the homotopy cofibre in the category of chain complexes 
+    is equivalent to the mapping cone
+    \[\operatorname{cone}(\partial)\simeq X_0\oplus X_1[1],\]
+    where $\simeq$ denotes an isomorphism of graded abelian groups.
+    Therefore, the first row of the diagram may be seen as a sequence 
+    \[0\to X_0\to X_0\oplus X_1[1]\to X_0\oplus X_1[1]\oplus X_2[2]\to\cdots\]
+    of graded abelian groups,
+    in which each term is equipped with a twisted differential.
+    Therefore, an $I$-complex in $\cat{C}$
+    may also be seen as a filtered chain complex 
+    of abelian groups. \varqed
+\end{example}
+
+In homological algebra, a filtered chain complex produces a spectral sequence,
+which computes the homology of the total complex.
+This generalises to stable $\infty$-categories as well,
+establishing a further connection between homological algebra
+and stable homotopy theory.
+
+\begin{definition}
+    Let $\cat{C}$ be a stable $\infty$-category.
+    A \term{filtered object} in $\cat{C}$ is a functor 
+    \[X\:\mathfrak N(\mathbb{Z})\to\cat{C}.\]
+    We may regard $X$ as a $\mathbb{Z}$-complex
+    by first obtaining a $(\mathbb{Z}\cup\{-\infty\})$-complex,
+    and then restricting to $\mathbb{Z}^{[1]}\subset(\mathbb{Z}\cup\{-\infty\})^{[1]}$.
+\end{definition}
+
+Let $\cat{C}$ be a stable $\infty$-category with a t-structure.
+Suppose that the heart $\cat{C}^\heartsuit$ 
+is equivalent to $\mathfrak{N}(\cat{A})$ for an abelian category $\cat{A}$.
+
+Let $X$ be a filtered object in $\cat{C}$.
+Write
+\[E^r_{p,q}:=\operatorname{im}\Bigl(
+    \pi_{p+q}X(p-r,p)\to\pi_{p+q}X(p-1,p+r-1)
+\Bigr)\in\cat{A}\]
+for all $r\geq1$ and $p,q\in\mathbb{Z}$.
+Define 
+\[d^r\:E^r_{p,q}\to E^r_{p-r,q+r-1}\]
+by the commutative diagram 
+\[\begin{tikzcd}
+    \pi_{p+q}X(p-r,p)\ar[r]\ar[d,"\delta"] & \pi_{p+q}X(p-1,p+r-1)\ar[d,"\delta"] \\
+    \pi_{p+q-1}X(p-2r,p-r)\ar[r] & \pi_{p+q-1}X(p-r-1,p-1)\rlap{\ ,}
+\end{tikzcd}\]
+where $\delta$ denotes the connecting morphism in the long exact sequence 
+\[\cdots\to\pi_nX(i,j)\to\pi_nX(i,k)\to\pi_nX(j,k)\xrightarrow{\delta}\pi_{n-1}X(i,j)\to\cdots\]
+for any $i\leq j\leq k$.
+
+\begin{theorem}
+    The pair 
+    \[ (E^r_{p,q},d^r) \]
+    is a spectral sequence in $\cat{A}$.
+
+    Moreover, if $X(n)\simeq0$ for $n\ll0$, 
+    and if we assume that $\cat{C}_{\leq0}$
+    is stable under $\mathbb{Z}$-indexed colimits,
+    then the spectral sequence converges:
+    \[ E^r_{p,q}\Rightarrow\pi_{p+q}\operatorname{colim}
+    \bigl(X\:\mathfrak{N}(\mathbb{Z})\to\cat{C}\bigr) \]
+\end{theorem}
+
+See \cite[Propositions 1.2.2.7~and~1.2.2.14]{ha}.
+
+There is also a version of Dold--Kan correspondence
+for stable $\infty$-categories.
+
+\begin{theorem}
+    Let $\cat{C}$ be a stable $\infty$-category. Then 
+    \[\operatorname{Fun}(\mathfrak{N}\mathbb{Z}_{\geq0},\cat{C})
+    \simeq\operatorname{Fun}(\mathfrak{N}\bfDelta\op,\cat{C}).\]
+\end{theorem}
+
+See \cite[Theorem~1.2.4.1]{ha}.

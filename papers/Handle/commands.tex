@@ -1,0 +1,35 @@
+\newcommand{\term}[1]{\textbf{\textup{#1}}}
+
+\def\varqed{\nolinebreak\hfill$◃$}
+\def\varqedhere{\eqno ◃}
+
+\renewcommand{\:}{\colon}
+\renewcommand{\d}{\mathrm{d}}
+\renewcommand{\exp}{\operatorname{\smash{exp}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\id}{\mathbb{1}}
+\newcommand{\image}{\operatorname{im}}
+\newcommand{\limdct}{\mathop{\rlap{\raisebox{-1ex}{\scalebox{.9}{$\longrightarrow$}}}\mathrm{lim}}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\oline}[2]{\rlap{$\mkern#1mu\smash{\overline{\phantom{\smash{#2}}\vphantom{t}\mkern-#1mu}}$}#2}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\T}{\mathrm{T}\!}
+\newcommand{\Tstar}[1]{\mathrm{T}_{\!#1}^{\,*}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\usepackage{enumitem}
+\newenvironment{enum}[1][]{\begin{enumerate}[label=(\roman*),format=\textup,itemsep=0pt,#1]}{\end{enumerate}}
+\newenvironment{itms}[1][]{\begin{itemize}[itemsep=0pt,#1]}{\end{itemize}}
+
+\theoremstyle{definition}
+
+\AtBeginDocument{
+    \renewcommand{\subsup}[3]{#1_{\smash{#2}}^{#3}}
+    \let\temp\epsilon
+    \let\epsilon\varepsilon
+    \let\varepsilon\temp
+    \let\temp\phi
+    \let\phi\varphi
+    \let\varphi\temp
+}

@@ -1,0 +1,578 @@
+In infinity categories,
+homotopy equivalent objects are equivalent by definition.
+Therefore, the only well-defined notion of (co)limits 
+is that of homotopy (co)limits.
+
+Homotopy (co)limits behave very differently from ordinary (co)limits.
+For example, the diagram
+\[\begin{tikzcd}
+    \{*,*\} \ar[r] \ar[d] \ar[dr,phantom,pos=.75,"\lrcorner"] & \{*\} \ar[d] \\
+    \{*\} \ar[r] & S^1
+\end{tikzcd}\]
+is a homotopy pushout diagram of topological spaces,
+where $\{*,*\}$ denotes the discrete space with two points.
+The advantage of such a notion of (co)limits is that 
+if we change the objects in the diagram to homotopy equivalent ones,
+the result does not change.
+The disadvantage is that they are difficult to compute.
+
+However, model categories will give us great help in computing
+homotopy (co)limits.
+
+\subsection{Colimits and limits}
+
+The simplest colimit is the empty colimit, that is, the initial object.
+In ordinary category theory, the initial object is characterised by
+the property that it admits a unique morphism to any other object.
+
+The $\infty$-categorical way of saying something is unique 
+is to say that all possible choices form a contractible space,
+i.e.\ a contractible Kan complex.
+
+\begin{definition}
+    Let $\cat C$ be a quasi-category.
+    An object $x\in\cat C$ is called an \term{initial object},
+    if for any $y\in\cat C$, the mapping space $\Hom_{\cat C}(x,y)$ is contractible.
+\end{definition}
+
+The notation $\Hom_{\cat C}(x,y)$ refers to any one of
+\[\Hom_{\cat C}^\vartriangleleft(x,y),\quad
+\Hom_{\cat C}^\vartriangleright(x,y),\quad 
+\Hom_{\mathfrak C\cat C}(x,y),\quad\text{etc.,} \]
+which all have the same homotopy type (\ref{thm-5-h}).
+
+\begin{remark}
+    An initial object of $\cat C$
+    is equivalently an initial object of the $\cat{hCW}$-enriched category $h\cat C$.
+    In fact, most of the notions defined in this section will be equivalent to 
+    the corresponding notions for $\cat{hCW}$-enriched categories. \varqed
+\end{remark}
+
+One may expect that initial objects are unique if they exist.
+As before, uniqueness means being a contractible space.
+
+\begin{lemma}
+    Let $\cat{C}$ be a quasi-category, and let $x\in\cat{C}$.
+    Then the maps 
+    \[ \cat{C}_{x\/}\to\cat{C} \quad\text{and}\quad \cat{C}_{\/x}\to\cat{C} \]
+    are a left fibration and a right fibration, respectively.
+\end{lemma}
+
+\begin{proof}
+    Exercise for the reader.
+\end{proof}
+
+\begin{proposition}
+    Let $\cat C$ be a quasi-category.
+    \begin{itms}
+        \item An object $x\in\cat C$ is an initial object, if and only if
+        the left fibration
+        \[ \cat C_{x\/}\to\cat C \]
+        is a trivial fibration.
+        \item The full subcategory spanned by the initial objects 
+        is either empty, or a contractible Kan complex.
+    \end{itms}
+\end{proposition}
+
+\begin{proof}
+    For the first part, note that $x$ is an initial object 
+    if and only if the map $\cat C_{x\/}\to\cat C$ has contractible fibres.
+    But a left fibration has contractible fibres iff
+    it is a trivial fibration, which is a standard fact \cite[Lemma~2.1.3.4]{htt}.
+
+    For the second part, suppose we have a map $f\:\partial\Delta[n]\to\cat{C}$,
+    such that all vertices are sent to initial objects, with $n>0$.
+    We need to show that it can be extended to a map $\Delta[n]\to\cat{C}$.
+    Then we may lift in the diagram 
+    \[ \begin{tikzcd}
+        \partial\Delta[n-1] \ar[d,"\cat{Cof}\ni"'] \ar[r,"f|_{\Lambda_0[n]}"] &
+        \cat{C}_{f(0)\/} \ar[d,"\in\cat{Fib}\cap\cat{W}"] \\
+        \Delta[n-1] \ar[r,"f|_{1\comma\dotsc\comma n}"'] \ar[ur,dashed] &
+        \cat{C}
+    \end{tikzcd} \]
+    to get the desired extension of $f$ to $\Delta[n]$.
+\end{proof}
+
+Colimits are nothing but initial objects of under-categories.
+
+\begin{definition}
+    Let $\cat C$ be a quasi-category,
+    $K$ a simplicial set,
+    and let $f\:K\to\cat C$ be a diagram.
+    A \term{colimit} of $f$ is an initial object of $\cat C_{K\/}$.
+\end{definition}
+
+We immediately deduce the following.
+
+\begin{corollary}
+    Let $\cat C$ be a quasi-category,
+    $K$ a simplicial set,
+    and let $f\:K\to\cat C$ be a diagram.
+    \begin{itms}
+        \item A map $\bar f\:K^\vartriangleright\to\cat C$
+        is a colimit of $f$, if and only if
+        the induced left fibration
+        \[ \cat C_{K^\vartriangleright\/}\to\cat C_{K\/} \]
+        is a trivial fibration.
+        \item The category of colimits of $f$ 
+        is either empty, or a contractible Kan complex.
+    \end{itms}
+\end{corollary}
+
+\begin{proof}
+    We have an isomorphism of simplicial sets
+    \[ \cat C_{K^\vartriangleright\/}\simeq(\cat C_{K\/})_{x\/}, \]
+    where $x$ denotes the image of the cone point of $K^\vartriangleright$.
+    Everything else is clear.
+\end{proof}
+
+\begin{remark}\label{thm-6-c}
+    The natural map 
+    \[ \cat C_{K^\vartriangleright\/}\to\cat C_{x\/} \]
+    is always a trivial fibration,
+    as can be shown by verifying the lifting property,
+    by transfinite induction on the number of simplices of $K$.
+    Details are left to the reader. \varqed
+\end{remark}
+
+Colimits are not computable via this definition.
+We need to deduce some of their properties to make them computable.
+
+\begin{proposition}\label{thm-6-z}
+    Let $\cat C$ be a quasi-category,
+    and let $\{x_\alpha\}_{\alpha\in A}$ be a collection of objects in $\cat C$.
+    An object $x\in\cat C$ is a coproduct of the objects $x_\alpha$,
+    if and only if for any $y\in\cat C$, the induced map 
+    \[ \Hom_{\cat C}(x,y)\to\prod_\alpha\Hom_{\cat C}(x_\alpha,y) \]
+    is a homotopy equivalence.
+\end{proposition}
+
+\begin{proof}
+    We have a map $A\to\cat{C}$, $\alpha\mapsto x_\alpha$.
+    The right hand side is equivalent to  
+    \[ \prod_\alpha{}(\cat C_{x_\alpha\/})_y
+    \simeq (\cat C_{A\/})_y, \]
+    where the subscript $y$ means taking the fibre of the map to $\cat C$.
+    The left hand side is equivalent to 
+    \[ (\cat C_{x\/})_y\simeq((\cat C_{A\/})_{x\/})_y \]
+    by (\ref{thm-6-c}). Thus $x$ is a coproduct, if and only if the left fibration
+    \[(\cat C_{A\/})_{x\/}\to\cat C_{A\/}\]
+    is a trivial fibration,
+    if and only if it has contractible fibres,
+    if and only if all the left fibrations
+    \[((\cat C_{A\/})_{x\/})_y\to(\cat C_{A\/})_y\]
+    are trivial fibrations.
+\end{proof}
+
+This result on coproducts is a special case of a general theorem,
+which we state below.
+
+Let $\cat K$ be a category enriched over Kan complexes.
+Then the category of simplicially enriched functors
+\[ \operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet}) \]
+carries two model structures:
+\begin{itms}
+    \item The \term{projective model structure},
+    with weak equivalences and fibrations defined pointwise,
+    and cofibrations defined by the lifting property.
+    \item The \term{injective model structure},
+    with weak equivalences and cofibrations defined pointwise,
+    and fibrations defined by the lifting property.
+\end{itms}
+The constant functor
+\[ \operatorname{const}\:\cat{sSet}\to\operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet}) \]
+is right Quillen with respect to the projective model structure,
+and left Quillen with respect to the injective model structure.
+Therefore, the colimit functor 
+\[ \operatorname{colim}\:\operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet})\to\cat{sSet} \]
+is left Quillen with respect to the projective model structure,
+as it is the left adjoint of the constant functor.
+The limit functor 
+\[ \operatorname{lim}\:\operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet})\to\cat{sSet} \]
+is right Quillen with respect to the injective model structure,
+as it is the right adjoint of the constant functor.
+
+\begin{definition}
+    Let $\cat K$ be a category enriched over Kan complexes.
+    \begin{itms}
+        \item The \term{homotopy colimit} functor
+        \[ \operatorname{hocolim}\:\Ho(\operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet}))\to\Ho(\cat{sSet}) \]
+        is the left derived functor of the left Quillen functor 
+        \[ \operatorname{colim}\:\operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet})\to\cat{sSet}, \]
+        where $\operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet})$
+        is equipped with the projective model structure.
+
+        \item The \term{homotopy limit} functor
+        \[ \operatorname{holim}\:\Ho(\operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet}))\to\Ho(\cat{sSet}) \]
+        is the right derived functor of the right Quillen functor 
+        \[ \operatorname{lim}\:\operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet})\to\cat{sSet}, \]
+        where $\operatorname{Fun}_{\cat{sSet}}(\cat K,\cat{sSet})$
+        is equipped with the injective model structure.
+    \end{itms}
+\end{definition}
+
+\begin{example}
+    The homotopy pushout
+    \[ \{*\}\underset{\{*,*\}}{\sqcup}\{*\} \]
+    is the homotopy type of $S^1$, as is familiar in topology.
+    A proof will be given later.
+    \varqed
+\end{example}
+
+We can now use homotopy limits of simplicial sets 
+to define homotopy (co)limits in categories enriched over Kan complexes.
+
+Let $\cat K$ be a category enriched over Kan complexes.
+We denote by $\cat K^\vartriangleright$ the $\cat{Kan}$-enriched category obtained
+by adjoining a terminal object $\infty$, with 
+\[ \Hom_{\cat K^\vartriangleright}(x,\infty)=\{*\}\quad(x\in\cat K^\vartriangleright),\quad
+\Hom_{\cat K^\vartriangleright}(\infty,x)=\emptyset\quad(x\in\cat K).\quad  \]
+Let $\cat K^\vartriangleleft$ be defined dually.
+
+\begin{definition}
+    Let $\cat C$ and $\cat K$ be categories enriched over Kan complexes,
+    and let $f\:\cat K\to\cat C$ be a functor.
+    \begin{itms}
+        \item A \term{homotopy colimit} of $f$ is a functor 
+        \[ \bar f\:\cat K^\vartriangleright\to\cat C, \]
+        such that $\bar f|_{\cat K}=f$, and for any $y\in\cat C$, the induced map 
+        \[ \Hom_{\cat C}(\bar f(\infty),y)\to\mathop{\operatorname{holim}}\limits_{k\in\cat K}\Hom_{\cat C}(f(k),y) \]
+        is a weak homotopy equivalence.
+
+        \item A \term{homotopy limit} of $f$ is a functor 
+        \[ \bar f\:\cat K^\vartriangleleft\to\cat C, \]
+        such that $\bar f|_{\cat K}=f$, and for any $y\in\cat C$, the induced map 
+        \[ \Hom_{\cat C}(y,\bar f(\infty))\to\mathop{\operatorname{holim}}\limits_{k\in\cat K}\Hom_{\cat C}(y,f(k)) \]
+        is a weak homotopy equivalence.
+    \end{itms}
+\end{definition}
+
+This definition can be seen as the definition of $\infty$-(co)limits 
+in the model of categories enriched over Kan complexes.
+The following theorem states that
+(co)limits in quasi-categories coincide with homotopy (co)limits in this sense.
+
+\begin{theorem} \label{thm-6-x}
+    Let $\cat C$ and $\cat K$ be categories enriched over Kan complexes,
+    and let $f\:\cat K\to\cat C$ be a functor.
+    Then the functor between quasi-categories
+    \[ \mathfrak Nf\:\mathfrak N\cat K\to\mathfrak N\cat C \]
+    has a (co)limit,
+    if and only if $f$ has a homotopy (co)limit,
+    and in this case, they coincide.
+\end{theorem}
+
+See \cite[Theorem~4.2.4.1]{htt}.
+
+Of course, this also means that if $f\:\cat K\to\cat C$
+is a functor of quasi-categories, then its (co)limits are computed by
+the homotopy (co)limit of the functor
+\[ R\mathfrak Cf\:R\mathfrak C\cat K\to R\mathfrak C\cat C \]
+between $\cat{Kan}$-enriched categories.
+This is because (co)limits are preserved by categorical equivalences.
+
+\begin{example}
+    When $\cat K=\Lambda_0[2]$, one has an isomorphism
+    $\cat K^\vartriangleright\simeq\Delta[1]\times\Delta[1]$.
+    The colimit of a diagram $\cat K\to\cat C$ is called a (homotopy) \term{pushout},
+    which is a square in $\cat C$, i.e.\ a map $\Delta[1]\times\Delta[1]\to\cat C$.
+    We denote pushouts by the usual notation $y\sqcup_xz$.
+    By the theorem, we have 
+    \[ \Hom_{\cat C}\bigl(y\underset{x}{\sqcup}z,w\bigr)\simeq
+    \Hom_{\cat C}(y,w)\underset{\Hom_{\cat C}(x,w)}{\times}\Hom_{\cat C}(z,w) \]
+    for any $w\in\cat C$,
+    where the right hand side denotes a homotopy pullback of Kan complexes. 
+    \varqed
+\end{example}
+
+As a corollary, we have the following criterion
+that establishes certain ordinary pushouts as homotopy pushouts.
+
+\begin{proposition}
+    Let $\cat C$ be a simplicial model category.
+    The ordinary pushout 
+    \[ \begin{tikzcd}
+        x\ar[r]\ar[d]\ar[dr,phantom,pos=.7,"\lrcorner"] & y\ar[d] \\
+        z\ar[r] & y\underset{x}{\sqcup}z
+    \end{tikzcd} \]
+    coincides with the homotopy pushout,
+    if the map $x\to y$ is a cofibration.
+\end{proposition}
+
+\begin{proof}[Sketch of Proof]
+    The key is to show that the map 
+    \[ \Hom_{\cat{C}}(y,w) \to \Hom_{\cat{C}}(x,w) \]
+    is a fibration of simplicial sets,
+    since it is known that an ordinary pullback along a fibration of simplicial sets 
+    is a homotopy pullback.
+    This will follow from the axioms of a simplicial model category 
+    by a standard argument which we omit here.
+\end{proof}
+
+This gives an easy way to compute homotopy pushouts
+in a simplicial model category. Namely,
+to compute $y\sqcup_xz$, one finds a weak equivalence $y\to y'$,
+such that the composition $x\to y\to y'$ is a cofibration.
+Then the homotopy pushout $y\sqcup_xz$
+is given by the ordinary pushout $y'\sqcup_xz$. For example,
+in $\cat{Top}$, one has the homotopy pushout
+\[ \{*\}\underset{X}{\sqcup}\{*\}\simeq\Sigma X. \]
+
+\begin{remark}
+    For simplicial model categories, 
+    the $\infty$-categorical (co)limits coincide with 
+    the derived functors of the (co)limit functors,
+    provided that the projective and injective model structures exist.
+    \varqed
+\end{remark}
+
+Finally, we mention a formula that computes homotopy (co)limits directly.
+Readers unfamiliar with (co)ends may skip to the next subsection.
+
+\begin{proposition}
+    Let $f\:\cat K\to\cat C$ be a functor of $\cat{Kan}$-enriched categories.
+    Assume that $\cat C$ is tensored and cotensored over $\cat{sSet}$.
+    For example, this is always the case if $\cat C$ is a simplicial model category.
+    
+    \begin{itms}
+        \item The homotopy colimit of $f$
+        is computed by the simplicially enriched coend 
+        \[ \operatorname{hocolim}f\simeq\int^{k\in\cat K}\mathfrak{N}(\cat K_{k\/})\otimes f(k), \]
+        where $\otimes$ denotes the simplicial tensoring on $\cat C$.
+        \item The homotopy limit of $f$ is computed by the simplicially enriched end
+        \[ \operatorname{holim}f\simeq\int_{k\in\cat K}f(k)^{\mathfrak{N}(\cat K_{\/k})}, \]
+        where the powering denotes the simplicial powering on $\cat C$.
+    \end{itms}
+\end{proposition}
+
+See \cite{riehl}.
+
+\begin{example}
+    Let $G$ be a topological group acting on a space $X$.
+    Then the \term{homotopy quotient} $X\/{}^{\mathrm h}G$ is defined by 
+    \[ X\/{}^{\mathrm h}G:=(X\times EG)\/G, \]
+    where $EG$ denotes the universal $G$-bundle over $BG$.
+    This is exactly the homotopy colimit of the corresponding functor 
+    \[ \cat{B}G\to\cat{Top}, \]
+    where $\cat BG$ is the simplicial groupoid with a single object,
+    whose mapping space is $\operatorname{Sing}G$. \varqed
+\end{example}
+
+\subsection{Adjoint functors}
+
+Adjoint functors play a very important role
+in classical category theory.
+For example, colimits and limits are two special cases of adjoint functors.
+For $\infty$-categories,
+there is also a homotopical version of adjoint functors,
+which we will now discuss.
+
+\begin{definition}
+    Let $\cat C,\cat D$ be quasi-categories, and let 
+    \[ F\:\cat C\to\cat D,\quad G\:\cat D\to\cat C \]    
+    be two functors. We say that $F$ and $G$ are a pair of 
+    \term{adjoint functors} if there is an equivalence of functors 
+    \[ \Hom_{\cat D}(F-,-)\simeq\Hom_{\cat C}(-,G-)\:\cat C\op\times\cat D\to\cat S. \]
+    Precisely, we mean that the functors
+    \[ \Hom_{\mathfrak C\cat D}(F-,-)\quad\text{and}\quad\Hom_{\mathfrak C\cat C}(-,G-) \]
+    are weakly equivalent in the category 
+    \[ \operatorname{Fun}_{\cat{sSet}}(\mathfrak C(\cat C\op\times\cat D),\cat{sSet}), \]
+    equipped with the projective model structure.
+\end{definition}
+
+In order to understand the properties of adjoint functors,
+we will formulate another two equivalent definitions.
+
+\begin{definition}
+    Let $\cat C$ be a quasi-category.
+    
+    \begin{itms}
+        \item The quasi-category 
+        \[ \mathscr P(\cat C):=\operatorname{Fun}(\cat C\op,\cat S) \]
+        is called the category of \term{presheaves} on $\cat C$,
+        where $\cat S:=\mathfrak N(\cat{Kan})$.
+    
+        \item The map
+        \[\begin{aligned}
+            Y\:\cat C&\to\mathscr P(\cat C),\\
+            x&\mapsto h_x:=\Hom_{\cat C}(-,x)
+        \end{aligned}\]
+        is called the \term{Yoneda embedding}.
+        Precisely, this map is defined by the simplicially enriched functor 
+        \[\begin{aligned}
+            \mathfrak C(\cat C\times\cat C\op)&\to\cat{Kan},\\
+            (x,y)&\mapsto R\Hom_{\mathfrak C\cat C}(y,x)
+        \end{aligned}\]
+        by passing to the adjoint,
+        where $R$ denotes the fibrant replacement.
+    
+        \item A presheaf on $\cat C$ is called \term{representable} if 
+        it is equivalent to $h_x$ for some $x\in\cat C$.
+    \end{itms}
+\end{definition}
+
+Via the Grothendieck construction (\ref{thm-5-gc}),
+presheaves on $\cat C$ are equivalent to right fibrations over $\cat C$.
+Namely, given $F\in\mathscr P(\cat C)$, the right fibration 
+\[ \operatorname{Un}_{\cat C}F\to\cat C \]
+has fibre (equivalent to) $F(x)$ at $x\in\cat C$.
+
+\begin{definition}
+    Let $\cat C$ be a quasi-category.
+    A right fibration $X\to\cat C$ is \term{representable}, 
+    if the presheaf 
+    \[ \operatorname{St}_{\cat C}X\in\mathscr P(\cat C) \]
+    is representable.
+\end{definition}
+
+By definition, representable right fibrations are of the form
+$\operatorname{Un}_{\cat{C}}h_x$.
+If we look at its fibres, we realise that it is equivalent to $\cat{C}_{\/x}$,
+in the fibrewise sense, i.e.\ in $\cat{sSet}_{\/\cat{C}}$
+with the contravariant model structure (\ref{thm-5-gc}).
+
+\begin{proposition} \label{thm-6-rrf}
+    Any representable right fibration over $\cat{C}$ is equivalent to 
+    $\cat{C}_{\/x}$ in $\cat{sSet}_{\/\cat{C}}$,
+    where $x\in\cat{C}$ is any representing object. \qed
+\end{proposition}
+
+Dually, a left fibration $p\:X\to\cat C$ is representable 
+if the right fibration $p\op\:X\op\to\cat C\op$ is representable.
+
+\begin{proposition}
+    Let $\cat C$ be a quasi-category,
+    and let $p\:\tilde{\cat C}\to\cat C$ be a right fibration.
+    \begin{itms}
+        \item $p$ is representable, if and only if $\tilde{\cat C}$
+        has a terminal object.
+        \item An object $x\in\cat C$ represents $p$,
+        if and only if there exists a terminal object $\tilde x$ of $\tilde{\cat C}$,
+        with $p(\tilde x)=x$.
+    \end{itms}
+    In particular, the full subcategory of $\cat C$
+    spanned by the representing objects of $p$
+    is either empty or a contractible Kan complex.
+\end{proposition}
+
+\begin{proof}
+    We only need to prove the second part.
+
+    Suppose $x$ represents $p$.
+    Then $\tilde{\cat{C}}\simeq\cat{C}_{\/x}$ in $\cat{sSet}_{\/\cat{C}}$.
+    The object $\mathbb{1}_x\in\cat{C}_{\/x}$ is terminal, as desired.
+
+    Suppose such an object $\tilde{x}$ exists.
+    It is a good exercise for the reader to show that the map
+    \[ \tilde{\cat{C}}_{\/\tilde{x}} \to \cat{C}_{\/x} \]
+    is a trivial fibration of simplicial sets.
+    But since $\tilde{x}$ is terminal,
+    we have another trivial fibration $\tilde{\cat{C}}_{\/\tilde{x}}\to\tilde{\cat{C}}$,
+    which implies that 
+    \[ \tilde{\cat{C}} \simeq \tilde{\cat{C}}_{\/\tilde{x}} \simeq \cat{C}_{\/x} \]
+    as right fibrations over $\cat{C}$.
+    Therefore, $p$ is represented by $x$.
+\end{proof}
+
+We can now give the equivalent definitions
+of adjoint functors.
+
+\begin{proposition} \label{thm-6-d}
+    Let $\cat C,\cat D$ be two quasi-categories.
+    Then a pair of adjoint functors between $\cat C$ and $\cat D$
+    is equivalent to a left fibration 
+    \[ p\:X\to\cat C\op\times\cat D, \]
+    such that 
+    \begin{itms}
+        \item $p$ is \term{left representable}:
+        for any $x\in\cat C$, the slice 
+        \[ p|_{x\times\cat D}\:p^{-1}(x\times\cat D)\to x\times\cat D \]
+        is a representable left fibration.
+        \item $p$ is \term{right representable}:
+        for any $y\in\cat D$, the slice 
+        \[ p|_{\cat C\op\times y}\:p^{-1}(\cat C\op\times y)\to \cat C\op\times y \]
+        is a representable left fibration.
+    \end{itms}
+    In fact, $p$ is given by the Grothendieck construction 
+    of the functor
+    \[ \Hom_{\cat D}(F-,-)\simeq\Hom_{\cat C}(-,G-)\:\cat C\op\times\cat D\to\cat S. \]
+\end{proposition}
+
+\begin{proof}
+    Clearly, a pair of adjoint functor gives rise to such a left fibration $p$.
+
+    Now suppose we are given such a left fibration $p$.
+    Then for any $x\in\cat{C}$, we wish to define $Fx$ to be 
+    a representing object of $p|_{x\times\cat{D}}$,
+    or equivalently, an initial object of $p^{-1}(x\times\cat{D})$.
+    This is done as follows.
+    Consider the full subcategory $Y \subset X$ spanned by all such initial objects.
+    One can prove that $Y\to\cat{C}\op$ is a trivial fibration
+    (by repeated applications of the Grothendieck construction; the reader may try it),
+    and we may take $F$ to be any of its sections.
+    The functor $G$ is defined analogously.
+\end{proof}
+
+\begin{proposition}
+    Let $\cat C,\cat D$ be two quasi-categories.
+    Then a pair of adjoint functors between $\cat C$ and $\cat D$
+    is equivalent to a map 
+    \[ p\:M\to\Delta[1], \]
+    such that 
+    \begin{itms}
+        \item There are categorical equivalences
+        $p^{-1}(0)\simeq\cat C$ and $p^{-1}(1)\simeq\cat D$.
+        \item $p$ is a cocartesian fibration.
+        \item $p$ is a cartesian fibration.
+    \end{itms}
+    In fact, $M$ is given by $\mathfrak N\cat M$,
+    where the $\cat{Kan}$-enriched category $\cat M$ is defined by 
+    \begin{itms}
+        \item Objects: pairs $(x,0)$ for $x\in\cat C$ and $(y,1)$ for $y\in\cat D$.
+        \item Morphism spaces:
+        \[ \begin{aligned}
+            \Hom_{\cat M}((x,0),(y,0)) &:= \Hom_{R\mathfrak C\cat C}(x,y), \\
+            \Hom_{\cat M}((x,1),(y,1)) &:= \Hom_{R\mathfrak C\cat D}(x,y), \\
+            \Hom_{\cat M}((x,0),(y,1)) &:= \Hom_{R\mathfrak C\cat D}(Fx,y)\simeq\Hom_{R\mathfrak C\cat C}(x,Gy), \\
+            \Hom_{\cat M}((x,1),(y,0)) &:= \emptyset.
+        \end{aligned} \]
+    \end{itms}
+\end{proposition}
+
+\begin{proof}
+    Assume we are given $M$.
+    Then it is straightforward to recover the adjoint pair, since (co)cartesian fibrations 
+    give rise to transport functors, via the Grothendieck construction.
+
+    It remains to show that this procedure is inverse to 
+    the construction of $M$ in the formulation of the proposition.
+    We omit these verifications.
+\end{proof}
+
+\begin{proposition}
+    Let $\cat K,\cat C$ be quasi-categories.
+    Suppose that every functor $\cat K\to\cat C$ has a colimit.
+    Then the constant functor 
+    \[ \operatorname{const}\:\cat C\to\operatorname{Fun}(\cat K,\cat C) \]
+    admits a left adjoint, which is the colimit functor.
+\end{proposition}
+
+\begin{proof}
+    We use the equivalent definition of adjoint functors given in (\ref{thm-6-d}).
+    The functor $\operatorname{const}$ gives a right representable left fibration 
+    \[ X \to \operatorname{Fun}(\cat K,\cat C)\op \times \cat{C}. \]
+    It suffices to show that it is also left representable.
+    But note that 
+    \[ X|_{f\times\cat{C}} \simeq \cat{C}_{f\/}, \]
+    and left representability is equivalent to $\cat{C}_{f\/}$ having an initial object,
+    which is equivalent to $\cat{C}$ having colimits.
+\end{proof}
+
+\begin{remark}
+    Let $\cat C,\cat D$ be simplicial model categories,
+    and let $(F\dashv G)$ be a Quillen adjunction between them.
+    Then $F$ and $G$ give rise to 
+    a pair of adjoint functors between the quasi-categories
+    $\mathfrak N(\cat C_{\mathrm{cf}})$ and
+    $\mathfrak N(\cat D_{\mathrm{cf}})$. \varqed
+\end{remark}

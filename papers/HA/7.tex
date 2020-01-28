@@ -1,0 +1,633 @@
+In topology, we have homotopy pushout and pullback diagrams
+\[ \begin{tikzcd}
+    X\ar[r]\ar[d]\ar[dr,phantom,pos=.8,"\lrcorner"] & *\ar[d] \\
+    *\ar[r] & \Sigma X
+\end{tikzcd}
+\quad\text{and}\quad
+\begin{tikzcd}
+    \Omega X\ar[r]\ar[d]\ar[dr,phantom,pos=.2,"\ulcorner"] & *\ar[d] \\
+    *\ar[r] & X\rlap{\ ,}
+\end{tikzcd} \]
+as has been shown in the last section.
+In a stable category, we instead have the pushout-pullback diagram
+\[ \begin{tikzcd}
+    X\ar[r]\ar[d]\ar[dr,phantom,start anchor=south east,"\ulcorner" pos=.25,"\lrcorner" pos=.85] & *\ar[d] \\
+    *\ar[r] & X[1]\rlap{\ ,}
+\end{tikzcd} \]
+which means that $\Sigma$ and $\Omega$ are inverse to each other.
+For example, we will see that for cochain complexes,
+the functors $\Sigma$ and $\Omega$ coincide with the shifting functors
+$[1]$ and $[-1]$, and thus, the category of cochain complexes
+is an example of a stable category.
+
+For any category with finite limits, we will describe a \emph{stabilisation}
+procedure, that turns the category into a stable one.
+For example, the stabilisation of the category of topological spaces
+will be the category of spectra, which we will define below.
+
+From now on, when referring to quasi-categories,
+we will change our terminology to ``\term{$(\infty,1)$-categories}'',
+or ``\term{$\infty$-categories}'' for short.
+This means that we are not only studying one particular model;
+we are also talking about the behaviour of an intrinsic notion of $(\infty,1)$-categories,
+which is independent of models.
+However, we only provide rigorous formulations for quasi-categories.
+
+\subsection{Stable categories}
+
+\begin{definition}
+    An $\infty$-category $\cat C$ is said to be \term{pointed},
+    if it has a zero object $0\in\cat C$,
+    i.e.\ an object that is both initial and terminal.
+\end{definition}
+
+\begin{definition}
+    Let $\cat C$ be a pointed $\infty$-category.
+    \begin{itms}
+        \item A \term{triangle} in $\cat C$ is a diagram 
+        \[\begin{tikzcd}
+            X\ar[d]\ar[r] & Y\ar[d] \\
+            0\ar[r] & Z\rlap{\ .}
+        \end{tikzcd}\]
+        
+        \item A \term{cofibre sequence} in $\cat C$
+        is a triangle that is also a pushout square.
+        In this case, we say that $Z$ is the
+        \term{homotopy cofibre} of the map $X\to Y$.
+        
+        \item A \term{fibre sequence} in $\cat C$
+        is a triangle that is also a pullback square.
+        In this case, we say that $X$ is the
+        \term{homotopy fibre} of the map $Y\to Z$.
+    \end{itms}
+\end{definition}
+
+\begin{definition}
+    A \term{stable $\infty$-category} is a pointed $\infty$-category $\cat C$,
+    such that
+    \begin{itms}
+        \item Every morphism in $\cat C$ has a homotopy cofibre and a homotopy fibre.
+        \item A triangle in $\cat C$ is a cofibre sequence
+        if and only if it is a fibre sequence.
+    \end{itms}
+\end{definition}
+
+\begin{definition}
+    Let $\cat C$ be a pointed $\infty$-category.
+    The functors $\Sigma\:\cat C\to\cat C$ and $\Omega\:\cat C\to\cat C$
+    are defined by 
+    \[ \Sigma X:=0\underset{X}{\sqcup}0
+    \quad\text{and}\quad
+    \Omega X:=0\underset{X}{\times}0. \]
+\end{definition}
+
+As one might expect, $\Sigma$ and $\Omega$ are adjoint to each other, 
+since for any $X,Y\in\cat C$, one has 
+\[ \Hom_{\cat C}(\Sigma X,Y)\simeq
+\{*\}\underset{\Hom_{\cat C}(X,Y)}{\times}\{*\}
+\simeq\Hom_{\cat C}(X,\Omega Y). \]
+
+If $\cat C$ is stable, then $\Sigma$ and $\Omega$ are inverse to each other.
+In this case, we denote 
+\[ X[1]:=\Sigma X\quad\text{and}\quad X[-1]:=\Omega X. \]
+For a non-negative integer $n$, we denote
+\[ X[n]:=\Sigma^nX\quad\text{and}\quad X[-n]:=\Omega^nX. \]
+
+\begin{theorem} \label{thm-7-s}
+    Let $\cat C$ be a pointed $\infty$-category.
+    Then the following are equivalent.
+    \begin{itms}
+        \item $\cat C$ is stable.
+        \item $\cat C$ admits pushouts and $\Sigma$ is an equivalence.
+        \item $\cat C$ admits pullbacks and $\Omega$ is an equivalence.
+        \item $\cat C$ admits pushouts and pullbacks; a square in $\cat C$ is a pushout square,
+        if and only if it is a pullback square.
+    \end{itms}
+\end{theorem}
+
+See \cite[Proposition~1.1.3.4 and Corollary~1.4.2.27]{ha}.
+
+\begin{definition}
+    Let $\cat C,\cat D$ be stable $\infty$-categories.
+    A functor $f\:\cat C\to\cat D$ is said to be \term{exact},
+    if it preserves the zero object,
+    and preserves (co)fibre sequences.
+\end{definition}
+
+\subsection{Homotopy category of a stable category}
+
+Our goal in this subsection is to prove the following theorem.
+
+\begin{theorem}
+    Let $\cat C$ be a stable $\infty$-category.
+    Then the homotopy category $\Ho(\cat C)$
+    carries a natural structure of a triangulated category.
+\end{theorem}
+
+\begin{proof}
+    First, we need to show that $\Ho(\cat C)$ is an additive category.
+
+    \begin{itms}
+        \item \emph{$\Ho(\cat C)$ has finite coproducts.}
+        
+        By (\ref{thm-6-z}), a coproduct in $\cat C$ gives rise to a coproduct in $\Ho(\cat C)$.
+        By definition, $\cat C$ has an initial object.
+        Thus it suffices to show that for any $X,Y\in\cat C$, the coproduct $X\sqcup Y$ exists.
+        We form the pushout diagram 
+        \[ \begin{tikzcd}
+            X[-1]\ar[r,"0"]\ar[d]\ar[dr,phantom,"\ulcorner" pos=.15,"\lrcorner" pos=.75] & Y\ar[d] \\
+            0\ar[r] & Z
+        \end{tikzcd} \]
+        in $\cat C$. Then $Z$ is the coproduct $X\sqcup Y$, since
+        \[ \begin{aligned}
+            Z &\simeq \operatorname{cofibre}(X[-1]\xrightarrow0Y) \\
+            &\simeq \operatorname{cofibre}(X[-1]\to0)\sqcup\operatorname{cofibre}(0\to Y) \\
+            &\simeq X\sqcup Y,
+        \end{aligned} \]
+        where the second step uses the fact that taking the cofibre 
+        commutes with colimits,
+        as can be checked by the definition of homotopy colimits.
+
+        \item \emph{$\Ho(\cat C)$ is an additive category.}
+        
+        For any $X,Y\in\cat{C}$, note that 
+        \[\begin{aligned}
+            \Hom_{\cat{C}}(X[1],Y)
+            &\simeq \Hom_{\cat{C}}(0,Y) \underset{\Hom_{\cat{C}}(X,Y)}{\times} \Hom_{\cat{C}}(0,Y) \\
+            &\simeq \Omega\Hom_{\cat{C}}(X,Y).
+        \end{aligned}\]
+        Therefore,
+        \[
+            \pi_0\Hom_{\cat{C}}(X,Y)\simeq 
+            \pi_1\Hom_{\cat{C}}(X[-1],Y)\simeq 
+            \pi_2\Hom_{\cat{C}}(X[-2],Y)\simeq\cdots
+        \]
+        is an abelian group.
+        We leave it to the reader to check that 
+        composition is bilinear.
+
+        \item \emph{For a map $f\:X\to Y$, what is $-f$?}
+        
+        A map from $X$ to $Y$ can be seen as a diagram
+        \[\begin{tikzcd}
+            X[-1]\ar[r]\ar[d] & 0\ar[d] \\
+            0\ar[r] & Y\rlap{\ .}
+        \end{tikzcd}\]
+        If we swap the two $0$'s, the map will reverse its sign.
+        Precisely, if this square corresponds to the map $f$,
+        then the transpose of this square will correspond to $-f$.
+        This is because the group structure is defined by the identification
+        \[\Hom_{\cat{C}}(X,Y)\simeq\{*\}\underset{\Hom_{\cat{C}}(X[-1],Y)}{\times}\{*\}
+        \simeq\Omega\Hom_{\cat{C}}(X[-1],Y),\]
+        and if the two $\{*\}$'s are swapped,
+        then the loop space will have its loops reversed.
+    \end{itms}
+
+    Next, we define a triangulated structure on $\Ho(\cat{C})$,
+    and we verify the axioms of a triangulated category.
+
+    \begin{itms}
+        \item \emph{Distinguished triangles.}
+        
+        We define a triangle $X\to Y\to Z\to X[1]$ in $\Ho(\cat{C})$
+        to be a distinguished triangle,
+        if it is isomorphic to one that can be lifted to a diagram 
+        \[\begin{tikzcd}
+            X\ar[r]\ar[d]\ar[dr,phantom,"\ulcorner" pos=.25,"\lrcorner" pos=.75] &
+            Y\ar[r]\ar[d]\ar[dr,phantom,"\ulcorner" pos=.25,"\lrcorner" pos=.75] & 0\ar[d] \\
+            0\ar[r] & Z\ar[r] & W
+        \end{tikzcd}\]
+        in $\cat{C}$, where $W$ is equivalent to $X[-1]$
+        since the outer square is a pushout-pullback.
+
+        \item (TR 1)
+        \begin{itms}
+            \item \emph{Distinguished triangles are stable under isomorphisms.}
+            \item \emph{For any object $X$, the following triangle is distinguished:
+            \[X\xrightarrow{1_X}X\to0\to X[1].\]}
+            \item \emph{Every map $X\to Y$ extends to a distinguished triangle \[X\to Y\to Z\to X[1].\]}
+        \end{itms}
+
+        These properties are all obvious.
+
+        \item (TR 2)
+        \emph{If
+        \[X\xrightarrow{f}Y\xrightarrow{g}Z\xrightarrow{h}X[1]\]
+        is a distinguished triangle, so is
+        \[Y\xrightarrow{g}Z\xrightarrow{h}X[1]\xrightarrow{-f[1]}Y[1].\]}%
+
+        To prove this, let us form the diagram 
+        \[\begin{tikzcd}
+            X\ar[r]\ar[d]\ar[dr,phantom,"\ulcorner" pos=.25,"\lrcorner" pos=.75] &
+            Y\ar[r]\ar[d]\ar[dr,phantom,"\ulcorner" pos=.25,"\lrcorner" pos=.75] & 0\ar[d] \\
+            0\ar[r] &
+            Z\ar[r]\ar[d]\ar[dr,phantom,"\ulcorner" pos=.25,"\lrcorner" pos=.75] &
+            W\ar[d] \\
+            & 0\ar[r] & V
+        \end{tikzcd}\]
+        in $\cat{C}$.
+        The two outer rectangles establish equivalences $W\simeq X[1]$ and $V\simeq Y[1]$.
+        The map $W\to V$ in the diagram is $f[1]$,
+        since it is induced by the map of diagrams
+        \[\begin{tikzcd}
+            X\ar[r]\ar[d] & 0 \\ 0
+        \end{tikzcd}
+        \quad\longrightarrow\quad
+        \begin{tikzcd}
+            Y\ar[r]\ar[d] & 0 \\ 0
+        \end{tikzcd}\]
+        in $\cat C$. However, after transposing the diagram 
+        to match the definition of distinguished triangles,
+        the map $W\to V$ becomes $-f[1]$.
+
+        \item (TR 3)
+        \emph{Given a diagram}
+        \[\begin{tikzcd}
+            X\ar[r]\ar[d,"f"'] & Y\ar[r]\ar[d] & Z\ar[r]\ar[d,dashed] & X[1]\ar[d,"f\lbrack1\rbrack"] \\
+            X'\ar[r] & Y'\ar[r] & Z'\ar[r] & X'[1]
+        \end{tikzcd}\]
+        \emph{without the dashed arrow, where the two rows are distinguished triangles,
+        there exists a dashed arrow making the diagram commute.}
+
+        This is because taking cofibres in $\cat{C}$ is functorial.
+
+        \item (TR 4)
+        \emph{The octahedral axiom.}
+
+        We omit the proof here, but it is not difficult.
+    \end{itms}
+
+    We conclude that $\Ho(\cat{C})$
+    is a triangulated category.
+\end{proof}
+
+\subsection{Spectra and stable homotopy theory}
+
+In this subsection, we review the classical theory of
+topological spectra and stable homotopy theory,
+as a model for the stabilisation procedure that will
+apply to general stable $\infty$-categories.
+
+Stable homotopy theory is concerned with properties of a topological space 
+that stabilise after applying the suspension functor sufficiently many times.
+For example, the \term{stable homotopy groups} of a pointed topological space~$X$
+are defined by 
+\[\pi_n^{\mathrm s}(X):=
+\mathop{\operatorname{colim}}_{k\to+\infty} \pi_{n+k}(\Sigma^kX)\]
+for all $n\in\mathbb{Z}$.
+For example, the Freudenthal suspension theorem states that 
+\[\pi_n^{\mathrm s}(S^0)\simeq\pi_{2n+2}(S^{n+2})
+\simeq\pi_{2n+3}(S^{n+3})\simeq\cdots.\]
+Topological spectra contain the data that encodes
+these stabilised properties of a topological space.
+
+\begin{definition}
+    A \term{spectrum}~$E$ consists of
+    \begin{itms}
+        \item A series of pointed topological spaces 
+        \[E_0,E_1,E_2,\dotsc.\]
+        \item For each $n\geq0$, a map 
+        \[\sigma_n\:\Sigma E_n\to E_{n+1}.\]
+    \end{itms}
+    A \term{map of spectra}~$f$ between two spectra $E$~and~$F$
+    consists of a map
+    \[f_n\:E_n\to F_n\]
+    for each $n\geq0$,
+    such that $\sigma_n\circ\Sigma f_n=f_{n+1}\circ\sigma_n$ for all $n\geq0$.
+\end{definition}
+
+The category of spectra is denoted by~$\cat{Sp}$.
+
+\begin{example}
+    Let~$X$ be a pointed topological space.
+    The \term{suspension spectrum}~$\Sigma^\infty X$ is defined by 
+    \[ (\Sigma^\infty X)_n:=\Sigma^nX, \]
+    with $\sigma_n:=1_{\Sigma^{n+1}X}$.
+    The purpose of the notation~$\Sigma^\infty$ is to signify that 
+    we are looking for the properties of~$\Sigma^nX$ as $n\to\infty$.
+
+    The \term{sphere spectrum}~$\mathbb{S}$ is defined by
+    \[ \mathbb{S}:=\Sigma^\infty S^0, \]
+    so that $\mathbb{S}_n\simeq S^n$. \varqed
+\end{example}
+
+\begin{definition}
+    The \term{stable homotopy groups} of a spectrum $E$ are defined by 
+    \[\pi_n^{\mathrm s}(E):=
+    \mathop{\operatorname{colim}}_{k\to+\infty} \pi_n(E_k)\]
+    for all $n\in\mathbb{Z}$.
+\end{definition}
+
+For example, we have 
+\[ \pi_n(\Sigma^\infty X)\simeq\pi_n^{\mathrm s}(X) \]
+for any pointed topological space $X$.
+
+Note that the suspension functor~$\Sigma$
+and the shifting functor~$[1]$
+induce the same maps on stable homotopy groups.
+We will see that they are equivalent up to homotopy,
+given a certain model structure on~$\cat{Sp}$.
+
+\begin{definition}
+    A spectrum~$E$ is called an \term{$\Omega$-spectrum},
+    if the maps 
+    \[E_n\to\Omega E_{n+1}\]
+    corresponding to $\sigma_n$
+    are weak equivalences for all $n\geq0$.
+\end{definition}
+
+In this case, we write $\Omega^\infty E:=E_0$.
+For any $n\geq0$, we have $\pi_n(E)\simeq\pi_n(E_0)$.
+
+\begin{theorem}
+    The category~$\cat{Sp}$ has the \term{stable model structure}, with 
+    \begin{itms}
+        \item $\cat{W}=\{$maps that induce isomorphisms of all
+        stable homotopy groups$\}$.
+        \item $\cat{Cof}=\{$degreewise cofibrations$\}$.
+        \item The fibrant objects are precisely the $\Omega$-spectra.
+    \end{itms}
+    Moreover, the adjoint pair 
+    \[\begin{tikzcd}
+        \cat{Sp}
+        \ar[r,bend left,"\Sigma"]
+        \ar[r,phantom,"\bot"] &
+        \cat{Sp}
+        \ar[l,bend left,"\Omega"]
+    \end{tikzcd}\]
+    % \[\xymatrix{ \cat{Sp} \ar@/^2ex/[r]^\Sigma \ar@{}[r]|\bot & \cat{Sp} \ar@/^2ex/[l]^\Omega }\]
+    is a Quillen equivalence, and their derived functors
+    are isomorphic to the shifting functors:
+    \[ \mathbb{L}\Sigma\simeq[1]
+    \quad\text{and}\quad
+    \mathbb{R}\Omega\simeq[-1]. \]
+\end{theorem}
+
+\begin{corollary}
+    The $\infty$-category of spectra,
+    presented by the model category of spectra,
+    is a stable $\infty$-category.
+\end{corollary}
+
+\begin{proof}
+    It suffices to check the existence of homotopy (co)fibres.
+    However, by definition, every model category admits arbitrary (co)limits.
+\end{proof}
+
+As a result, the homotopy category $\Ho(\cat{Sp})$
+has a triangulated structure.
+
+Spectra can also be viewed from another perspective,
+namely, as representing objects of generalised cohomology theories.
+
+\begin{definition}
+    A \term{generalised cohomology theory}
+    is a family of functors
+    \[ \widetilde E^n\:\cat{Top}\op_*\to\cat{Ab}, \]
+    where $n\in\mathbb Z$,
+    and $\cat{Top}_*$ denotes the category of pointed topological spaces,
+    satisfying the following axioms.
+    \begin{itms}
+        \item \textup{(Homotopy)} If $f\:X\to Y$ is a weak homotopy equivalence,
+        then $\widetilde E^\bullet(f)$ is an isomorphism.
+        \item \textup{(Exactness)} A homotopy cofibre sequence $X\to Y\to Z$ induces an exact sequence
+        \[ \widetilde E^\bullet(Z)\to\widetilde E^\bullet(Y)\to\widetilde E^\bullet(X). \]
+        \item \textup{(Suspension)} There is a natural isomorphism
+        \[ \widetilde E^{\bullet+1}(\Sigma X)\simeq\widetilde E^\bullet(X). \]
+        \item \textup{(Additivity)} $\widetilde E^\bullet$ takes coproducts to products:
+        \[\textstyle \widetilde E^\bullet\bigl(\bigvee_\alpha X_\alpha\bigr)\simeq
+        \prod_\alpha\widetilde E^\bullet(X_\alpha). \]
+    \end{itms}
+\end{definition}
+
+For example, reduced singular cohomology with coefficients in any abelian group 
+is a generalised cohomology theory.
+$K$-theory is also a generalised cohomology theory.
+
+\begin{theorem}[Brown]
+    Every generalised cohomology theory $\widetilde{E}^\bullet$
+    is represented by a spectrum $E$, in the sense that 
+    \[\widetilde{E}^n(X)\simeq\Hom_{\Ho(\cat{Sp})}(\Sigma^\infty X[-n],E)\]
+    for any topological space $X$.
+\end{theorem}
+
+Therefore, the category of spectra,
+which we regard as a ``stabilisation'' of the category of topological spaces,
+is equivalent (in the homotopical sense)
+to the category of generalised cohomology theories of topological spaces.
+
+\subsection{Stabilisation}
+
+Let $\cat C$ be an $\infty$-category with finite limits.
+The goal of this subsection is to construct
+a stable $\infty$-category $\operatorname{Sp}(\cat{C})$ of \emph{spectrum objects} of $\cat C$,
+together with a functor
+\[\Omega^\infty\:\operatorname{Sp}(\cat{C})\to\cat{C},\]
+which is universal in the sense that for any stable $\infty$-category $\cat D$,
+every functor $\cat{D}\to\cat{C}$ preserving finite limits 
+will factor through the functor $\Omega^\infty$ uniquely.
+
+Before we give the general construction, 
+let us introduce another perspective
+from which topological spectra can be viewed.
+
+Let $E$ be an $\Omega$-spectrum.
+Let $\cat{Top}_*^{\mathrm{fin}}$ be the category 
+of pointed topological spaces which are homotopy equivalent
+to finite CW~complexes.
+Then we may define a functor 
+\[F\:\cat{Top}_*^{\mathrm{fin}}\to\cat{Top}_*,\]
+sending $S^n$ to the space~$E_n$.
+To define such a functor,
+notice that such a functor sends a pushout square to a pullback square:
+\[\begin{tikzcd}
+    S^n\ar[r]\ar[d]\ar[dr,phantom,pos=.75,"\lrcorner"] & 0\ar[d] \\
+    0\ar[r] & S^{n+1}
+\end{tikzcd}
+\quad\overset{F}{\longmapsto}\quad
+\begin{tikzcd}
+    E_n\ar[r]\ar[d]\ar[dr,phantom,pos=.25,"\ulcorner"] & 0\ar[d] \\
+    0\ar[r] & E_{n+1}\rlap{\ .}
+\end{tikzcd}\]
+% \[\vcenter{\xymatrix{ S^n\ar[r]\ar[d]\ar@{}[dr]|(.7){\textstyle\lrcorner} & 0\ar[d] \\ 0\ar[r] & S^{n+1} }} \quad\overset{F}{\longmapsto}\quad \vcenter{\xymatrix{ E_n\ar[r]\ar[d]\ar@{}[dr]|(.3){\textstyle\ulcorner} & 0\ar[d] \\ 0\ar[r] & E_{n+1}\rlap{\ .} }}\]
+If we require that $F$ sends any pushout square to a pullback square,
+then $F$ will be uniquely defined (up to an equivalence),
+assuming that the spaces~$E_n$ can be delooped arbitrarily many times,
+which is the case since we assumed that $E$ is an $\Omega$-spectrum.
+(The reader may prove this as an exercise.)
+
+The requirement that $F$ should send a pushout square to a pullback square
+is analogous to the excision property of classical homology theories.
+Therefore, spectra may be seen as ``homology theories'' of topological spaces,
+with values in topological spaces.
+
+In general, we will define a \emph{spectrum object} of $\cat{C}$
+to be a ``homology theory'' of topological spaces,
+with values in $\cat{C}$.
+
+\begin{definition}
+    Let $\cat{C}$ and $\cat{D}$ be $\infty$-categories.
+    \begin{itms}
+        \item Suppose $\cat{C}$ has pushouts.
+        A functor $F\:\cat{C}\to\cat{D}$ is \term{excisive}
+        if it sends pushout squares to pullback squares.
+        \item Suppose $\cat{C}$ has a zero object.
+        A functor $F\:\cat{C}\to\cat{D}$ is \term{reduced}
+        if it preserves the zero object.
+    \end{itms}
+    We denote by 
+    \[\operatorname{Fun}_*(\cat{C},\cat{D})\quad\text{and}\quad
+    \operatorname{Exc}_*(\cat{C},\cat{D})\]
+    the categories of reduced functors and reduced excisive functors 
+    from $\cat{C}$ to $\cat{D}$, respectively,
+    as full subcategories of $\operatorname{Fun}(\cat{C},\cat{D})$.
+\end{definition}
+
+Recall that the category of spaces was defined to be
+$\cat{S}:=\mathfrak{N}(\cat{Kan})$.
+
+\begin{definition}
+    The category of \term{finite spaces}, denoted by $\cat{S}^{\mathrm{fin}}$,
+    is defined to be the full subcategory of $\cat{S}$
+    consisting of Kan complexes whose geometric realisations
+    are equivalent to finite CW complexes. Let
+    \[\cat{S}_*^{\mathrm{fin}}:=(\cat{S}^{\mathrm{fin}})_{\{*\}\/}\]
+    be the category of pointed finite spaces.
+\end{definition}
+
+\begin{definition}
+    Let $\cat{C}$ be an $\infty$-category.
+    The category of \term{spectrum objects} of $\cat{C}$
+    is defined by 
+    \[\operatorname{Sp}(\cat{C}):=
+    \operatorname{Exc}_*(\cat{S}_*^{\mathrm{fin}},\cat{C}).\]
+    The functor 
+    \[\Omega^\infty\:\operatorname{Sp}(\cat{C})\to\cat{C}\]
+    is defined by evaluating at $S^0\in\cat{S}_*^{\mathrm{fin}}$.
+\end{definition}
+
+For example, the above discussion suggests that we should have
+\[\cat{Sp}\simeq\operatorname{Sp}(\cat{S}_*)\simeq\operatorname{Sp}(\cat{Top}_*).\]
+
+\begin{remark}\label{rmk-7-o}
+    In fact, a reduced excisive functor $E\:\cat{S}_*^{\mathrm{fin}}\to\cat{C}$
+    is determined by the objects $E_n:=E(S^n)$,
+    together with induced equivalences $E_n\simto\Omega E_{n+1}$.
+    Therefore, one can show that $\operatorname{Sp}(\cat{C})$ is equivalent
+    to the homotopy limit
+    \[\operatorname{Sp}(\cat{C})\simeq\lim\bigl(
+        \cdots\to\cat{C}\xrightarrow{\Omega}\cat{C}\xrightarrow{\Omega}\cat{C}
+    \bigr). \varqedhere\]
+\end{remark}
+
+\begin{theorem}
+    Let $\cat{C}$ and $\cat{D}$ be $\infty$-categories.
+
+    \begin{itms}
+        \item
+        The category $\operatorname{Sp}(\cat{C})$ is stable
+        if $\cat{C}$ admits finite limits.
+
+        \item
+        More generally, the category $\operatorname{Exc}_*(\cat{C},\cat{D})$
+        is stable if $\cat{C}$ admits finite colimits and 
+        $\cat{D}$ admits finite limits.
+    \end{itms}
+\end{theorem}
+
+\begin{proof}
+    It suffices to prove the second part.
+    The functors $\Sigma_{\cat{C}}$ and $\Omega_{\cat{D}}$
+    induce functors on $\operatorname{Exc}_*(\cat{C},\cat{D})$.
+    It is known that (co)limits in $\operatorname{Fun}(\cat{C},\cat{D})$
+    can be computed in $\cat{D}$ provided that $\cat{D}$ has these (co)limits.
+    Therefore, the functor $\Omega_{\cat{D}}$ on $\operatorname{Exc}_*(\cat{C},\cat{D})$
+    coincides with its own $\Omega$ functor.
+    Let $F\in\operatorname{Exc}_*(\cat{C},\cat{D})$.
+    Then for any $X\in\cat{C}$, we have a pullback square 
+    \[\begin{tikzcd}
+        FX \ar[r] \ar[d] \ar[dr,phantom,pos=.25,"\ulcorner"] & 0\ar[d] \\
+        0\ar[r] & F\Sigma_{\cat{C}}X \rlap{\ ,}
+    \end{tikzcd}\]
+    which establishes an equivalence
+    \[ FX \simeq \Omega_{\cat{D}}F\Sigma_{\cat{C}}X. \]
+    This means that $\Sigma_{\cat{C}}$ is inverse to $\Omega_{\cat{D}}$.
+    By (\ref{thm-7-s}), $\operatorname{Exc}_*(\cat{C},\cat{D})$
+    is stable.
+\end{proof}
+
+\begin{proposition}
+    Let $\cat{C}$ be an $\infty$-category with finite limits.
+    Then $\cat{C}$ is stable if and only if the functor 
+    $\Omega^\infty\:\operatorname{Sp}(\cat{C})\to\cat{C}$
+    is an equivalence.
+\end{proposition}
+
+\begin{proof}
+    Omitted. 
+\end{proof}
+
+\begin{proposition}
+    Let $\cat{C}$ and $\cat{D}$ be $\infty$-categories.
+
+    \begin{itms}
+        \item 
+        If $\cat{C}$ is stable and $\cat{D}$ has finite limits,
+        then the functor $\Omega^\infty\:\operatorname{Sp}(\cat{C})\to\cat{C}$
+        induces an equivalence
+        \[\operatorname{Fun}^{\mathrm{l.ex.}}(\cat{C},\operatorname{Sp}(\cat{D}))
+        \simeq\operatorname{Fun}^{\mathrm{l.ex.}}(\cat{C},\cat{D}),\]
+        where $\operatorname{Fun}^{\mathrm{l.ex.}}$
+        denotes the category of \term{left exact} functors,
+        i.e.\ functors that preserve finite limits.
+        \item 
+        More generally, if $\cat{C}$ is pointed and has finite limits,
+        and $\cat{D}$ has finite colimits, then the functor
+        $\Omega^\infty\:\operatorname{Sp}(\cat{D})\to\cat{D}$
+        induces an equivalence
+        \[\operatorname{Exc}_*(\cat{C},\operatorname{Sp}(\cat{D}))
+        \simeq\operatorname{Exc}_*(\cat{C},\cat{D}).\]
+    \end{itms}
+\end{proposition}
+
+\begin{proof}
+    It suffices to prove the second part.
+    Since $\operatorname{Exc}_*(\cat{C},\cat{D})$ is stable, we have 
+    \[ \begin{aligned}[b]
+        \operatorname{Exc}_*(\cat{C},\cat{D})
+        &\simeq \operatorname{Sp}\bigl(\operatorname{Exc}_*(\cat{C},\cat{D})\bigr) \\
+        &\simeq \operatorname{Exc}_*\bigl(\cat{S}^{\mathrm{fin}}_*,\ \operatorname{Exc}_*(\cat{C},\cat{D})\bigr) \\
+        &\simeq \operatorname{Exc}_*\bigl(\cat{C},\ \operatorname{Exc}_*(\cat{S}^{\mathrm{fin}}_*,\cat{D})\bigr) \\
+        &\simeq \operatorname{Exc}_*\bigl(\cat{C},\ \operatorname{Sp}(\cat{D})\bigr). 
+    \end{aligned} \qedhere \]
+\end{proof}
+
+Therefore, we have proved the following.
+
+\begin{theorem}
+    There is a pair of adjoint functors 
+    \[\begin{tikzcd}
+        \cat{Cat}_{\infty}^{\mathrm{stable}}
+        \ar[r,bend left,start anchor=north east,end anchor=north west,"i"]
+        \ar[r,phantom,"\bot"] &
+        \cat{Cat}_{\infty}^{\mathrm{fin.lim.}}\rlap{\ ,}
+        \ar[l,bend left,start anchor=south west,end anchor=south east,"\operatorname{Sp}"]
+    \end{tikzcd}\]
+    where
+    \begin{itms}
+        \item $\cat{Cat}_{\infty}^{\mathrm{stable}}$
+        denotes the subcategory of $\cat{Cat}_\infty$
+        consisting of stable $\infty$-categories and exact functors between them.
+        \item $\cat{Cat}_{\infty}^{\mathrm{fin.lim.}}$
+        denotes the subcategory of $\cat{Cat}_\infty$
+        consisting of $\infty$-categories having finite limits
+        and left exact functors between them.
+        \item $i$ denotes the inclusion functor,
+        and $\operatorname{Sp}$ is the functor constructed above,
+        called the \term{stabilisation functor}. \qed
+    \end{itms}
+\end{theorem}
+
+In fact, this can be seen as an adjunction of $(\infty,2)$-categories,
+since we have shown the equivalence of mapping spaces as $(\infty,1)$-categories,
+not just as homotopy types.

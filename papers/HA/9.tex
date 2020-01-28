@@ -1,0 +1,308 @@
+In this section, our main goal is to study the category of cochain complexes.
+We will see how homotopical algebra applies to homological algebra,
+which will give us a higher point of view on various
+constructions and results in homological algebra.
+
+\subsection{Nerve of a dg category}
+
+\begin{definition}
+    Let $R$ be a commutative ring.
+    A \term{dg category} over $R$ is a category enriched over the
+    symmetric monoidal category $(\cat{Ch}_R,\otimes)$
+\end{definition}
+
+The abbreviation ``dg'' stands for ``differential graded''.
+Cochain complexes are also known as dg vector spaces (or dg modules).
+
+\begin{definition}
+    Let $\cat{C}$ be a dg category over $R$.
+    \begin{itms}
+        \item The \term{underlying category} of $\cat{C}$
+        is obtained from $\cat{C}$ by applying the functor 
+        \[Z^0\:(\cat{Ch}_R,\otimes)\to(\cat{Set},\times),\]
+        taking the set of $0$-cocycles of a cochain complex.
+        \item The \term{homotopy category} of $\cat{C}$
+        is obtained from $\cat{C}$ by applying the functor 
+        \[H^0\:(\cat{Ch}_R,\otimes)\to(\cat{Set},\times),\]
+        taking the $0$-th cohomology of a cochain complex.
+    \end{itms}
+\end{definition}
+
+For example, if $\cat{C}=\cat{Ch}_R$,
+which is enriched over itself, as described in (\ref{eg-1-c}),
+then the underlying category of $\cat{C}$ is just the ordinary
+category of cochain complexes $\cat{Ch}_R$,
+and its homotopy category is the ordinary category $\cat{hCh}_R$.
+The $0$-coboundaries are exactly the chain homotopies.
+
+We now wish to define a quasi-category $\Ndg(\cat{C})$,
+such that the homotopies in this quasi-category are the chain homotopies,
+and the higher homotopies are higher chain homotopies, etc.
+
+A simple idea is to consider the sequence of adjunctions
+\[\begin{tikzcd}
+    \cat{sSet}\ar[r,bend left,start anchor=north east,end anchor=north west,"\mathfrak{C}"]
+    \ar[r,phantom,"\bot"] &
+    \cat{Cat}\smash{_{\cat{sSet}}}
+    \ar[l,bend left,start anchor=south west,end anchor=south east,"\mathfrak{N}"]
+    \ar[r,bend left,start anchor=north east,end anchor=north west,"\text{free}"]
+    \ar[r,phantom,"\bot"] &
+    \cat{Cat}\smash{_{\cat{sMod}_R}}
+    \ar[l,bend left,start anchor=south west,end anchor=south east,"\text{forget}"]
+    \ar[r,bend left,start anchor=north east,end anchor=north west,"\KD"]
+    \ar[r,phantom,"\simeq"] &
+    \cat{Cat}\smash{_{(\cat{Ch}_R)_{\geq0}}}
+    \ar[l,bend left,start anchor=south west,end anchor=south east,"\operatorname{DK}"]
+    \ar[r,bend left,start anchor=north east,end anchor=north west,"i_{\geq0}"]
+    \ar[r,phantom,"\bot"] &
+    \cat{Cat}\smash{_{\cat{Ch}_R}\rlap{\ ,}}
+    \ar[l,bend left,start anchor=south west,end anchor=south east,"\tau_{\geq0}"]
+\end{tikzcd}\]
+and one may define 
+\[ \Ndg:=\mathfrak{N}\circ\text{forget}\circ{\operatorname{DK}}\circ\tau_{\geq0}\:\cat{Cat}_{\cat{Ch}_R}\to\cat{sSet}, \]
+and will see soon that the image lies in $\cat{QsCat}$.
+
+This construction does give the correct quasi-category,
+but there is a more direct way to construct this quasi-category.
+We will first define $\Ndg$ in the more direct way,
+and then we will prove that the two constructions are equivalent.
+
+\begin{construction}
+    Let $\cat{C}$ be a dg category.
+    The quasi-category $\Ndg(\cat{C})$ is constructed as follows.
+    Its $n$-simplices are of the form 
+    \[(\{X_i\}_{i\in[n]},\{f_I\}_{I\subset[n],|I|\geq2}),\]
+    where 
+    \begin{itms}
+        \item $X_0,\dotsc,X_n$ are objects of $\cat{C}$.
+        \item For $0\leq i_0<\cdots<i_{m+1}\leq n$,
+        \[f_{i_0\cdots i_{m+1}}\in\Hom_{\cat{C}}(X_{i_0},X_{i_{m+1}})_m,\]
+        such that 
+        \[df_{i_0\cdots i_{m+1}}=\sum_{j=1}^m(-1)^{m+1-j}
+        \bigl(f_{i_0\cdots\widehat{i_j}\cdots i_{m+1}}-f_{i_j\cdots i_{m+1}}\circ f_{i_0\cdots i_j}\bigr).\]
+    \end{itms}
+    For example,
+    \begin{itms}
+        \item A $0$-simplex is just an object $X\in\cat{C}$.
+        \item A $1$-simplex connecting the objects $X,Y\in\cat{C}$ is a morphism
+        \[f_{01}\in\Hom_{\cat{C}}(X,Y)_0\quad\text{such that}\quad df_{01}=0.\]
+        In other words, $f_{01}$ is just a morphism in the underlying category of $\cat{C}$.
+        \item A $2$-simplex
+        \[\begin{tikzcd}[column sep=1em]
+            & Y\ar[dr,"g"] \\
+            X\ar[ur,"f"]\ar[rr,"h"'] && Z
+        \end{tikzcd}\]
+        is a chain homotopy
+        \[\alpha:=f_{012}\in\Hom_{\cat{C}}(X,Z)_1\quad\text{such that}\quad d\alpha=g\circ f-h.\]
+    \end{itms}
+    We leave it to the reader to define the face and degeneracy maps in $\Ndg(\cat{C})$,
+    and verify that it is a quasi-category. \varqed
+\end{construction}
+
+\begin{proposition}
+    Let $\cat{C}$ be a dg category. Then for any $X,Y\in\cat{C}$,
+    there is an isomorphism of simplicial sets
+    \[\Hom_{\Ndg(\cat{C})}^{\vartriangleright}(X,Y)\simeq\operatorname{DK}(\tau_{\geq0}\Hom_{\cat{C}}(X,Y)).\]
+\end{proposition}
+
+\begin{proof}
+    The $0$-simplices of both sides are just 
+    the morphisms from $X$ to $Y$ in the underlying category,
+    i.e.\ the $0$-cocycles in $\Hom_{\cat{C}}(X,Y)$.
+
+    For $1$-simplices, a $1$-simplex of the left hand side is a diagram 
+    \[\begin{tikzcd}[row sep=.5em]
+        X \ar[dd,"\mathbb{1}"'] \ar[dr,"f"] \\
+        \ \ar[r,phantom,pos=.3,"\alpha"] & Y \rlap{\ ,} \\
+        X \ar[ur,"g"']
+    \end{tikzcd}\]
+    which can be written as a sum 
+    \[\begin{tikzcd}[row sep=.5em]
+        X \ar[dd,"\mathbb{1}"'] \ar[dr,"f"] \\
+        \ \ar[r,phantom,pos=.3,"0"] & Y \\
+        X \ar[ur,"f"']
+    \end{tikzcd} \quad+\quad \begin{tikzcd}[row sep=.5em]
+        X \ar[dd,"0"'] \ar[dr,"0"] \\
+        \ \ar[r,phantom,pos=.3,"\alpha"] & Y \rlap{\ .} \\
+        X \ar[ur,"g-f"']
+    \end{tikzcd}\]
+    The first part is determined by $f$, and the second part by $\alpha$.
+    It follows that 
+    \[ \begin{aligned}
+        \Hom_{\Ndg(\cat{C})}^{\vartriangleright}(X,Y)_1
+        &\simeq Z_0\bigl(\Hom_{\cat{C}}(X,Y)\bigr) \oplus \Hom_{\cat{C}}(X,Y)_1 \\
+        &\simeq \operatorname{DK}(\tau_{\geq0}\Hom_{\cat{C}}(X,Y))_1.
+    \end{aligned} \]
+
+    For higher simplices, a similar argument will do.
+    We leave the details to the reader.
+\end{proof}
+
+\begin{corollary}
+    Let $\cat{C}$ be a dg category. Then there is a categorical equivalence
+    \[\Ndg(\cat{C})\simeq
+    \mathfrak{N}\circ\mathrm{forget}\circ{\operatorname{DK}}\circ\tau_{\geq0}(\cat{C}).
+    \thmqedhere \] 
+\end{corollary}
+
+In particular, the functor $\Ndg$ is a right adjoint.
+In fact, it is right Quillen with respect to a model structure on dg categories.
+
+\begin{theorem}
+    The category $\cat{Cat}_{\cat{Ch}_R}$ has the \term{Tabuada model structure}, with
+    \begin{itms}
+        \item A weak equivalence is a functor inducing an equivalence of 
+        homotopy categories, and inducing quasi-isomorphisms on all mapping spaces.
+        \item A fibration is a functor inducing an isofibration of 
+        homotopy categories, and inducing (degreewise) surjections on all mapping spaces.
+    \end{itms}
+    The functor
+    \[\Ndg\:\cat{Cat}_{\cat{Ch}_R}\to\cat{sSet}\]
+    is a right Quillen functor with respect to this model structure,
+    and the Joyal model structure on $\cat{sSet}$.
+\end{theorem}
+
+\subsection{The \texorpdfstring{$\infty$}{∞}-category of cochain complexes}
+
+\begin{definition}
+    Let $\cat{A}$ be an abelian category.
+    The category \[\Ndg(\cat{Ch}(\cat{A}))\]
+    is called the \term{$\infty$-category of cochain complexes} in $\cat{A}$,
+    where $\cat{Ch}(\cat{A})$ is seen as a dg category over $\mathbb{Z}$.
+\end{definition}
+
+In this section, we take a closer look at this particular $\infty$-category,
+and in particular, the pushouts and pullbacks in this category.
+We will show that it is a stable $\infty$-category.
+
+\begin{proposition}\label{thm-9-k}
+    Let $f\:X\to Y$ be a morphism in the category $\cat{sAb}$
+    of simplicial abelian groups. Then $f$ is a fibration of simplicial sets,
+    if and only if the map 
+    \[\KD(f)\:\KD(X)\to\KD(Y)\]
+    is a degreewise surjection of chain complexes.
+\end{proposition}
+
+\begin{proof}
+    Let $0\leq i\leq n$. Then there is a splitting
+    \[ \KD(\mathbb{Z}\Delta[n]) \simeq \KD(\mathbb{Z}\Lambda_i[n]) \oplus D^n, \]
+    where 
+    \[ D^n := \Bigl(\cdots\to0\to\mathbb{Z}\xrightarrow{1}\mathbb{Z}\to0\to\cdots\Bigr), \]
+    with the nonzero terms in (homological indexing) the positions $n$ and $n-1$.
+    The following lifting properties are equivalent:
+    \[ \begin{tikzcd}
+        \Lambda_i[n] \ar[r]\ar[d] & X \ar[d] \\
+        \Delta[n]\ar[r]\ar[ur,dashed] & Y
+    \end{tikzcd} \enspace\iff\enspace \begin{tikzcd}[column sep=2em]
+        \KD(\Lambda_i[n]) \ar[r]\ar[d] & \KD(X) \ar[d] \\
+        \KD(\Delta[n])\ar[r]\ar[ur,dashed] & \KD(Y)
+    \end{tikzcd} \enspace\iff\enspace \begin{tikzcd}
+        0 \ar[r]\ar[d] & \KD(X) \ar[d] \\
+        D^n \ar[r]\ar[ur,dashed] & \KD(Y)\rlap{\ .}
+    \end{tikzcd} \]
+    Since a map from $D^n$ to any chain complex $C$
+    is equivalent to an element of $C_n$,
+    the lifting property in the last diagram above is equivalent to
+    the map $\KD(X)\to\KD(Y)$ being degreewise surjective.
+\end{proof}
+
+\begin{corollary}\label{thm-9-s}
+    Every simplicial abelian group is a Kan complex. \qed
+\end{corollary}
+
+\begin{corollary}\label{cor-9-o}
+    Let 
+    \[\begin{tikzcd}
+        X\ar[r,"f"]\ar[d]\ar[dr,phantom,pos=.75,"\lrcorner"] & X'\ar[d] \\
+        Y\ar[r] & Y'
+    \end{tikzcd}\]
+    be an ordinary pushout diagram in $\cat{Ch}(\cat{A})$.
+    If $f$ is a degreewise split injection,
+    then this diagram is a homotopy pushout diagram,
+    i.e.\ a pushout diagram in $\Ndg(\cat{Ch}(\cat{A}))$.
+\end{corollary}
+
+\begin{proof}
+    We regard $\cat{Ch}(\cat{A})$ as a simplicial category
+    via the functor ${\operatorname{DK}}\circ\tau_{\geq0}$.
+    Then it is enriched over Kan complexes by (\ref{thm-9-s}).
+    By (\ref{thm-6-x}),
+    we have to show that for any $Z\in\cat{Ch}(\cat{A})$, the diagram 
+    \[ \begin{tikzcd}
+        \Hom_{\cat{Ch}(\cat{A})}(Y',Z) \ar[d] \ar[r] \ar[dr,phantom,pos=.25,"\ulcorner"] &
+        \Hom_{\cat{Ch}(\cat{A})}(Y,Z) \ar[d] \\
+        \Hom_{\cat{Ch}(\cat{A})}(X',Z) \ar[r,"f^*"'] &
+        \Hom_{\cat{Ch}(\cat{A})}(X,Z)
+    \end{tikzcd} \]
+    is a homotopy pullback diagram of Kan complexes.
+    It is known that for simplicial sets,
+    any pullback along a fibration is a homotopy pullback.
+    Thus it suffices to show that $f^*$ is a fibration.
+    By (\ref{thm-9-k}), it suffices to show that $f^*$
+    as a map of chain complexes (i.e.\ before applying the Dold--Kan functor)
+    is surjective. This is true since $f$ is a split injection.
+\end{proof}
+
+This corollary enables us to construct 
+homotopy cofibres of cochain complexes in an explicit way. 
+
+For $X\in\cat{Ch}(\cat{A})$, let $X\otimes D^1$ denote the object of $\cat{Ch}(\cat{A})$
+defined by
+\[ (X\otimes D^1)^n:=X^{n+1}\oplus X^n\quad\text{and}\quad d^n:=\begin{pmatrix}
+    -d^{n+1} & 0 \\ 1 & d^n
+\end{pmatrix}. \]
+This is called the \term{cone} over $X$, and is always quasi-isomorphic to $0$,
+i.e.\ exact.
+In fact, if $\cat{A}=\cat{Mod}_R$ for a commutative ring $R$,
+then $X\otimes D^1$ is the tensor product of $X$ and the cochain complex 
+\[D^1:=\Bigl(\cdots\to0\to R\xrightarrow1R\to0\to\cdots\Bigr).\]
+
+\begin{definition}
+    Let $f\:X\to Y$ be a morphism in $\cat{Ch}(\cat{A})$.
+    The \term{mapping cone} of $f$ is a cochain complex $\operatorname{cone}(f)$,
+    defined by the ordinary pushout
+    \[\begin{tikzcd}
+        X\ar[r]\ar[d,"f"']\ar[dr,phantom,pos=.75,"\lrcorner",end anchor={[xshift=-.5em]north}] & X\otimes D^1\ar[d] \\
+        Y\ar[r] & \operatorname{cone}(f)\rlap{\ .}
+    \end{tikzcd}\]
+    Explicitly, one has
+    \[ \operatorname{cone}(f)^n\simeq X^{n+1}\oplus Y^n\quad\text{and}\quad d^n:=\begin{pmatrix}
+        -d^{n+1}_X & 0 \\ f^{n+1} & d^n_Y
+    \end{pmatrix}. \]
+\end{definition}
+
+This important construction in homological algebra
+can now be seen as a special case of an $\infty$-categorical construction,
+i.e., the homotopy cofibre.
+
+\begin{theorem}
+    Let $f\:X\to Y$ be a morphism in $\cat{Ch}(\cat{A})$.
+    Then the mapping cone of $f$ is the homotopy cofibre of $f$:
+    \[\begin{tikzcd}
+        X\ar[r]\ar[d,"f"']\ar[dr,phantom,pos=.75,"\lrcorner",end anchor={[xshift=-.5em]north}] & 0\ar[d] \\
+        Y\ar[r] & \operatorname{cone}(f)\rlap{\ .}
+    \end{tikzcd}\]
+    In particular, the suspension of $X$ is homotopy equivalent to
+    the shifted complex $X[1]$.
+    In other words, one has the homotopy pushout diagram
+    \[\begin{tikzcd}
+        X\ar[r]\ar[d,"f"']\ar[dr,phantom,pos=.75,"\lrcorner",end anchor={[xshift=-.5em]north}] & 0\ar[d] \\
+        0\ar[r] & X[1]\rlap{\ .}
+    \end{tikzcd}\]
+\end{theorem}
+
+\begin{proof}
+    This follows immediately from (\ref{cor-9-o}).
+\end{proof}
+
+\begin{corollary}
+    The category $\Ndg(\cat{Ch}(\cat{A}))$ is stable.
+\end{corollary}
+
+\begin{proof}
+    We have seen that the suspension functor $\Sigma\simeq[1]$ is invertible.
+    By (\ref{thm-7-s}), it suffices to show the existence of homotopy pushouts.
+    Note that any map $f\:X\to Y$ is equivalent to a degreewise split injection 
+    $X\hookrightarrow\operatorname{Cyl}(f)$, where $\operatorname{Cyl}(f)$ is the mapping cylinder
+    as in homological algebra.
+\end{proof}

@@ -1,0 +1,544 @@
+% !TEX program = xelatex
+
+\documentclass[twoside]{article}
+
+\input{../common/preamble}
+\input{commands}
+
+\addbibresource{ChenRui.bib}
+
+\begin{document}
+
+\title{Deformation Theory of Elliptic Curves}
+\author{Chen Rui\footnote{陈睿，清华大学数学系数 61 班．}}
+
+\begin{abstract}
+In this article,
+we will study the deformation theory of ordinary elliptic curves following \cite{Hida}.
+In particular, we relate the deformation theory of ordinary elliptic curves to their Barsotti--Tate groups.
+\end{abstract}
+
+\section{Motivation}
+
+As you may ask: why study ``deformation theory of elliptic curves''?
+
+One important reason is that in the study of relatively representable moduli problem $\PP$
+(that is a contravariant functor from the category of elliptic curves to sets),
+the moduli scheme $\PP_{\,\mathbb{E}/W[[T]]}$ associated to the universal object
+gives us the local information of a given elliptic curve
+$E/\bar{\Fb}_{p}$ ($\mathbb{E}/W[[T]]$ is the universal deformation
+of $E/\bar{\Fb}_{p}$ to complete local $W(\bar{\Fb}_{p})$-algebras),
+which is the compete local ring of the ``geometric point'' of the moduli problem $\PP$.
+
+\section{Drinfeld's lemma and Serre--Tate theorem}
+
+In this section, following \cite{Katz} we present the proof of Serre--Tate theorem which is based on a lemma of Drinfeld.
+
+\begin{definition}
+    We call an abelian fppf sheaf $G$ a \term{$p$-divisible} sheaf if for any $x\in G(R)$,
+    there exists an fppf extension $R_{1}$ of $R$ and a point $y\in G(R_{1})$ such that $x=py$.
+    We call a $p$-divisible fppf sheaf $G_{/S}$ a $p$-divisible group 
+    \textup{(\term{Barsotti--Tate Group})} if the following three conditions are satisfied:
+    \begin{enumerate}
+        \item $G=\liminv G[p^{n}]$ for  $G[p^{n}]=\Ker(p^{n}\colon G \to G)$.
+        \item $G[p^{n}]$ is a finite flat group scheme over $B$ 
+        with closed immersions $G[p^{n}] \hookrightarrow G[p^{m}]$ for $m\ge n$.
+        \item The multiplication $[p^{m-n}]\colon G[p^{m}]\to G[p^{n}]$ is 
+        an epimorphism in the category of finite flat group schemes.
+    \end{enumerate}
+\end{definition}
+
+Assume $B$ is a local ring with residue field $k$ of characteristic $p$.
+We denote $\Cl_{/B}$ the category of complete local $B$-algebras 
+with residue field $k$.
+And by $\Cofun(\Cl_{/B},\mathscr{A}b)$ the covariant functors from $\Cl_{/B}$ to the category of abelian groups.
+
+\begin{definition}\label{def-csfg}
+    A group functor $\hat{G}$ in $\Cofun (\Cl_{/B},\mathscr{A}b)$ is called a
+    \term{connected smooth formal group} if it is a connected smooth formal scheme
+    with multiplication $p$ inducing a finite flat morphism $\hat{G}\to \hat{G}$.
+    
+    In particular, $\hat{G}$ is an fppf p-divisible abelian sheaf over $B$.
+\end{definition}
+
+We now construct the connected-\'etale sequence for $p$-divisible groups.
+First, let us recall the connected-\'etale sequence for a finite flat group scheme.
+
+\begin{proposition}
+    For a locally free group scheme $G_{/S}$ of finite rank 
+    over $S=\Spec(A)$ with a henselian local ring $A$,
+    we have a canonical exact sequence of locally free group schemes:
+    \[ 0\to G^{\circ}\to G\to G^{\et} \to 0, \]
+    where $G^{\circ}$ is connected and $G^{\et}$ is \'etale.
+    We call this sequence the connected-\'etale sequence of $G$.
+    If $G$ is a Barsotti--Tate group,
+    then $G^{\circ},G^{\et}$ are also Barsotti--Tate groups.
+\end{proposition}
+
+\begin{definition} 
+    A Barsotti--Tate group $G$ over a scheme $S$ is called ordinary 
+    if there exists a faithfully-flat quasi-compact covering $S'\to S$
+    such that over $S'$, $G_{S'}$ sits into the exact sequence:
+    \[ 0\to \mu_{p^{\infty}/S'}^{s}\to G_{/S'} \to (\mathbb{Q}_{p}/\Zb_{p})^{r}_{/S'} \to 0. \]
+    The integer $r$ is called the $p$-rank of $G$.
+    We write the image of $\mu_{\smash{p^{\infty}/S'}}^{s}$ in $G$ as $G^{\mathrm{mult}}$ 
+    which is the maximal multiplicative connected subgroup and denote $G^{\et}$ the maximal \'etale quotient.
+    We get 
+    \[ 0\to G^{\mathrm{mult}} \to G\to G^{\et} \to 0. \]
+\end{definition}
+
+We denote by $\operatorname{Lie}_{/B}$ the subcategory of 
+connected smooth formal groups over $B$ in $\Cofun(\Cl_{/B},\mathscr{A}b)$.
+
+Since $\hat{G}$ is smooth, we will have $\hat{G}=\Spf_{B}(B[[X_{1},\dotsc,X_{r}]])$ 
+as formal schemes, where the identity element $0$ is given by $X_{i}\to 0$ for all $i$.
+
+We now give the proof of the Serre--Tate theorem.
+
+In the followings, $R$ will be a commutative ring, $p$ a prime nilpotent in $R$,
+and $I$ an ideal nilpotent in $R$ say $I^{v+1}=0$, and we denote $R_{0}=R/I$.
+Also we adapt the notations used before.
+
+Let $G$ be a group functor over $S=\Spec(R)$. Let $A$ be an $R$-algebra.
+
+We denote $G_{I}(A)=\Ker(G(A)\to G(A/IA))$, and $\hat{G}(A)=\Ker(G(A)\to G(A^{\mathrm{red}}))$.
+
+\begin{lemma} \label{lem-a}
+    If $G$ is a commutative formal smooth group
+    (in the sense of Definition \ref{def-csfg}).
+    Then the subgroup functor $G_{I}$ is killed by $N^{v}$.
+\end{lemma}
+
+\pf
+    In terms of the coordinates $X_{1},\dotsc,X_{n}$ of $G$, we have 
+    \[    ([N](X))_{i}=N\ X_{i} + \text{higher order terms} .  \]
+    As a point of $G_{I}(A)$ has coordinates in $IA$, and $N$ kills $R$, we have 
+    \[    [N](G_{I}) \subset G_{I^{2}},   \]
+    and by induction, we get 
+    \[    [N](G_{I^{a}}) \subset G_{I^{a+1}}  \]
+    for integers $a\ge 1$. Since $G_{I^{v+1}}=0 $. We get $N^{v}[G_{I}]=0$.
+\epf
+
+\begin{lemma}[Drinfeld]
+    Let $G$ and $H$ be two fppf abelian sheaves over $R$. Suppose that 
+    \begin{enumerate}
+        \item $G$ is $N$-divisible.
+        \item $\hat{H}$ is locally representable by a formal Lie group.
+        \item $H$ is formally smooth.
+    \end{enumerate}
+    Let $G_{0}$, $H_{0}$ be the restriction of $G$ and $H$ to $R_{0}$. Then
+    \begin{enumerate}
+        \item the group $\Hom_{R\mathhyphen\mathrm{gp}}(G,H)$ and
+        $\Hom_{R_{0}\mathhyphen\mathrm{gp}}(G_{0},H_{0})$ have no $N$-torsion.
+        \item the natural ``reduction mod $I$'' map 
+        \[ \Hom(G,H)\to\Hom(G_{0},H_{0})\]
+        is injective.
+        \item for any homomorphism $f_{0}\colon G_{0} \to H_{0} $,
+        there exists a unique homomorphism $N^{v}f \colon   G\to H$,
+        which lifts $N^{v}f_{0}$.
+        \item In order that a homomorphism $f_{0} \colon  G_{0} \to H_{0}$ 
+        lifts to a (necessarily unique) homomorphism $f\colon G\to H$,
+        it is necessary and sufficient that the homomorphism 
+        $N^{v}f\colon  G\to H$ annihilate the subgroup $G[N^{v}]=\Ker([N^{v}] \colon G\to G )$ of $G$.
+    \end{enumerate}
+\end{lemma}
+
+\pf
+    (1)
+    This follows from the $N$-divisibility of $G$:
+    if $pf=0$, take $py=x$, then $f(x)=pf(y)=0$.
+
+    (2)
+    Notice that the kernel is $\Hom(G,H_{I})$,
+    and since $N^{v}$ kills $\Hom(G,H_{I})$ by previous lemma 
+    and $\Hom(G,H)$ is $N$-divisible,
+    we have $\Hom(G,H_{I})=0$, that is the map is injective.
+
+    (3)
+    We will write down the canonical lifting explicitly.
+
+    Once it exists, then it is unique by part (2).
+    \[ \begin{tikzcd}
+        G(A)\ar[r, "\text{``}N^{v}f\text{''}"] \ar[d, "\mod I"'] & H(A) \\ 
+        G(A/IA) \ar[r, "f_{0}"]& H(A/IA) \ar[u, "N^{v} \times (\text{any lifting})"']
+    \end{tikzcd} \]
+    The final homomorphism is defined since we have $H$ formally smooth by assumption,
+    then $H(R)\to H(R/IR)$ is surjective for any nilpotent ideal $I$, and it is well defined,
+    since $N^{v}$ kills $H_{I}(R)=\Ker(H(R) \to H(R/IR) $.
+    
+    (4) 
+    Note that if $f$ lifts $f_{0}$,
+    then by the uniqueness of lifting,
+    we must have $N^{v}f=\text{``}N^{v}f\text{''}$.
+    Therefore we have $\text{``}N^{v}f\text{''}$ kills $G[N^{v}]$.
+    Conversely, suppose $\text{``}N^{v}f\text{''}$ kills $G[N^{v}]$.
+    Since $G$ is $N$-divisible, we will have the following exact sequence 
+    \[ \begin{tikzcd}
+        0\ar[r] &G[N^{v}] \ar[r]&G \ar[r, "N^{v}"]& G\ar[r] & 0
+    \end{tikzcd} \]
+    from which we can deduce $\text{``}N^{v}f\text{''}=N^{v}F$ for some homomorphism $F\colon G \to H$.
+
+    Let $F_{0}$ be the reduction of $F$ mod $I$.
+    Notice that $N^{v}F_{0}=N^{v}f_{0}$,
+    and since $\Hom(G_{0},H_{0})$ has no $N$-torsion,
+    we get $F_{0} =f_{0}$, that is $F$ lifts $f_{0}$.
+\epf
+
+We now turn to the special case $N=p^{n}$.
+Let $\mathscr{A}$  be the category of abelian schemes over $R$,
+and denote by $\operatorname{Def}(R,R_{0})$ the category of triples $(A_{0},G,i)$,
+consisting of an abelian scheme $A_{0}$ over $R_{0}$,
+a $p$-divisible group $G$ over $R$,
+and an isomorphism $i$ of $p$-divisible groups over $R_{0}$:
+\[    i\colon     G_{0} \cong A_{0}[p^{\infty}] .  \]
+
+\begin{theorem}[Serre--Tate]
+    Let $R$ be a ring in which a prime $p$ is nilpotent,
+    $I \subset R$ a nilpotent ideal, and $R_{0}=R/I$.
+    Then the functor
+    \[ \begin{aligned}
+        \mathscr{A} &\to \operatorname{Def}(R,R_{0}), \\
+        A &\mapsto (A_{0},A[p^{\infty}],i)
+    \end{aligned} \]
+    is an equivalence of categories.
+\end{theorem}
+
+\pf
+    First, we show it is fully faithful.
+    Let $A,B$ be two abelian schemes over $R$.
+    We suppose given a homomorphism 
+    \[   f[p^{\infty}] \colon    A[p^{\infty}] \to B[p^{\infty}]    \]
+    of $p$-divisible groups over $R$, and a homomorphism 
+    \[   f_{0}\colon    A_{0} \to B_{0}    \]
+    of abelian schemes over $R_{0}$,
+    such that $f$ and $f_{0}$ are compatible with the natural isomorphism $i$.
+
+    We must show there exists a unique homomorphism $f\colon  A\to B$, which induces $f[p^{\infty}]$ and $f_{0}$.
+
+    Because both abelian schemes and $p$-divisible groups 
+    satisfy the assumptions of our previous lemma,
+    we can make use of its conclusions.
+    The uniqueness of $f$ follows from the injectivity of 
+    \[    \Hom(A,B) \to \Hom(A_{0},B_{0}).   \]
+    For the existence, let $\text{``}N^{v}f_{0}\text{''}$ be the lifting of $N^{v}f_{0}$.
+    We need to show $\text{``}N^{v}f\text{''}$ kills $A[N^{v}]$.
+    But because $\text{``}N^{v}f\text{''}$ lifts $N^{v}f_{0}$, 
+    then we have $\text{``}N^{v}f\text{''}[p^{\infty}]$ lifts $N^{v}f_{0}[p^{\infty}]$.
+    By the uniqueness, we have 
+    \[     \text{``}N^{v}f\text{''}[p^{\infty}]=N^{v}(f[p^{\infty}]).  \]
+    Therefore $\text{``}N^{v}f\text{''}$ kills $A[N^{v}]$,
+    and we find $\text{``}N^{v}f\text{''}=N^{v}F$,
+    with $F$ a lifting of $f_{0}$.
+    Therefore $F[p^{\infty}]$ lifts $f_{0}[p^{\infty}]$,
+    and again by the uniqueness, we have $F[p^{\infty}]=f[p^{\infty}]$.
+
+    It remains to  prove the essential surjectivity.
+    The basic idea is first to lift the abelian scheme $A_{0}$ to an $R$ abelian scheme,
+    and then  quotient a finite flat subscheme, to make the corresponding $p$-divisible groups match.
+
+    Suppose we are given a triple $(A_{0},G,i)$.
+    We must show the existence of an abelian scheme $A$ over $R$,
+    which can produce this triple.
+
+    Because $R$ is a nilpotent thickening of $R_0$,
+    we can find an abelian scheme $B$ over $R$ which lifts $A_{0}$.
+    This follows from the deformation theory of Grothendieck:
+    If $S_{0}\to S$ is a closed immersion of affine schemes,
+    defined by an ideal of square $0$, and if $X_{0}$ is an abelian scheme over $S_{0}$,
+    then there exists an abelian scheme $X$ over $S$ which lifts $X_{0}$.
+
+    That is to say we have an isomorphism of abelian schemes over $R_{0}$:
+    \[  \alpha_{0}\colon   B_{0} \cong  A_{0} ,  \]
+    which induces an isomorphism of $p$-divisible groups over $R_{0}$:
+    \[  \alpha_{0}[p^{\infty}] \colon    B_{0}[p^{\infty}]     \to A_{0}[p^{\infty}] .  \]
+    And $N^{v}\alpha_{0}[p^{\infty}]$ has a unique lifting to morphism of $p$-divisible groups over $R$:
+    \[  \text{``}N^{v}\alpha\text{''}[p^{\infty}] \colon B[p^{\infty}]  \to G . \]
+    This morphism is an isogeny, since it has an inverse up to isogeny,
+    which is given by the canonical lifting of $N^{v}\times (\alpha_{0}[p^{\infty}])^{-1}$.
+
+    And we have a short exact sequence 
+    \[   0\to K \to B[p^{\infty}]\to G \to 0, \]
+    with $K\subset B[N^{2v}] $ a finite flat subgroup scheme of $B[N^{2v}]$.
+    So we may form the  quotient abelian scheme of $B$ by $K$, $A=B/K$.
+
+    Because $K$ lifts $B_{0}[N^{v}]$,
+    this quotient lifts $B_{0}/B_{0}[N^{v}]\cong B_{0}\cong A_{0}$.
+
+    And the exact sequence 
+    \[   0\to K \to B[p^{\infty}]\to G \to 0 \]
+    induce a compatible isomorphism $A[p^{\infty}] \cong B[p^{\infty}]/K \cong G $.
+\epf
+
+\section{Deformation theory of ordinary elliptic curves}
+
+With the Serre--Tate theorem,
+we now study the deformation theory of  ordinary elliptic curves.
+
+Fix $\Fb$ the algebraic closure of $\Fb_{p}$.
+Pick a complete local ring $B$ with residue field $\Fb$.
+Denote $\Cl_{/B}$ the category of complete local $B$-algebras with residue field $\Fb$,
+$\mathrm{ART}_{/B}$ the full subcategory of $\Cl_{/B}$ made up of artinian local $B$-algebras with residue field $\Fb$.
+
+Let $(E_{0},\w_{0})_{/\Fb}$ be an ordinary elliptic curve,
+with $\w_{0}\in H^{0}(E_{0},\Omega_{E_{0}/\Fb})$. We consider the following deformation functor:
+\[ \begin{aligned}
+    &\hat{\Eb} \colon \Cl_{/B} \to \mathrm{Sets}, \\
+    &\hat{\Eb}_{E_{0}}(R) = [(E_{/R},\iota_{E})\mid 
+    E_{/R}\text{ is an elliptic curve and }\iota_{E}\colon E\times_{\Spec R}\Spec\Fb \cong E_{0}].
+\end{aligned} \]
+Here ``$[\enspace]$'' means the isomorphism classes of objects and we say
+$f\colon (E,\iota_{E})_{/S}\cong (E',\iota_{E'})_{/S}$ is an isomorphism if we have the following commutative diagram:
+\[ \begin{tikzcd}
+    E\otimes_{B}\Fb \ar[r, "f_{0}"]\ar[d, "\iota_{E}", "\cong"']&E'\otimes_{B}\Fb \ar[d, "\iota_{E'}", "\cong"'] \\
+    E_{0}\ar[r,equal]&E_{0}
+\end{tikzcd} \]
+
+One may ask, whether this functor is representable? The answer is yes!
+
+We need a preliminary lemma.
+
+\begin{lemma}
+    Assume $E_{0}$ is ordinary.
+    Take $(E,\iota_{E})_{/R}$ in $\hat{\Eb}_{E_{0}}(R)$ 
+    for an artinian local $B$-algebra $R$ with residue field $\Fb$.
+    Let $\hat{E}$ be the formal completion of $E$ along the origin of $E$.
+    Then there exists a canonical $\Zb_{p}$-linear homomorphism $\phi_{E/R}\colon T_{p}E[p^{\infty}](\Fb)\to \hat{E}(R)$.
+    Here $T_{p}E[p^{\infty}]^{\et}=\liminv E[p^{n}](\Fb)$.
+\end{lemma}
+
+\pf
+    Since $R$ is an artinian local ring with maximal ideal $I$,
+    we may find $v$ such that $I^{v+1}=0$, hence $p^{v+1}I=0$.
+    Now by Lemma \ref{lem-a}, $p^{v}$ kills $\hat{E}$ since $\hat{E}$ is a formal Lie group over $R$.
+
+    Since $E$ is ordinary, for the identity component of $E[p^{\infty}]$,
+    we have $E[p^{\infty}]^{\circ}\cong \mu_{p^{\infty}}$ over $R$ 
+    since it is a deformation of $E_{0}[p^{\infty}]^{\circ}\cong \mu_{p^{\infty}}$ over $\Fb$ 
+    thus the Barsotti--Tate group $E[p^{\infty}]$ is ordinary,
+    and we have the \'etale extension of Barsotti--Tate groups over $\mathrm{ART}_{/R}$
+    \[ 0\to E[p^{\infty}]^{\mathrm{mult}}\to E[p^{\infty}] \to E[p^{\infty}]^{\et} \to 0 . \]
+    Note that $E[p^{\infty}]^{\mathrm{mult}}$ over $\mathrm{ART}_{/R}$ is prorepresented by $\hat{E}$ since 
+    \[  \hat{E}(R)=\hat{E}[p^{\infty}](R)\cong \mu_{p^{\infty}}(R)=E[p^{\infty}]^{\mathrm{mult}}(R) . \]
+    We may rewrite the above sequence as an extension of fppf abelian sheaves:
+    \[ 0\to \hat{E}\to E[p^{\infty}] \to E[p^{\infty}]^{\et} \to 0 . \]
+    Taking the prime-to-$p$ part into account, we have the exact sequence 
+    \[ 0\to \hat{E}(R) \to E(R) \to E(\Fb) \to 0 . \]
+    Pick $x\in E(\Fb)$, and lift it to $\tilde{x}\in E(R)$.
+    If $\tilde{x}'$ is another lift, we have $\tilde{x}-\tilde{x}'\in \hat{E}(R)$,
+    so $p^{v}(\tilde{x}-\tilde{x}')=0$, that is $p^{v}\tilde{x}$ is uniquely determined by $x$, so we get a homomorphism 
+    \[ \text{``}p^{v}\text{''}\colon  E(\Fb)[p^{v}]=E[p^{v}](\Fb)=E[p^{v}]^{\et}(\Fb)\to \hat{E} .  \]
+    Note that this works for any $n\geq v$, we get a commutative diagram for any $n\geq v$:
+    \[ \begin{tikzcd}
+        E[p^{n+1}]^{\et}(\Fb)\ar[r, "\text{``}p^{n+1}\text{''}"]\ar[d, "p"]&\hat{E}(R) \ar[d] \\
+        E[p^{n}]^{\et}(\Fb)\ar[r, "\text{``}p^{n}\text{''}"]&\hat{E}(R)
+    \end{tikzcd} \]
+    Taking the limit, we get $\phi_{E/R}\colon T_{p}E[p^{\infty}]^{\et}(\Fb)\to \hat{E}(R)$ 
+    by sending $\liminv x_{n}$ to $\underset{n \to \infty}{\lim}\text{``}p^{n}\text{''}(x_{n})$.
+\epf
+
+\begin{theorem}
+    Let $T_{p}E_{0}=\liminv E_{0}[p^{n}](\Fb)$ for a given ordinary elliptic curve $E_{0/\Fb}$,
+    and regard as it as a constant group scheme over $R$
+    (for any given artinian local $B$-algebra $R$ with residue field $\Fb$).
+    The functor $\hat{\Eb}_{E_{0}}$ is represented by the formal torus 
+    \[ R\to \Hom_{\Zb_{p}}(T_{p}E_{0}\otimes T_{p}E_{0},\hat{\mathbb{G}}_{m} (R))\cong \hat{\Gb}_{m}(R) . \]
+    And each deformation $(E_{/R},\iota_{E}) \in \hat{\Eb}_{E_{0}}(R)$ gives rise a Serre--Tate coordinate 
+    \[  t_{E/R}\colon T_{p}E_{0}\times T_{p}E_{0}\to \hat{\Gb}_{m}(R).   \]
+    The isomorphism is induced by $\eta^{0}\colon \mu_{p^{\infty}}\cong E_{0}[p^{\infty}]^{\mathrm{mult}}$ 
+    and its dual inverse $\eta^{\et}=(\eta^{0})^{*}\colon \mathbb{Q}_{p}/\Zb_{p} \cong E[p^{\infty}](\Fb)$.
+\end{theorem}
+
+\pf
+    This theorem follows from the Serre--Tate theorem and the previous lemma.
+
+    By the Serre--Tate theorem,
+    an elliptic curve $E_{/R}\in \hat{\Eb}_{E_{0}}(R)$ which deforms $E_{0}/\Fb$ 
+    is determined by the the extension 
+    (the other deformation data are included in the definition of our deformation functors)
+    \[ 0\to E[p^{\infty}]^{\mathrm{mult}}\to E[p^{\infty}]\to E[p^{\infty}]^{\et} \to 0 . \]
+    Note that we have an isomorphism $\hat{E}\cong E[p^{\infty}]^{\mathrm{mult}} $.
+    Then we get 
+    \[ 0\to \hat{E} \to E[p^{\infty}] \to E[p^{\infty}]^{\et} \to 0. \]
+    Thus the extension is determined by the extension class:
+    \[   \operatorname{Ext}_{S(R_{\mathrm{fppf}})}( E[p^{\infty}]^{\et},\hat{E}). \eqno(*)  \]
+    We are now going to describe $E[p^{\infty}]^{\et}$ and $\hat{E}$ use the data comes from $E_{0}$.
+
+    By Cartier Duality theory of $E[N]$:
+    \[ \begin{aligned}
+        \hat{E}[p^{n}]
+        &=E[p^{n}]^{\mathrm{mult}}=\Hom_{\mathrm{GSCH}_{/R}}\bigl(E[p^{n}]^{\et},\ \mu_{p^{n}}\bigr) \\ 
+        &\cong \Hom_{\mathrm{GSCH}_{/R}}\bigl((T_{p}E[p^{\infty}]^{\et})\otimes_{\Zb}p^{-n}\Zb/\Zb,\ \mu_{p^{n}}\bigr) \\
+        &\cong \Hom_{\mathrm{GSCH}_{/R}}\bigl(T_{p}E_{0}\otimes_{\Zb}p^{-n}\Zb/\Zb,\ \mu_{p^{n}}\bigr). 
+    \end{aligned}      \]
+    Passing to the limit, we get 
+    \[ \hat{E}(R)\cong E[p^{\infty}]^{\mathrm{mult}}=
+    \Hom_{\mathrm{GSCH}_{/R}}(T_{p}E_{0/R},\hat{\Gb}_{m/R})=\Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m}(R)) .  \]
+    Also note that $E[p^{\infty}]^{\et}\cong T_{p}E_{0}\otimes \mathbb{Q}_{p}/\Zb_{p}$.
+    We get that the extension group $(*)$ is isomorphic to 
+    \[    \operatorname{Ext}_{S(R_{\mathrm{fppf}})}\bigl(
+        T_{p}E_{0}\otimes \mathbb{Q}_{p}/\Zb_{p},\ \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m}(R))\bigr) \]
+    Now from the previous lemma, we can associate each extension a homomorphism 
+    \[   T_{p}E_{0}\to \hat{E}=\Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m} ) . \]
+    That is we have 
+    \begin{multline*}
+        \tau\colon  \operatorname{Ext}_{S(R_{\mathrm{fppf}})}\bigl(
+            T_{p}E_{0}\otimes \mathbb{Q}_{p}/\Zb_{p},\ 
+            \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m})\bigr) \\
+            \longrightarrow \Hom_{\Zb_{p}}\bigl(T_{p}E_{0},\ 
+            \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m})\bigr).
+    \end{multline*}
+    We are going to show this is in fact a bijection.
+    First note that $T_{p}E_{0}\cong \Zb_{p}$. We get the following exact sequence 
+    \[ 0\to T_{p}E_{0} \to (T_{p}E_{0})\otimes_{\Zb_{p}} \mathbb{Q}_{p} 
+        \to (T_{p}E_{0})\otimes_{\Zb_{p}} \mathbb{Q}_{p}/\Zb_{p} \to 0 . \]
+    From the morphism 
+    $\phi \in \Hom_{\Zb_{p}}\bigl(T_{p}E_{0},\ \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m})\bigr)$,
+    we may form the push out of the above sequence 
+    \[ \begin{tikzcd}[column sep=1em]
+        0\ar[r]&T_{p}E_{0} \ar[r, "i"]\ar[d, "\phi"] &
+        (T_{p}E_{0})\otimes_{\Zb_{p}} \mathbb{Q}_{p} \ar[r]\ar[d] & 
+        (T_{p}E_{0})\otimes_{\Zb_{p}} \mathbb{Q}_{p}/\Zb_{p} \ar[r] \ar[d, "\mathrm{id}"]& 0 \\
+        0 \ar[r]& \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m}) \ar[r]& 
+        E_{\phi}[p^{\infty}] \ar[r] & 
+        (T_{p}E_{0})\otimes_{\Zb_{p}} \mathbb{Q}_{p}/\Zb_{p} \ar[r] & 0
+    \end{tikzcd} \]
+    where
+    \[  E_{\phi}[p^{\infty}]:= \Coker \bigl( i-\phi\colon 
+        T_{p}E_{0} \to ((T_{p}E_{0})\otimes_{\Zb_{p}} \mathbb{Q}_{p}) \times 
+        \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m}) \bigr). \]
+    It is a $p$-divisible group.
+    By construction $\tau(E_{\phi}[p^{\infty}])=\phi$. 
+    And we recover the original extension of the Barsotti--Tate groups.
+    Thus $\tau$ is bijective. We get 
+    \[ \hat{\Eb}_{E_{0}}(R)=\Hom_{\Zb_{p}}\bigl(T_{p}E_{0},\ \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m})\bigr)  \]
+    Also note that we have 
+    \[ \Hom_{\Zb_{p}}\bigl(T_{p}E_{0},\ \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m} )\bigr)
+        \cong \Hom_{\Zb_{p}} \bigl( T_{p}E_{0}\otimes_{\Zb_{p}} T_{p}E_{0},\ \hat{\Gb}_{m}\bigr) \]
+    Sending $\phi_{E/R} \colon  T_{p}E_{0} \to \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m} )$ 
+    to $t_{E/R}\colon  T_{p}E_{0}\otimes_{\Zb_{p}} T_{p}E_{0}\to \hat{\Gb}_{m} $, given by 
+    \[     t_{E/R}(a\otimes b)=\phi_{E/R}(a)(b)           \]
+    Now note that $T_{p}E_{0} \cong \Zb_{p}$ since $E_{0}[p^{\infty}](\Fb)\cong \mathbb{Q}_{p}/\Zb_{p}$.
+    We get 
+    \[ \Hom_{\Zb_{p}}( T_{p}E_{0} \otimes_{\Zb_{p}} T_{p}E_{0},\hat{\Gb}_{m} ) 
+    \cong \Hom_{\Zb_{p}}(\Zb_{p},\hat{\Gb}_{m} )\cong \hat{\Gb}_{m}. \qedhere  \]
+\epf
+
+The map $t_{E/R}\colon  T_{p}E_{0} \times T_{p}E_{0} \to \hat{\Gb}_{m}(R)$ 
+is called the Serre--Tate coordinate. We are going to describe it explicitly.
+
+Since $R\in \Cl_{/B}$ is a projective limit 
+of local $B$-algebras $R_{n}$ with nilpotent maximal ideal,
+we have $\hat{\Gb}_{m}(R)=\liminv \hat{\Gb}_{m}(R_{n})$; so 
+\[   t_{E/R}=\liminv t_{E_{n}/R_{n}}    \]
+for $E_{n}=E\times_{\Spec(R)} \Spec(R_{n})$. Therefore we may assume that 
+$R$ is a local artinian $B$-algebra with nilpotent maximal ideal $m_{R}$.
+Then by a previous lemma, we know $\hat{E}(R)$ is killed by $p^{v}$ for $v$ large enough.
+Taking a lift $\tilde{x} \in E(R)$ of $x\in E(\Fb)=E_{0}(\Fb) $,
+$\tilde{x}$ is determined modulo 
+$\Ker(E(R)\to E(\Fb))=\hat{E}(R)$ which is a subgroup of $E[p^{n}]$ if $n\geq v$.
+By the smoothness of $E_{/R}$, such a lift $\tilde{x}$ always exists.
+$p^{n}\tilde{x} \in E(R)$ is uniquely determined by $x\in E_{0}(\Fb)$.
+We get a morphism $T_{p}E_{0} \to \hat{E}(R)$. Note that we have the following exact sequence 
+\[ 0\to \hat{E}[p^{\infty}]_{/R}\to E[p^{\infty}]_{/R} \to E[p^{\infty}]^{\et}_{/R}\to 0 \]
+Take $x=\liminv x_{n} \in T_{p}E_{0}=T_{p}E[p^{\infty}]^{\et}$ 
+with $x_{n}\in E_{0}[p^{n}](\Fb)$.
+Lift $x_{n}$ to $v_{n}\in E(R)$ so that $\pi(v_{n})=x_{n}$.
+Then for $\text{``}p^{n}\text{''}\colon E_{0}[p^{n}](\Fb)\to \hat{E}(R)$
+\[    t_{n}(x)=\text{``}p^{n}\text{''}v_{n}\in \hat{E}(R)   \]
+The values $t_{n}(x_{n})$ becomes stationary if $n\geq n_{0}$,
+taking the limit as $n\to \infty$,
+we get $t(x)\in \hat{E}(R) \cong \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m}(R))$. 
+We get $t(x)\in \hat{E}(R)\cong \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m}(R))$.
+
+Then we define $t_{E/R}(x,y)=t(x)(y)$.
+Fix the isomorphism $\Zb_{p}\cong T_{p}E_{0}$,
+we may define $t_{E/R}\in \hat{\Gb}_{m}(R)$ by $t_{E/R}(1)(1)$ for $1\in \Zb_{p}$.
+
+\begin{theorem}
+    Fix a level structure $\eta_{0}\colon  \mu_{p^{\infty}}\cong E_{0}[p^{\infty}]^{\mathrm{mult}}$.
+    Then we have 
+    \begin{enumerate}
+        \item The functor $\hat{\Eb}_{E_{0}}$ is represented by the formal scheme
+        \[   \Hom_{\Zb_{p}}(T_{p}E_{0}\otimes_{\Zb_{p}} T_{p}E_{0},\hat{\Gb}_{m})\cong \hat{\Gb}_{m}   \]
+        by $t_{E/R}(x,y)\to t_{E/R}=t_{E/R}(1,1)$.
+
+        \item $t_{E/R}(x,y)=t_{E/R}(y,x)$.
+
+        \item Let $f_{0}\colon  E_{0/\Fb} \to E'_{0/\Fb}$ be a morphism 
+        of two ordinary elliptic curves with the dual map, 
+        $f^{t}_{0}\colon  E'_{0} \to E_{0}$. Then $f_{0}$ is induced by a homomorphism 
+        $f\colon  E_{/R} \to E'_{/R}$ for $E\in \hat{\Eb}_{E_{0}}(R)$ and 
+        $E'\in \hat{\Eb}_{E'_{0}}(R)$ if and only if 
+        $t_{E/R}(x,f^{t}_{0}(y))=t_{E/R}(f_{0}(x),y)$.
+        
+        \item $E\in \hat{\Eb}_{E_{0}}(W(\Fb))$ has a complex multiplication 
+        by an order $\mathscr{O}$ of an imaginary quadratic field with 
+        $\mathscr{O}_{p}:=\mathscr{O}\otimes_{\Zb}\Zb_{p}$ isomorphic to 
+        $\Zb_{p}\oplus \Zb_{p}$ if and only if $t_{E/W(\Fb)}=1$,
+        where $W(\Fb)$ is the ring of Witt vectors of $\Fb$.    
+    \end{enumerate}
+\end{theorem}
+
+\pf
+    (1), (2) are clear from the proof of the Serre-Tate theorem.
+
+    By the Serre-Tate theorem, we have such a lifting exists 
+    if and only if we have a morphism $\phi\colon  E[p^{\infty}]\to E'[p^{\infty}]$ 
+    such that the following diagram commutes:
+    \[ \begin{tikzcd}
+        \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m})\ar[r]\ar[d, "\circ f^{t}"]&
+        E[p^{\infty}] \ar[r]\ar[d, "\phi"] &
+        T_{p}E_{0}\otimes_{\Zb_{p}} (\mathbb{Q}_{p}/\Zb_{p}) \ar[d, "f_{0}\otimes 1"'] \\
+        \Hom_{\Zb_{p}}(T_{p}E_{0},\hat{\Gb}_{m})\ar[r]&
+        E'[p^{\infty}]\ar[r]&
+        T_{p}E_{0}\otimes_{\Zb_{p}}(\mathbb{Q}_{p}/\Zb_{p})
+    \end{tikzcd} \]
+    We have two ways to construct such a homomorphism $\phi$,
+    either by push-out of the left square,
+    or by the pull-back of the right square.
+    And the condition for two such map coincide is 
+    \[  t_{E/R}(\cdot,f^{t}(\cdot))=t_{E'/R}(f(\cdot),\cdot)  \]
+
+    We now prove (4). By (3), if $t_{E/W}=1$ for $W=W(\Fb)$,
+    then every endomorphism of $E_{0}$ lifts to an endomorphism of $E/W$.
+    Thus $E$ has complex multiplication by the order $\operatorname{End}(E_{0/\Fb})$,
+    then since $\mathscr{O}_{p}\cong \operatorname{End}(E_{0}[p^{\infty}]_{/\Fb})$,
+    we conclude $\mathscr{O}_{p}\cong \Zb_{p} \oplus \Zb_{p}$.
+    Conversely, if $E$ has complex multiplication by $\mathscr{O}$
+    with $\mathscr{O}_{p}=\Zb_{p}\oplus \Zb_{p}$,
+    the connected-\'etale sequence of $E[p^{\infty}]$ split over $W$,
+    and this implies $t_{E/W}=1$.
+\epf
+
+Let $E_{/R/W(\bar{\Fb}_{p})}\in \hat{\Eb}_{E_{0}}(R)$.
+We have the fundamental exact sequence 
+\[ 0\to \mathscr{O}_{E}\otimes_{E}\Omega^{1}_{R/W}\to \Omega^{1}_{E/W}\to \Omega^{1}_{E/R}\to 0. \]
+
+\begin{proposition}
+    Let $\underline{\w}_{E/R}:=H^{0}(E,\Omega^{1}_{E/R})$, and 
+    \[ \mathrm{Kod}\colon  \underline{\w}_{E/R} 
+        \to H^{1}(E,\mathscr{O}_{E}\otimes_{R}\Omega^{1}_{R/W})
+        \cong \operatorname{Lie}(E/R)\otimes_{R}\Omega_{R/W} \]
+    the connection homomorphism. 
+    Note that $\operatorname{Lie}(E/R)\cong \underline{\w}_{E/R}^{*}$ 
+    by Grothendieck--Serre duality.
+    Tensoring with $\underline{\w}_{E/R}$,
+    we get the Kodaira--Spencer morphism:
+    \[ \underline{\w}^{2}_{E/R}\to \Omega_{R/W}. \]
+    If $E$ is the universal elliptic curve over $\hat{\mathbb{G}}_{m}$,
+    then this map is an isomorphism.
+\end{proposition}
+
+\pf
+    See \cite[Theorem~4.4.1]{Katz}.
+\epf
+
+\begin{remark}
+    Please compare this proposition 
+    with the complex Kodaira--Spencer morphism,
+    especially \cite[Theorem~6.2.12]{Huybrechts}.
+\end{remark}
+
+\printbibliography
+
+\end{document}

@@ -1,0 +1,189 @@
+One might notice the resemblance between a handlebody and a CW complex.
+In fact, they are related in the following way.
+
+\begin{definition}
+Let $(N,A)$ be a good, weak or non-weak, relative handlebody.
+We define its \term{associated CW complex} $(X,A)$ as follows.
+Assume for $N$ that the handles are attached one at a time.
+\begin{itms}
+\item Let $X_0:=A$ as a trivial relative CW complex over $A$,
+and let $p_0\:N_0\to X_0$ be the identity map.
+\item If $N_1=N_0\cup_{\Phi_1}h^\lambda$,
+we define $X_1:=X_0\cup_{\phi_1}D^\lambda$,
+where $\phi_1:=p_0\circ\Phi_1|_{\partial D^\lambda\times 0}$.
+We define a continuous map $p_1\:N_1\to X_1$ as follows.
+Let $p_1$ agree with $p_0$ on $N_0$,
+and let it be the projection to the core $D^\lambda\times0$ of $h^\lambda$.
+\item We then define $X_2$ and $p_2$, and so on. 
+\end{itms}
+Thus $X:=\limdct X_i$ is a relative CW complex over $A$.
+\end{definition}
+
+\begin{proposition}\label{prop:ass-cw}
+The associated CW complex is homotopy equivalent to the original, weak or non-weak, relative handlebody.
+\end{proposition}
+
+\begin{proof}
+The weak case needs an extra first step. Note that $N_i$ is homotopy equivalent to $N_i\setminus\partial N_i$,
+since if we take a collar neighbourhood $\partial N_i\times[0,+\infty)$,
+then both spaces retract to $N_i\setminus\partial N_i\times[0,1)$.
+
+We claim that each $p_i$ is a homotopy equivalence.
+This is shown by induction on $i$. Since the projection onto the core is a homotopy equivalence
+between $h^\lambda$ and $D^\lambda$, by \cite[Lemma~2.1.3]{may},
+$N_i:=N_{i-1}\cup_{\Phi_i}h^\lambda$ and $X_i:=X_{i-1}\cup_{\phi_i}D^\lambda$
+are homotopy equivalent through the induced map $p_i$.
+
+Finally, by \cite[Lemma~2.1.10]{may}, the colimit map $p\:N\to X$ is a homotopy equivalence.
+\end{proof}
+
+As a consequence,
+the (co)homology groups of a handlebody 
+can be computed by the cellular (co)chain complex of 
+its associated CW complex.
+We shall define an analogous (co)chain complex associated to a handlebody.
+
+\begin{definition}
+Let $M,S,T$ be oriented $m$-, $s$- and $t$-manifolds without boundary,
+with $S,T$ compact and $s+t=m$.
+Let $f\:S\to M$, $g\:T\to M$ be embeddings.
+If $f(S)$ is transverse to $g(T)$, then we define the
+\term{intersection number} of $f,g$ to be
+\[\#(f,g):=\sum_{p\in f(S)\cap g(T)}\pm1,\]
+where the sign is decided by whether the vector space isomorphism
+$\T_pM\simeq\T_pf(S)\oplus\T_pg(T)$
+preserves $(+1)$ or reverses $(-1)$ the orientation.
+\end{definition}
+
+\begin{proposition}
+Under the above assumptions, if $f$ is isotopic to $f'$ and $g$ is isotopic to $g'$,
+such that $f'(S)$ is transverse to $g'(T)$, then $\#(f,g)=\#(f',g')$.
+\end{proposition}
+
+\begin{proof}
+By (\ref{cor:isotopy-ext}), we may extend the isotopy from $g$ to $g'$ to an isotopy of $M$.
+Thus we may assume $g=g'$.
+For a proof in this case, see \cite[p.\,108]{gp}. 
+\end{proof}
+
+Therefore, the intersection number is well-defined for isotopy classes of maps.
+This allows us to define the intersection number for submanifolds
+that are not necessarily transverse.
+
+\begin{definition}
+Let $M,S,T$ be oriented $m$-, $s$- and $t$-manifolds without boundary,
+where $S,T$ are compact submanifolds of $M$ with $s+t=m$.
+Their \term{intersection number} $\#(S,T)$
+is defined to be any $\#(f,g)$, such that $f$ is isotopic to the embedding $S\hookrightarrow M$,
+$g$ is isotopic to $T\hookrightarrow M$, and $f(S)$ is transverse to $g(T)$.
+\end{definition}
+
+For any given $M,S,T$, such $f,g$ always exist.
+This is a consequence of (\ref{cor:transverse}). 
+
+\begin{definition}
+Let $N$ be a good, weak or non-weak, $n$-handlebody,
+and let $G$ be an abelian group.
+The \term{handle chain complex} $C_\bullet(N;G)$ of $N$ is defined as follows.
+\begin{itms}
+\item $C_\lambda(N;G):=\bigoplus_\alpha G\cdot[\subsup h\alpha\lambda]$
+for $\lambda=0,\dotsc,n$, and $0$ otherwise.
+Here $\subsup h\alpha\lambda$ runs through all $\lambda$-handles of $N$.
+\item $\partial_\lambda\:C_\lambda(N;G)\to C_{\lambda-1}(N;G)$ is defined on basis elements by
+\[\partial_\lambda[\subsup h\alpha\lambda]:=\sum\#\bigl(\text{cobelt}(\subsup h\alpha\lambda),\ \text{belt}(\subsup h\beta{\lambda-1})\bigr)\,[\subsup h\beta{\lambda-1}],\]
+where the sum is taken over all $(\lambda-1)$-handles $\subsup h\beta{\lambda-1}$
+attached before $\subsup h\alpha\lambda$.
+\end{itms}
+If $N$ is locally finite, then we define the \term{handle cochain complex}
+$C^\bullet(N;G)$ as follows.
+\begin{itms}
+\item $C^\lambda(N;G):=C_\lambda(N;G)$.
+\item $d^\lambda\:C^\lambda(N;G)\to C^{\lambda+1}(N;G)$ is defined on basis elements by
+\[d^\lambda[\subsup h\alpha\lambda]:=\sum\#\bigl(\text{belt}(\subsup h\alpha\lambda),\ \text{cobelt}(\subsup h\beta{\lambda+1})\bigr)\,[\subsup h\beta{\lambda+1}],\]
+where the sum is taken over all $(\lambda+1)$-handles $\subsup h\beta{\lambda+1}$
+attached after $\subsup h\alpha\lambda$.
+\end{itms}
+The relative versions, 
+namely $C_\bullet(N,A;G)$ and $C^\bullet(N,A;G)$, are defined similarly.
+\end{definition}
+
+We need to prove that these are indeed chain complexes.
+We do this by showing that the homological version
+is isomorphic to the cellular chain complex
+of a CW complex.
+
+\begin{proposition}
+Let $X$ be the associated CW complex of $N$.
+If $N$ is orientable or $2G=0$,
+then $C_\bullet(N;G)$ is isomorphic to the
+cellular chain complex $\subsup C\bullet{\mathrm{cell}}(X;G)$.
+\end{proposition}
+
+\begin{proof}
+Note that under the map $p_i\:N_i\to X_i$,
+the intersection number corresponds to the
+sum of local degrees
+of the attaching map on the inverse image of $0\in D^{\lambda-1}$.
+In the orientable case the orientation of each $\partial N_i$
+may be chosen to be compatible with the handles,
+so that degrees are counted correctly;
+otherwise they are only correct modulo $2$.
+\end{proof}
+
+\begin{proposition}\label{prop:handle-homology}
+Suppose $N$ is orientable or $2G=0$. Then 
+\begin{itms}
+    \item The chain complex $C_\bullet(N;G)$ computes
+    the singular homology $H_\bullet(N;G)$.
+    \item The cochain complex $C^\bullet(N;G)$, if defined, computes
+    the singular cohomology with compact support $\subsup H{\mathrm c}\bullet(N;G)$.
+\end{itms}
+\end{proposition}
+
+\begin{proof}
+The first statement is immediate; we prove the second one.
+
+If $N$ is compact (that is, finite), 
+then $C^\bullet(N;G)$ is precisely the dual of $C_\bullet(N;G)$,
+i.e.\ obtained by applying $\Hom_G(-,G)$.
+By \cite[Theorem~3.5]{hatcher},
+the dual of the cellular complex computes the singular cohomology.
+Thus $C^\bullet(N;G)$ also computes the singular cohomology,
+which is equal to singular cohomology with compact support.
+
+In the general case, suppose that the handles in $N$ are attached
+one at a time. This does not affect the chain complexes.
+We use the fact that
+\[\subsup H{\mathrm c}\bullet(X;G)
+\simeq\limdct_{\raisebox{2pt}[0pt]{\scriptsize$K$ compact}} H^\bullet(X,X\setminus K;G)\]
+for any space $X$ \cite[below~3.33]{hatcher}.
+By local finiteness, for any compact $K\subset N$,
+there exists $i$ such that $K\subset(\text{interior of $N_i$ in $N$})$.
+By excision we have $H^\bullet(N,N\setminus K;G)\simeq H^\bullet(N_i,N_i\setminus K;G)$. Thus
+\[\subsup H{\mathrm c}\bullet(N;G)\simeq\limdct\subsup H{\mathrm c}\bullet(N_i;G).\]
+But each $N_i$ is compact, hence
+$\subsup H{\mathrm c}\bullet(N_i;G)\simeq H^\bullet(N_i;G)$.
+Note also that $C^\bullet(N;G)\simeq\limdct C^\bullet(N_i;G)$,
+in the category of cochain complexes.
+It remains to show that the functor $H^\bullet$ (of cochain complexes) commutes with taking colimits,
+which is a standard result in homological algebra.
+\end{proof}
+
+\begin{remark}
+To compute the singular cohomology $H^\bullet(N;G)$,
+one may directly dualise $C_\bullet(N;G)$
+by applying $\Hom_G(-,G)$. \varqed
+\end{remark}
+
+\begin{remark}
+This gives a beautiful geometrical interpretation
+of Poincar\'e duality for a manifold $M$,
+which states that $H_\bullet(M;G)$ and $\subsup H{\mathrm{c}}{\bullet}(M;G)$ are dual to each other,
+provided that $M$ is orientable or $2G=0$.
+Namely, for a finite handlebody $N$,
+one defines in the obvious way the \term{dual handlebody} of $N$,
+which is diffeomorphic to $N$,
+and its $\lambda$-handles correspond to the $(n-\lambda)$-handles of $N$.
+Then the handle chain complex of $N$ is isomorphic to 
+the handle cochain complex of the dual of $N$.\varqed
+\end{remark}

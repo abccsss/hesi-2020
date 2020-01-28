@@ -1,0 +1,143 @@
+\usepackage{geometry}
+\geometry{paperwidth=155mm,paperheight=235mm,outer=20mm,inner=20mm,top=25mm,bottom=20mm}
+
+% fonts & unicode
+\usepackage[PunctStyle=kaiming]{xeCJK}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\setCJKmainfont[Path=../../fonts/,BoldFont=fzhtk.ttf,ItalicFont=fzktk.ttf]{fzssk.ttf}
+\setCJKsansfont[Path=../../fonts/,BoldFont=SourceHanSansCN-Bold.otf,Scale=.97]{SourceHanSansCN-Normal.otf}
+\setCJKmonofont[Path=../../fonts/,BoldFont=SourceHanSansCN-Bold.otf,Scale=.9]{SourceHanSansCN-Normal.otf}
+\newCJKfontfamily{\KaiTi}[Path=../../fonts/,BoldFont=fzhtk.ttf,ItalicFont=fzssk.ttf]{fzktk.ttf}
+\setmainfont[Path=../../fonts/,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]{STIX2Text}
+\setsansfont[Path=../../fonts/,Scale=MatchUppercase,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]{Lato}
+\setmonofont[Path=../../fonts/,Scale=.9,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold]{FiraMono}
+\setmathfont[Path=../../fonts/]{STIX2Math.otf}
+\setmathfont[Path=../../fonts/,Scale=.95]{LatoMath.otf}[version=sf]
+\setmathfont[Path=../../fonts/,Scale=.95]{LatoMath.otf}[range={bb,sfup->up,sfit->it,bfsfup->bfup,bfsfit->bfit}]
+
+\Umathcode`/ = "0 "0 "2215    % / -> U+2215 division slash
+
+% title & abstract
+\def\title#1\author#2{\headertitle{#1}\vspace*{0mm}\begin{center}{\sf\LARGE#1\par}\vspace{10mm}{\large#2}\end{center}\vspace{10mm}}
+\def\headertitle#1{\def\theheadertitle{#1}}
+
+\def\abstractname{ABSTRACT}
+\makeatletter
+\let\endabstract@orig\endabstract
+\def\endabstract{\endabstract@orig\vspace{5mm}}
+\makeatother
+
+% headers and footers
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[CE]{\sf\mathversion{sf}\theheadertitle}
+\fancyhead[CO]{\sf\mathversion{sf}\nouppercase{\leftmark}}
+\fancyhead[LE,RO]{\textbf{\textsf{\thepage}}}
+\headsep=8mm
+\headheight=6mm
+
+\AtBeginDocument{
+    \pagestyle{fancy}\thispagestyle{empty}
+}
+
+% spacing
+\AtBeginDocument{
+    \hfuzz=2pt
+    \emergencystretch 2em
+    \setlength{\belowdisplayshortskip}{\belowdisplayskip}
+}
+
+% environments
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\theoremstyle{plain}
+
+\def\qedsymbol{$◻$}
+\def\thmqedhere{\pushQED{\qed}\qedhere\popQED}
+
+% renew theorem: https://tex.stackexchange.com/q/103013/
+\makeatletter
+\def\renewtheorem#1{%
+  \expandafter\let\csname#1\endcsname\relax
+  \expandafter\let\csname c@#1\endcsname\relax
+  \gdef\renewtheorem@envname{#1}
+  \renewtheorem@secpar
+}
+\def\renewtheorem@secpar{\@ifnextchar[{\renewtheorem@numberedlike}{\renewtheorem@nonumberedlike}}
+\def\renewtheorem@numberedlike[#1]#2{\newtheorem{\renewtheorem@envname}[#1]{#2}}
+\def\renewtheorem@nonumberedlike#1{  
+\def\renewtheorem@caption{#1}
+\edef\renewtheorem@nowithin{\noexpand\newtheorem{\renewtheorem@envname}{\renewtheorem@caption}}
+\renewtheorem@thirdpar
+}
+\def\renewtheorem@thirdpar{\@ifnextchar[{\renewtheorem@within}{\renewtheorem@nowithin}}
+\def\renewtheorem@within[#1]{\renewtheorem@nowithin[#1]}
+\makeatother
+
+% ref & biblatex
+\usepackage[colorlinks,allcolors=black,bookmarksnumbered,linktoc=all]{hyperref}
+
+\def\thesection{\arabic{section}\texorpdfstring{}{.}} % pdf bookmark numbering
+\setcounter{secnumdepth}{1} % suppress subsection numbering
+
+\usepackage[style=alphabetic,sorting=anyvt]{biblatex}
+\usepackage{xpatch}
+\renewcommand*{\bibfont}{\small}
+\DeclareFieldFormat{labelalpha}{\mkbibbold{#1}}
+\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+\DeclareFieldFormat[book,inbook]{number}{\mkbibbold{#1}}
+\DeclareFieldFormat[article]{number}{(#1)}
+\DeclareFieldFormat*{year}{(#1)}
+\DeclareFieldFormat{pages}{#1}
+\renewbibmacro{in:}{}
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+  \setunit*{\addnbspace}% originally: \setunit*{\adddot}
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}%
+}
+\xapptobibmacro{author/editor+others/translator+others}{%
+  \setunit{\space}%
+  \printfield{year}%
+  \clearfield{year}%
+}{}{}
+\xapptobibmacro{author/translator+others}{%
+  \setunit{\space}%
+  \printfield{year}%
+  \clearfield{year}%
+}{}{}
+\renewbibmacro*{issue+date}{%
+  \printfield{issue}%
+  \newunit%
+}
+\AtBeginBibliography{
+  \DeclareFieldFormat{labelalpha}{#1}
+}
+\AtEveryBibitem{
+  \ifentrytype{online}{%
+    \clearfield{year}%
+  }{}
+}
+
+% tikz
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\tikzset{>=latex}
+\tikzcdset{
+  arrow style=tikz,
+  arrows={/tikz/line width=.5pt},
+  diagrams={>={Straight Barb[scale=0.8]}},
+  nodes={inner xsep=3pt,inner ysep=3pt}
+}

@@ -1,0 +1,333 @@
+% !TEX program = xelatex
+
+% transformations:
+%   \autoref -> ~\ref
+%   _\... -> _{\...}
+%   enumerate -> enumerate[format=\textup]
+%   : -> \colon
+%   \Ibar, \fbar, \ybar
+
+\documentclass[twoside]{article}
+
+\input{../common/preamble}
+\input{commands}
+
+\begin{document}
+
+\title{On Freyd--Mitchell Embedding Theorem}
+\author{Yuchen Wu\footnote{吴雨宸，清华大学数学系数 63 班．}}
+\headertitle{Freyd--Mitchell Embedding Theorem}
+
+\begin{abstract}
+The passage presents a detailed proof for the Freyd--Mitchell embedding theorem which captures the resemblance between generic abelian categories and categories of modules.
+\end{abstract}
+
+
+\section{Introduction}
+
+In a standard course about homological algebra, the following folklore theorem is often assumed in order to simplify the proof for commutativity of certain diagrams in a generic abelian category:
+\begin{thm}[Freyd--Mitchell embedding] \label{FE} For any small abelian category $\EA$, there exists a unital ring $R$ and a covariant fully faithful exact additive functor from $\EA$ to $\rmod$ (the category of all left $R$-modules).
+\end{thm}
+
+The passage aims to provide a detailed proof for this theorem following \cite{Fre64}. Before doing so, let me first illustrate how do this result helps to deal with diagram commutativity issues in arbitrary abelian categories. For an abelian category $\EA$, suppose we want to show the commutativity of a diagram $D$ in $\EA$. First we take $\EA_D$ the abelian closure of $D$, i.e.\ the smallest abelian full sub-category of $\EA$ containing objects in $D$. This $\EA_D$ can be constructed from objects in $D$ via freely taking kernels, cokernels and binary products, thus can be realized as a directed union of a sequence of small categories, hence $\EA_D$ is also small. Now Freyd--Mitchell embedding implies there is a full faithful exact functor $\iota\colon \EA_D \rightarrow \rmod$ for some unital ring $R$, thus we can element-wise diagram chase to show commutativity of $\iota(D)$ in $\rmod$, and via fully-faithfulness this can be reflect back to commutativity of $D$ in $\EA$.
+
+\section{Proof of the main theorem}
+
+We first introduce several definitions needed to present the proof:
+
+\begin{defn}
+Let $\EC$ be a category with a zero object. A \textbf{generator} in $\EC$ is an object $G \in \EC$ such that $\EC(G, X) \neq \{0\}$ for every $X \neq 0$ in $\EC$; dually, a \textbf{cogenerator} in $\EC$ is an object $H \in \EC$ such that $\EC(X, H)\neq \{0\}$ for every $X \neq 0$ in $\EC$.
+\end{defn}
+
+\begin{expl}
+In the category of abelian groups $\ab$, the rank $1$ free abelian group $\Zb$ is clearly a generator, while the divisible group $\Qb/\Zb$ is an injective cogenerator.
+\end{expl}
+
+\begin{defn}
+\ 
+\begin{itemize}
+\item An \textbf{AB5 category} is a cocomplete abelian category in which filtered colimits  of exact sequences are exact.
+\item A \textbf{Grothendieck abelian category} is an AB5 category with a generator.
+\end{itemize}
+\end{defn}
+
+\begin{expl}
+For every unital ring $R$, $\rmod$ is a Grothendieck abelian category with generator $R$.
+\end{expl}
+
+Next we claim the validity of two technical propositions, delaying their proof to the next section:
+
+\begin{prop}\label{preone}
+Every small abelian category admits a full faithful exact embedding into a Grothendieck abelian category.
+\end{prop}
+
+\begin{prop}\label{pretwo}
+A Grothendieck abelian category is automatically complete, cocomplete, well-powered, well-copowered (meaning that every object has only a small set of subobjects and a small set of quotient objects), and equipped with a injective cogenerator.
+\end{prop}
+
+The following proposition is essentially the ``core'' in the proof of Freyd--Mitchell embedding:
+
+\begin{prop}\label{main}
+Let $\bea$ be a complete abelian category with injective cogenerator $\Ibar$, and $\EA$ one of its small abelian full subcategories. Then there exists a unital ring $R$ and a contravariant faithful exact additive  functor $$K\colon \bea \rightarrow \rmod$$ which is also full on $\EA$ (here $\rmod$ denotes the category of left $R$-modules).
+\end{prop}
+\pf
+Since $\Ibar$ is a cogenerator, for each object $A \in \EA$, the morphism $$A \rightarrow \prod_{\bea(A, \Ibar)} \Ibar$$ defined component-wise for all $f \in \bea(A, \Ibar)$ by
+$$A \rightarrow \prod_{\bea(A, \Ibar)} \Ibar \xrightarrow{\pi_f} \Ibar \quad = \quad A \xrightarrow{f} \Ibar$$
+is a monomorphism. Therefore, let $$I = \prod_{\bigcup_{A \in \EA} \bea(A, \Ibar)} \Ibar$$ we can easily see $I$ is also an injective cogenerator of  \ $\bea$, such that for all $A \in \EA$ there is a monomorphism in $\bea$ from $A$ to $I$.  \\
+
+The set $\bea(I,I)$ has a canonical structure of unital ring, with the obvious addition and with multiplication induced by morphism composition: $g \cdot f = g \circ f$. Write $R = \bea(I,I)$ for this ring, it is not hard to see that for each $A \in \bea$, $\bea(A,I)$ has a canonical structure of left $R$-module induced by post-composition of morphisms, and each morphism $f\colon A \rightarrow B$ in $\bea$ induces a $R$-equivariant map $f^\ast\colon \bea(B, I) \rightarrow \bea(A,I)$. Therefore the arrangement $A \mapsto \bea(A,I)$ extends naturally to a contravariant additive functor $K\colon \bea \rightarrow \rmod$, which is faithful exact since $I$ is an injective cogenerator.\\
+
+Now it suffices to show $K$ is full on $\EA$. For two objects $A, B \in \EA$ and $$\fbar\colon K(B) = \bea(B,I) \rightarrow K(A) = \bea(A, I)$$ we need to find $f\colon A \rightarrow B$ such that $\fbar = K(f)$. By argument in the first paragraph, there exists two exact sequences
+$$\begin{tikzcd}
+    0 \ar[r] & A \ar[r] & I
+\end{tikzcd}$$
+and $$\begin{tikzcd}
+    0 \ar[r] & B \ar[r] & I \ar[r] & T \ar[r] & 0
+\end{tikzcd}$$
+Now apply $K$ to these sequences, we get the commutative  diagram $$\begin{tikzcd}
+    0& KB \ar[d, "\fbar"'] \ar[l] & R \ar[d, dotted, "\ybar"]\ar[l] & KT\ar[l] & 0 \ar[l]\\
+0 & KA \ar[l] & R \ar[l]
+\end{tikzcd}$$
+here existence of $\ybar$ is guaranteed by the projectivity of $R$ in $\rmod$. Since all $R$-equivariant maps from $R$ to $R$ can be realized as right multiplication of certain elements, we can see there exists $y \in R = \bea(I,I)$ such that $K(y) = \ybar$. Now in $\bea$ we have the diagram
+$$\begin{tikzcd}
+    0 \ar[r] & B \ar[r] & I  \ar[r] & T \ar[r] & 0 \\
+0 \ar[r] & A \ar[r] & I \ar[u, "y"']
+\end{tikzcd}$$
+Here we have $\begin{tikzcd}
+    A \ar[r] & I \ar[r, "y"] & I \ar[r] & T
+\end{tikzcd} = 0$ (since its image under $K$ is $0$, and $K$ is faithful), hence there exists a morphism $f\colon A \rightarrow B$ such that 
+$$\begin{tikzcd}
+    B \ar[r] & I  \\
+A \ar[u, "f"] \ar[r] & I \ar[u, "y"']
+\end{tikzcd}$$
+commutes. Now since $KB \rightarrow KI$ is a monomorphism, an application of $K$ to the above commutative square yields $K(f) = \fbar$, hence completes the proof.
+\epf
+
+Combining these altogether, we can thus deduce the Freyd--Mitchell embedding theorem:
+
+\pf[Proof of Theorem~\ref{FE}]
+Since $\EA$ is abelian, its opposite category $\EA^\op$, is also abelian, hence by Proposition~\ref{preone} it can be realized as a small abelian full subcategory of some Grothendieck abelian category $\widehat{\EA^\op}$ via a covariant fully faithful exact additive functor $\iota_{\EA^\op}$. Now by Proposition~\ref{pretwo} and Proposition~\ref{main}, there exists a unital ring $R$ and a contravariant faithful exact additive functor $K$ from $\widehat{\EA^\op}$ to $\rmod$, which is also full on the image category of \ $\iota_{\EA^\op}$. Now the composition $$\widehat{K} = K \circ \iota_{\EA^\op}$$ is a contravariant fully faithful exact additive functor from $\EA^\op$ to $\rmod$, which is equivalently a covariant fully faithful exact additive functor from $\EA$ to $\rmod$. 
+\epf
+
+
+\section{Proof of technical propositions}
+
+This section is devoted to the proof of two technical proposition claimed in the previous section, namely Proposition~\ref{preone} and Proposition~\ref{pretwo} (actually, this part is more fun and insightful than it seems to be). To finish the proof we need several auxiliary definitions:
+
+\begin{defn}
+For any ordinal $\alpha$, its \textbf{cofinality} $\mathrm{cf}(\alpha)$ is the smallest cardinal such that there exists a subset $S \subset \alpha$ with this cardinal and $\sup S = \alpha$.
+\end{defn}
+
+\begin{defn}
+Fix a cocomplete category $\EC$, a class of morphisms $\EJ \subset \EuScript{A}\mathrm{rr}(\EC)$ and an ordinal $\alpha$. Then an object $X \in \EC$ is \textbf{$\alpha$-small with respect to $\EJ$} iff for any $\alpha$-transfinite $\EJ$-morphism $X$ in $\EC$ (this is just a nickname for the functor $X\colon \alpha  \rightarrow \EC$ for which every morphism in its image lies in $\EJ$), the natural map
+$$\Theta\colon \colim_{\gamma < \alpha} \EC(C, X_\gamma) \rightarrow \EC(C, \colim_{\gamma < \alpha} X_\gamma)$$
+is a surjection.
+\end{defn}
+
+\begin{rem}
+Equivalently, this requires for every morphism $f$ from $C$ to $\colim_{\gamma < \alpha} X_\gamma$ there exists an ordinal $\gamma_0 < \alpha$ such that $f$ factors through $X_{\gamma_0} \rightarrow \colim_{\gamma < \alpha} X_\gamma$. Note that if morphisms in $\EJ$ are all monomorphisms, then any two such factorizations $C \xrightarrow{f'} X_{\gamma'_0}$, $C \xrightarrow{f''} X_{\gamma''_0}$ (here we assume $\gamma'_0 < \gamma''_0$) must be essentially the same, in the sense that the diagram
+$$\begin{tikzcd}
+    C \ar[r, "f'"] \ar[rd, "f''"']& X_{\gamma'_0}\ar[d]\\
+& X_{\gamma''_0}
+\end{tikzcd}$$
+commutes, i.e.\ the natural map $\Theta$ above is bijective.
+\end{rem}
+
+
+\begin{defn}
+The \textbf{ind-category} (or equivalently \textbf{category of ind-objects / free filtered cocompletion}) of a small category $\EC$ is a pair $(\ind(\EC), \iota_\EC)$, where 
+\begin{enumerate}
+\item $\ind(\EC)$ is a category closed under filtered colimits.
+
+\item $\iota_\EC\colon \EC \rightarrow  \ind(\EC)$ is a fully faithful functor (i.e.\ realizes $\EC$ as a full-subcategory of $\ind(\EC)$).
+
+\item Up to equivalence, ind-category of $\EC$ is the unique pair such that 
+$$\iota_\EC^\ast\colon \fun^{\mathrm{finitary}}(\ind(\EC), \ED) \rightarrow \fun(\EC, \ED)$$
+is a equivalence for every small category $\ED$ (here $ \fun^{\mathrm{finitary}}(\EP, \EQ)$ is the category of all functors from $\EP$ to $\EQ$ that preserves filtered colimits).
+\end{enumerate}
+\end{defn}
+
+\begin{rem}\label{rem1}
+A filtered category, for which each object is associated with again a filtered category, can be glued compatibly again into a filtered category. Hence, the ind-category $\ind(\EC)$ can be realized as the full-subcategory of $$\pshv(\EC) = \fun(\EC^\op, \set)$$ spanned by all objects that can be written as (i.e.\ isomorphic to) $\colim_{\EJ} \EC(-,c)$ for some small filtered category $\EJ$.
+From here we can see $\EC$-objects are compact with respect to all morphisms in $\ind(\EC)$ via a direct application of Yoneda lemma.
+\end{rem}
+
+In this section we first prove the following refinement of Proposition~\ref{preone}:
+
+\begin{prop}\label{preoneprime}
+For a small abelian category $\EA$, there exists a canonical structure of Grothendieck abelian category on $\ind(\EA)$ such that the embedding functor $\iota_\EC$ is fully faithful exact additive (i.e.\ exhibits $\EA$ as its abelian full subcategory). 
+\end{prop}
+
+%A sketchy proof of the two propositions above can be found in Akhil Mathew's blogs. For more details, see \cite{Mit65} which is perfectly readable.
+
+%{\color{red}Warning: a reader unwilling to dive into lengthy discussion on abstract nonsense shall jump directly to the next subsection.} The remaining part of this subsection consists of a thorough proof for EVERY detail in the two propositions mentioned above. Behold!
+
+
+\pf[Proof of Proposition~\ref{preoneprime}]
+First let's discuss some basic properties of $\ind(\EC)$ for an ordinary small category $\EC$. We have $\EC \subset \ind(\EC) \subset \pshv(\EC)$, where both inclusions are fully faithful. Moreover, fine (co)limit properties of $\EC$ inherits to $\ind(\EC)$ and are preserved by the embedding:
+\begin{fact}\label{fact1} For a small category $\EC$ and its ind-category $(\ind(\EC), \iota_\EC)$:
+\begin{enumerate}[format=\textup]
+\item The colimit of a filtered diagram in $\ind(\EC)$ are exactly the colimit of the same diagram in $\pshv(\EC)$.
+\item For a small filtered category $\EQ$, we say a diagram $F\colon \EP \rightarrow \ind(\EC)$ is \textbf{$\EQ$-uniform} iff there exists a extended functor $\widehat{F}\colon \EP \times \EQ \rightarrow \EC$ such that $F$ is the $\EQ$-colimit of the diagram of functors $\{\widehat{F}_{-,q}\}_{q \in \EQ}$, more precisely:
+\begin{itemize}
+\item For each object $X = F_p$ in diagram $F$ we have $X \simeq \colim_\EQ \widehat{F}_{p,q}$.
+\item For each morphism $f\colon X \rightarrow Y$ in diagram $F$ (here $X \simeq \colim_\EQ \widehat{F}_{p_0, q}$,  $Y \simeq \colim_\EQ \widehat{F}_{p_1, q}$) we have $f \simeq \colim_\EQ f_q$ where $f_q\colon \widehat{F}_{p_0,q} \rightarrow \widehat{F}_{p_1,q}$ is a morphism in $\EC$ for each $q \in \EQ$.
+\end{itemize}  
+Our claim is that every finite \textbf{primitive} diagram (i.e.\ diagrams not containing any two consecutive indecomposable generating morphisms, such as diagram of finite products, coproducts, equalizers and coequalizers etc.) is $\EQ$-uniform for some small filtered category $\EQ$.
+\item If $\EC$ admits all finite limits then so is $\ind(\EC)$, and the embedding $\iota_\EC\colon \EC \rightarrow \ind(\EC)$ preserves finite limits. More precisely, limits of a finite diagram in $\ind(\EC)$ are exactly limit of the same diagram in $\pshv(\EC)$, hence finite limits commutes with filtered colimits in $\ind(\EC)$.
+\item If $\EC$ admits all finite colimits then so is $\ind(\EC)$, and the embedding $\iota_\EC\colon \EC \rightarrow \ind(\EC)$ preserves finite colimits. In this case $\ind(\EC)$ is automatically cocomplete.
+\end{enumerate}
+\end{fact}
+\pf[Proof of Fact~\ref{fact1}]
+The first statement holds trivially because $\ind(\EC)$ is closed under filtered colimits as full-subcategory of $\pshv(\EC)$ (cf.\ Remark~\ref{rem1}).\\
+
+The second assertion is somehow interesting, and the following proof here is cited from \cite{KS06}: by the natural equivalence $\Theta\colon \ind(\EC^n) \rightarrow \ind(\EC)^n$ for finite $n$, and the fact that finite product of filtered categories is still a filtered category, it suffices to consider the case where the diagram $F$ is simply of the form $X_0 \xrightarrow{f} X_1$, here $X_0 = \colim_{\EQ_0} X_{0,q}$ and $X_1 = \colim_{\EQ_1} X_{1, q}$ for two small filtered category $\EQ_0$ and $\EQ_1$. Write $\EC \downarrow X_0$ and $\EC \downarrow X_1$ for the two obvious over categories,  $\widetilde{X_0}\colon \EQ_0 \rightarrow \EC\downarrow X_0$, $\widetilde{X_1}\colon \EQ_1 \rightarrow \EC\downarrow X_1$ for the two obvious extension functors, and $\widetilde{f}\colon \EC \downarrow X_0 \rightarrow \EC\downarrow X_1$ for the post-composition functor. Now a careful verification (utilizing compactness of $\EC$-objects in $\ind(\EC)$) shows that 
+$\EQ = \widetilde{f} \circ \widetilde{X_0} \downarrow \widetilde{X_1}$
+is the small filtered category that we desire, with corresponding functor $\widehat{F}\colon \{0,1\}\times \EQ \rightarrow \EC$ defined ``fiberwise'' by $X_0 \circ p_0$ and $X_1 \circ p_1$. Warning: result of this statement will be frequently used in subsequent discussions without specific mention.\\
+
+To prove the third statement, since we already know the embedding of $\EC$ into $\pshv(\EC)$ preserves all limits, it suffices to show $\ind(\EC)$ is closed under finite limits as full-subcategory of $\pshv(\EC)$. For a finite primitive diagram $F\colon \EP \rightarrow \ind(\EC)$, WLOG we assume $F$ is $\EQ$-uniform. By the fact that finite limits commutes with filtered colimits in $\pshv(\EC)$, we have (in $\pshv(\EC)$)
+$$\lim_\EP F_p = \lim_\EP \colim_\EQ F_{p,q} = \colim_\EQ \lim_\EP F_{p,q}$$
+since $\EC$ admits all finite limits, each of $\lim_\EP F_{p,q}$ lies in $\EC$, hence $\lim_\EP F_p$ lies in $\EC$, which implies the result we desire. The general existence and preservation of finite limits follows from this since finite products and equalizers are all finite primitive diagrams.  Now we see finite limits commutes with filtered colimits in $\ind(\EC)$ since this happens in $\pshv(\EC)$.\\
+
+As to the fourth statement, let $F\colon \EP \rightarrow \EC$ be a finite diagram and $C_F \simeq \colim_\EP F$ be its colimit in $\EC$. Easy to see $C_F$ is colimit of the same diagram in $\ind(\EC)$ iff $\ind(\EC)(C_F, X)$ is the colimit of $\ind(\EC)(F-,X)$ for every $X \in \ind(\EC)$, and this can be easily checked by compactness of $\EC$-object in $\ind(\EC)$ together with the fact that finite limits commutes with filtered colimits in $\set$. Now existence of general finite colimit in $\ind(\EC)$ can be verified by two steps: first, finite coproducts and coequalizers are primitive diagrams, hence these diagrams can be assumed $\EQ$-uniform for some filtered $\EQ$, hence these colimits in $\ind(\EC)$ can be extracted (as a colimit) from corresponding coproducts/coequalizers of the components in $\EC$; for the next step we can construct general finite colimits in $\ind(\EC)$ from these finite coproducts and coequalizers. Finally, as a category admitting all finite and filtered colimits, $\ind(\EC)$ is necessarily cocomplete.
+\epf
+
+Back to Proposition~\ref{preoneprime}, since $\EA$ an abelian category, $\ind(\EA)$ is automatically pre-additive: for any two objects $X = \colim_\EP X_p$ and $Y = \colim_\EQ Y_q$ we have
+$$\ind(\EA) (X, Y) = \lim_{\EP^\op} \colim_\EQ \EA(X_p, Y_q)$$
+which naturally is an abelian group (since the forgetful functor $U\colon \ab \rightarrow \set$ preserves all limits and all filtered colimits), and the composition map is also automatically bilinear. Moreover, the zero object $0_\EA$ of $\EA$ continues to be zero object of $\ind(\EA)$. The abelian category $\EA$ admits all finite limits and colimits, hence all assertions in Fact~\ref{fact1} holds for ($\ind(\EA), \iota_\EA$): $\ind(\EA)$ is cocomplete additive with exact filtered colimits, and the embedding functor $\iota_\EA$ is fully faithful exact. These can  furthermore imply it is abelian since for any morphism $f\colon X \rightarrow Y$ in $\ind(\EC)$, we can assume this diagram induced by $f$ (apparently finite primitive) to be $\EQ$-uniform, hence 
+$$\coker \ker (f) \simeq \ker \coker (f)$$ 
+follows from the fact that 
+$$\coker \ker (f_q) \simeq \ker \coker (f_q), \ \forall q \in \EQ$$
+and exactness of filtered colimits in $\ind(\EC)$. Also, from smallness of $\EA$ and compactness of its objects in $\ind(\EA)$ we can deduce that $\ind(\EA)$ is locally presentable, hence it is a Grothendieck abelian category (with generator being $U = \bigoplus_{A \in \EA} A$).
+\epf
+
+Next we turn to Proposition~\ref{pretwo}: 
+
+\pf[Proof of Proposition~\ref{pretwo}]
+Suppose $\EA$ is a Grothendieck abelian category with generator $U$. For any object $A \in \EA$, write $\sub(A)$ for the category of (isomorphism classes of) subobject of $\EA$, and write $\quot(A)$ for the category of its quotient objects.
+Note that $\sub(A)$ and $\quot(A)$ both has the morphism structure of partial order classes, and there is an order-reversing bijection between the two categories via taking kernel/cokernel. Since $U$ is a generator, the covariant functor $$\EA(U, -)\colon \sub(A) \rightarrow \mathcal{P}(\EA(U,A))$$
+(here $\mathcal{P}(X)$ is the power set of $X$ with poser structure induced by inclusion) is an order-preserving injection, which implies $\sub(A)$ is small, i.e.\ $\EA$ is well-powered. Thus the order-reversing bijection mentioned earlier shows that $\quot(A)$ is also small, i.e.\ $\EA$ is also well-copowered. Now for the cocomplete well-copowered category $\EA$ with a generator, the Special Adjoint Functor Theorem (Theorem 4.6.10 in \cite{Rie17}) asserts that for any small category $\EJ$, the (cocontinuous) diagonal functor $$\Delta\colon \EA \rightarrow \fun(\EJ, \EA)$$ has a right adjoint (which is automatically $\lim_\EJ$), i.e.\ $\EA$ is complete.\\
+
+Now suppose $\EA$ has enough injective objects, i.e.\ every object can be realized as a subobject of an injective object (this always holds in Grothendieck abelian category; I'll postpone the proof for a while). We claim that $\EA$ has a injective cogenerator. Let $\widehat{U} = \bigoplus_{W \in \quot(U)} W$ and $\widehat{U} \rightarrowtail I$ be a monomorphic embedding into injective $I$. Our claim is that $I$ is a injective generator. \\
+
+We know that a morphism in abelian category is zero iff its image is the zero object. Hence an exact additive functor between abelian categories is faithful iff it preserves nonzero objects. In particular, an injective object is a cogenerator iff from any nonzero object there is a nonzero morphism to this injective object. Now pick an arbitrary nonzero object $A \in \EA$, there is a nonzero morphism $t\colon U \rightarrow A$ since $U$ is a generator. Thus we have the following diagram (here write $\rightarrowtail$ and $\twoheadrightarrow$ for monomorphism and epimorphism respectively)
+$$\begin{tikzcd}
+    U\ar[rd, "t"'] \ar[r, two heads, "\pi_t"] & \im(t) \  \ar[d, tail, "\iota_t"] \ar[r, tail]  & \widehat{U} \  \ar[r, tail] & I \\
+& A \ar[rru, dotted, "s"']&&&
+\end{tikzcd}$$
+here existence of the dotted morphism $s\colon A \rightarrow I$ is induced by injectivity of $I$, and it is nonzero since $s \circ \iota_t$ is a monomorphism starting from a nonzero object $\im(t)$. Hence $I$ is indeed an injective cogenerator as claimed.\\
+
+Now our final task is to prove
+\begin{thm}\label{eninj}
+A Grothendieck abelian category $\EA$ has enough injective objects. Actually, there exists a functor $I\colon \EA \rightarrow \EA$ and natural transformation $\iota\colon \id_\EA \Rightarrow I$, such that for each object $A \in \EA$:
+\begin{itemize}
+\item $I(A)$ is an injective object.
+\item $\iota_A\colon A \rightarrow I(A)$ is a monomorphism.
+\end{itemize}
+ \end{thm}
+To verify this assertion, we should first understand the poset structure of $\sub(Y)$ for an object $Y$ in Grothendieck abelian category $\EA$. In fact, $\sub(Y)$ is not merely a poset, but also a complete lattice: that is, it admits every possible \textbf{meet} (infimum) and \textbf{join} (supremum).  For a family of subobjects $\{C_p\}_{p \in \EP}$ of $Y$, their meet (i.e.\ greatest lower bound, conventionally called \textbf{intersection}), denoted by $\bigcap_{p \in \EP} C_p$,  can be realized as limit of the diagram of all monomorphisms $C_p \rightarrowtail Y$. Their join (i.e.\ least upper bound, conventionally called \textbf{sum}), denoted by $\sum_{p \in \EP} C_p$, is usually realized as image of the canonical morphism $\bigoplus_{p \in \EP} C_p \rightarrow Y$. If furthermore the index set $\EP$ is directed (i.e.\ includes binary join for each pair $(C_{p_0}, C_{p_1})$), then the sum $\sum_{p \in \EP} C_p$ can also be realized as $\colim_{p \in \EP} C_p$ (the induced morphism from this colimit to $Y$ is a monomorphism since filtered colimits are exact). In this case, exactness of filtered colimit also tells us for each morphism $f\colon X \rightarrow Y$, we have (here $f^{-1}\colon \sub(Y) \rightarrow \sub(X)$ is defined via pullback of  subobjects)
+$$f^{-1} \left( \sum_{p \in \EP} C_p \right) \simeq \sum_{p \in \EP} f^{-1} \left( C_p\right).$$
+We will also need the following facts:
+\begin{fact}\label{fact2} For a Grothendieck abelian category $\EA$:
+\begin{enumerate}[format=\textup]
+\item If $B \subset A$, $V \subset U$ are objects in $\EA$ (here $\subset$ abbreviates subobject relation), and the following diagram is a pullback square (i.e.\ $V \simeq f^{-1}(B)$)
+$$\begin{tikzcd}
+    V \ \ar[r, tail] \ar[d] \pullback& U \ar[d, "f"]\\
+B \ \ar[r, tail, "\iota"'] & A
+\end{tikzcd}$$
+then the following sequence 
+$$\begin{tikzcd}
+    0 \ar[r] & V \ar[r] & U \oplus B \ar[r, "f + \iota"] & A
+\end{tikzcd}$$
+is exact, here $V \rightarrowtail U \oplus B$ is the sum of $V \rightarrowtail U$ and $V \rightarrow B$ in the above square diagram. Hence if we form the pushout diagram
+$$\begin{tikzcd}
+    V \ \ar[r, tail] \ar[d] & U \ar[d]\\
+B \ \ar[r, tail] & T \pushout
+\end{tikzcd}$$
+then the induced morphism $T \rightarrow A$ is a monomorphism.
+\item If $\{i_p\colon V_p \rightarrowtail U_p\}_{p \in \EP}$ is a set of monomorphisms, then the coproduct $\bigoplus_{p \in \EP} i_p\colon \bigoplus_{p \in \EP} V_p \rightarrow \bigoplus_{p \in \EP} U_p$ is also a monomorphism.
+\item If $A$ is an object of $\EA$ and $\sub(A)$ has cardinality $\kappa_A$. Then for each limit ordinal $\alpha$ whose cofinality $\mathrm{cf}(\alpha) > \kappa_A$, $A$ is $\alpha$-small with respect to $\EA_{\mathrm{mon}}$ (the class of all monomorphisms in $\EA$).
+\end{enumerate}
+\end{fact}
+\pf[Proof of Fact~\ref{fact2}]
+The first statement seems a little scary, but actually it is merely a reformulation of definition of pullback in abelian category. The sentence after ``Hence'' is true simply because $T$ is the image of $V \rightarrowtail U \oplus B$.\\
+
+To prove the second statement it suffices to show kernel of this morphism is $0$; this is trivial when $\EP$ is finite, since finite coproducts are automatically products which commutes with taking kernel; for infinite $\EP$, note that an infinite coproduct is a filtered colimit of finite coproducts,  and the result follows from exactness of filtered colimits.\\
+
+For the third statement, pick an arbitrary $\alpha$-transfinite $\EA_{\mathrm{mon}}$-morphism $X$ and a morphism $f\colon A \rightarrow \colim_{\gamma < \alpha} X_\gamma$. Then for each ordinal $\gamma < \alpha$, we define $A_\gamma = f^{-1} (X_\gamma)$. By the fact that inverse images (pullbacks) commute with sums (filtered colimits), we see $A = \sum_{\gamma < \alpha} A_\gamma$ as subobject of $A$. Now to prove this statement it suffices to show there exists some $\gamma_0 < \alpha$ such that $A_{\gamma_0} \simeq A$. Since $\left| \sub(A) \right| = \kappa_A$, we can pick a subset $S$ of $\alpha$ with cardinality $\leq \kappa_A$ for which $A = \sum_{\gamma \in S} A_\gamma$. Now let $\gamma_0 = \sup S + 1$. Since $\mathrm{cf}(\alpha) > \kappa_A$, it follows that $\gamma_0 < \alpha$, and by its definition we have $A = \sum_{\gamma < \gamma_0} A_\gamma = A_{\gamma_0}$, which implies this $\gamma_0$ is what we desire.
+\epf
+
+Using these facts we develop a criterion for injective objects:
+\begin{lemma}[Baer criterion] \label{baer}
+Let $\EA$ be a Grothendieck abelian category with generator $U$. Then an object $I$ in $\EA$ is injective iff for every subobject $V$ of $U$, any morphism $i\colon V \rightarrow I$ can be extended to a morphism $\widetilde{i}\colon U \rightarrow I$.
+\end{lemma}
+\pf[Proof of Lemma~\ref{baer}]
+The ``only if'' direction is trivial. For the ``if'' direction, let's first take $B$ an objects in $\EA$ and $B'$ a proper subobject of $B$, such that there is a morphism $g\colon B' \rightarrow I$. We claim that $g$ can be extend to some $\widetilde{g}\colon B'' \rightarrow I$, where $B''$ is a subobject of $B$ and a proper superobject of $B'$.\\
+
+Since the inclusion $B' \rightarrow B$ is proper, by property of generator there exists a morphism $t\colon U \rightarrow B$ whose image is not contained in $B'$. Now consider $V = t^{-1}(B')$ defined by the following pullback square
+$$\begin{tikzcd}
+    V \ \ar[r, tail] \ar[d] \pullback& U \ar[d, "t"]\\
+B' \ \ar[r, tail] & B
+\end{tikzcd}$$
+and form the pushout square 
+$$\begin{tikzcd}
+    V \ \ar[r, tail] \ar[d]  & U \ar[d]\\
+B' \ \ar[r, tail] & B'' \pushout
+\end{tikzcd}$$
+Now Fact~\ref{fact2} tells us the induced map $B'' \rightarrow B$ is monomorphism, i.e.\ $B''$ is a subobject of $P$, which is necessarily a proper superobject of $B'$ since its image contains $\im(t)$. Moreover, by assumption the morphism $V \rightarrow B' \xrightarrow{g} I$ factors through $V \rightarrowtail U$, hence we have the following diagram
+$$
+\begin{tikzcd}
+    V \ \ar[d] \ar[r, tail] & U \ar[d] \ar[ddr, dashed, bend left=20] &\\
+        B' \ \ar[r, tail] \ar[drr, bend right=20, "g"'] & B'' \pushout \ar[dr, dotted, "\widetilde{g}" description] & \\
+        & & I\\
+\end{tikzcd}
+$$
+Now the dotted morphism $\widetilde{g}\colon B'' \rightarrow I$ in the lower-right corner provides our desired extension of $g$.\\
+
+Now we show that $I$ is injective. For a morphism $f\colon A \rightarrow I$ and a monomorphism $A \rightarrowtail B$, let $\EJ$ be the poset of pairs $(B', f')$ (where $B'$ is a subobject of $B$ containing $A$ and $f'\colon B' \rightarrow I$ is a extension of $f$), ordered by the extension relation, i.e.\ $(B_0, f_0) \preccurlyeq (B_1,f_1)$ iff $B_0$ is a subobject of $B_1$ and $f_1$ is the extension of $f_0$ onto $B_1$. Clearly, every chain in $\EJ$ admits a upper bound (their sum), hence by Zorn's lemma there is a maximal element $(B_m, f_m)$. By discussion of the previous paragraph, the only possibility for $B_m$ is $B_m = B$, hence $f_m = \widetilde{f}$ is our desired extension. Thus we obtain the injectivity of $I$.
+\epf
+
+Now we turn to proof of Theorem~\ref{eninj} which is fortunately the last part of the technical proposition sequence. Note the similarity between the following proof and Quillen's small object argument in \cite{Qui67}.
+
+\pf [Proof of Theorem~\ref{eninj}] Write $U$ for the generator in $\EA$.
+First we define a functor $M\colon \EA \rightarrow \EA$ and a natural transformation $\iota_0\colon \id_\EA \Rightarrow M$, such that for each object $A \in \EA$, $\iota_{0, 1, A}\colon A \rightarrow M(A)$ is a monomorphism and for each morphism $g\colon V \rightarrow A$ starting from some subobject of $U$, there exists a commutative square
+$$\begin{tikzcd}
+    V \ \ar[r, tail] \ar[d, "g"']  & U \ar[d, "g_{\mathrm{ext}}"]\\
+A \ \ar[r, tail, "\iota_{0, 1, A}"'] &M(A)
+\end{tikzcd}$$
+the object $M(A)$ may be constructed as follows: let $\EP_A$ be the set of all possible pairs $(V_p, g_p)$ where $V_p$ is a subobject of $U$ and $g_p\colon V_p \rightarrow A$. With this we form the pushout square
+$$\begin{tikzcd}
+    \bigoplus_{\EP_A} V_p \ \ar[r, tail] \ar[d, "\bigoplus_{\EP_A} g_p"']  & U^{\oplus \EP_A} \ar[d]\\
+A \ \ar[r, tail, "\iota_{0, 1, A}"'] & M(A) \pushout
+\end{tikzcd}$$
+and henceforth constructs $M(A)$. Here the lower morphism $\iota_{0,1, A}\colon A \rightarrow M(A)$ is a monomorphism since the upper map is one (cf.\ Fact~\ref{fact2}) and pushout in abelian category preserves monomorphisms; the other required property holds obviously as well. Easy to see the arrangement $A \mapsto M(A)$ can be extended naturally to a functor such that the morphisms $\iota_{0,1, A}$ assemble together into a natural transformation $\iota_{0,1}$.\\
+
+Now we define via transfinite induction a sequence of functors $M_\alpha$ for all ordinals:
+\begin{enumerate}
+\item For $\alpha = 0$, let $M_0 = \id_\EA$.
+\item For $\alpha = \beta + 1$ a successor ordinal, let $M_\alpha = M \circ M_\beta$.
+\item For $\alpha$ limit ordinal, let $M_\alpha = \colim_{\gamma < \alpha} M_\gamma$ be the colimit over the directed set $\alpha$.
+\end{enumerate}
+Easy to see for all pair $\gamma < \delta$, there is a canonical natural transformation $\iota_{\gamma, \delta}\colon M_\gamma \Rightarrow M_\delta$ which is component-wise monomorphism. Now let $\Omega$ be the smallest infinite ordinal whose cofinality $\mathrm{cf}(\Omega)$ is strictly greater than $\left|  \sub(U) \right|$, the cardinal of $\sub(U)$). We define $I = M_\Omega$, $\iota = \iota_{0, \Omega}\colon \id_\EA \Rightarrow I$. We claim this pair is the ``injective hull'' we desire.\\
+
+ For an arbitrary object $A \in \EA$, the natural transformation $\iota$ is by definition a monomorphism; for the injectivity of $I(A)$, by Lemma~\ref{baer} it suffices to consider subobject $V \subset U$. Suppose there is a morphism $f\colon V \rightarrow I(A) = M_\Omega (A)$. Since $V \subset U$, we have $\left|\sub(V) \right| < \left|\sub(U) \right|$, then it follows from Fact~\ref{fact2} that there exists $\gamma_0 < \Omega$ such that $f =  \iota_{\gamma_0, \Omega, A} \circ f'$, where $f'$ actually has codomain $M_{\gamma_0}(A)$. Thus the following diagram
+$$
+ \begin{tikzcd}
+    V \ \ar[d, "f'"']  \ar[rr, tail] & & U \ar[d, dashed, "f'_{\mathrm{ext}}"'] \ar[ddr, dotted, bend left=10, "\widetilde{f}"] &\\
+        M_{\gamma_0}(A) \ \ar[rr, tail, "\iota_{\gamma_0, \gamma_0 + 1, A}"] \ar[drrr, tail, bend right=10, "\iota_{\gamma_0, \Omega, A}"'] && M_{\gamma_0 +1}(A)  \ar[dr, tail, "\iota_{\gamma_0 + 1, \Omega, A}" description] & \\
+        && & M_\Omega (A) = I(A)
+\end{tikzcd}
+$$
+tells us the dotted morphism $\widetilde{f}$ is our desired extension of $f$ onto $U$. Now injectivity of $I(A)$ follows from Lemma~\ref{baer}.
+\epf
+Now we finally have the proof of Proposition~\ref{pretwo} completed.
+\epf
+
+% \small
+% \bibliographystyle{alpha}
+
+% \bibliography{cite0}
+
+\printbibliography
+
+\end{document}

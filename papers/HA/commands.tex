@@ -1,0 +1,51 @@
+\newenvironment{itms}{\begin{itemize}\itemsep=0pt\parsep=0pt}{\end{itemize}}
+\newenvironment{enum}{\begin{enumerate}[label=(\arabic*)]\itemsep=0pt\parsep=0pt}{\end{enumerate}}
+
+\def\varqed{\nolinebreak\hfill$◃$}
+\def\varqedhere{\eqno ◃}
+
+% math commands
+\renewcommand{\:}{\colon}
+\renewcommand{\/}{{∕}}
+\newcommand{\bfDelta}{{
+  \mathchoice{
+    \tikz{
+      \draw[line width=.05em]
+        (0,0)--(.6em,0)--(.37em,1.32ex)--(.23em,1.32ex)--cycle
+        (.23em,1.32ex)--(.46em,0);
+    }
+  }{
+    \tikz{
+      \draw[line width=.05em]
+        (0,0)--(.6em,0)--(.37em,1.32ex)--(.23em,1.32ex)--cycle
+        (.23em,1.32ex)--(.46em,0);
+    }
+  }{
+    \tikz[scale=.7]{
+      \draw[line width=.035em]
+        (0,0)--(.6em,0)--(.37em,1.32ex)--(.23em,1.32ex)--cycle
+        (.23em,1.32ex)--(.46em,0);
+    }
+  }{
+    \tikz[scale=.55]{
+      \draw[line width=.025em]
+        (0,0)--(.6em,0)--(.37em,1.32ex)--(.23em,1.32ex)--cycle
+        (.23em,1.32ex)--(.46em,0);
+    }
+  }
+}}
+\newcommand{\bigmid}{\mathrel{\big|}}
+\newcommand{\biggmid}{\mathrel{\bigg|}}
+\newcommand{\cat}[1]{\ensuremath\textup{\textsf{#1}}} % using textsf to retain kerning & ligature
+\newcommand{\comma}{,}
+\newcommand{\Ho}{\operatorname{Ho}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\KD}{\operatorname{\reflectbox{$\mathrm{DK}$}}}
+\newcommand{\Ndg}{\mathfrak{N}_{\mathrm{dg}}}
+\newcommand{\op}{^{\mathrm{op}}}
+\newcommand{\sHom}{\mathscr{H}\mkern-3mu\mathit{om}}
+\newcommand{\simto}{\mathrel{\rlap{\raisebox{.8ex}{$\mkern2mu\sim$}}{\to}}}
+\newcommand{\square}{\mathbin{◻}}
+
+% text commands
+\newcommand{\term}[1]{\textbf{\textup{#1}}}

@@ -1,0 +1,323 @@
+This section will provide preliminary
+results that will be needed in the proofs of our main theorems.
+The reader is suggested to skip to \S\ref{sec-proofs}
+to read the proofs there,
+and come back for the results when they are used.
+
+\begin{lemma}\label{lem:compact-diffeo}
+Let $M,N$ be boundaryless manifolds, and $K\subset M$ a compact subset.
+If $f\:M\to N$, and $f|_K$ is an injective local diffeomorphism,
+then there exists a neighbourhood $U$ of $K$ in $M$,
+such that $f|_U$ is a diffeomorphism onto its image.
+\end{lemma}
+
+\begin{proof}
+This is a standard exercise in mathematical analysis.
+\end{proof}
+
+\begin{lemma}\label{lem:diffeo}
+Let $M$ be a Riemannian $n$-manifold without boundary,
+and let $S$ be a compact $k$-submanifold without boundary.
+Let $N(S)$ denote the normal bundle of $S$ in $M$,
+and let $N_\epsilon(S)$ denote the $\epsilon$-neighbourhood of $S$ in $N(S)$.
+There exists $\epsilon>0$ such that the map
+\[ N_\epsilon(S)\ni(p,v)\mapsto \exp_p(v) \]
+is a diffeomorphism of $N_\epsilon(S)$ onto its image.
+\end{lemma}
+
+\begin{proof}
+By (\ref{lem:compact-diffeo}) and the inverse function theorem. 
+\end{proof}
+
+\begin{lemma}\label{lem:whitney-extension}
+Let $M,N$ be manifolds with $\partial N=\emptyset$,
+and let $A\subset M$ be a closed subset.
+A smooth map $f\:A\to N$ can be extended to $M$,
+if and only if it can be continuously extended to $M$.
+
+This is also true if $\partial N\neq\emptyset$ and $f(A)\subset\partial N$.
+In this case, if the continuous extension sends $M\setminus A$ into $N\setminus\partial N$,
+then we may require the smooth extension to have the same property.
+\end{lemma}
+
+\begin{proof}
+\cite[Corollary~6.27]{lee}. The last statement follows from
+the construction in the proof of \cite[Theorem~6.21]{lee}.
+\end{proof}
+
+The next extension lemma will reduce our pain
+dealing with boundaries.
+
+\begin{lemma}\label{lem:extension}
+Let $M\subset\widetilde M$ be $n$-manifolds,
+$\partial\widetilde M=\emptyset$.
+For every closed submanifold $S\subset M$,
+there exists a submanifold $\widetilde S\subset\widetilde M$,
+such that $\partial\widetilde S=\emptyset$,
+$\dim S=\dim\widetilde S$, and $S\subset\widetilde S$.
+If moreover $\partial S\subset\partial M$,
+then we may require $S=\widetilde S\cap M$.
+\end{lemma}
+
+\begin{proof}
+Let $S^+:=S\cup\partial S\times[0,+\infty)$, with their boundaries identified in the obvious way.
+Choose a complete metric on $S^+$.
+By (\ref{lem:whitney-extension}), the inclusion $S\hookrightarrow\widetilde M$
+can be extended to a smooth map $f\:S^+\to\widetilde M$.
+
+We embed $\widetilde M$ in some $\R^N$ as a closed submanifold. 
+Let $B_r$ denote the open ball in $\R^N$ centred at $0$ and of radius $r$, or $\emptyset$ if $r\leq0$.
+For each $i\in\N$, denote $K_i:=(\oline2B_i\setminus B_{i-1})\cap S$,
+and $U_i:=(B_{i+1}\setminus \oline2B_{i-2})\cap\widetilde M$.
+By (\ref{lem:compact-diffeo}), for each $i$ there exists $\epsilon_i>0$
+so that $f$ is a diffeomorphism of the
+$\epsilon_i$-neighbourhood of $K_{i-2}\cup\cdots\cup K_{i+2}$ in $S^+$ onto its image
+(where $K_{-1}:=K_0:=\emptyset$).
+We may assume that the images of the $\epsilon_i$-neighbourhoods of $K_{i-2},\dotsc,K_{i+2}$
+are contained in $U_{i-2},\dotsc,U_{i+2}$ respectively.
+Let $\subsup\epsilon i\prime:=\min(\epsilon_{i-2},\dotsc,\epsilon_{i+2})$
+(where $\epsilon_{-1}:=\epsilon_0:=\epsilon_1$),
+and let $\widetilde S:=\bigcup_i(\text{$\subsup\epsilon i\prime$-neighbourhood of $K_i$})\subset S^+$.
+Then $f|_{\widetilde S}$ is an injective local diffeomorphism,
+and thus a diffeomorphism onto its image.
+
+For the last statement, it suffices to show that $f$ can be chosen so that $f^{-1}(M)=S$.
+By the last statement of (\ref{lem:whitney-extension}),
+we only need a continuous map $g\:\partial S\times[0,+\infty)\to\widetilde M$
+such that $g|_{\partial S}$ is the inclusion and $g^{-1}(\partial S)=\partial S\times0$.
+This can be constructed as follows.
+Let $\epsilon\:\partial S\to\R_{>0}$ be a continuous function
+such that for all $p\in\partial S$,
+the exponential map $\exp_p(v)$ is defined for $|v|\leq\epsilon(p)$.
+Now $g$ may be defined to be the map $(p,r)\mapsto\exp_p(\min(r,\epsilon(p))\,\eta_p)$,
+where $\eta_p$ is the unit normal vector of $\partial M$ in $\T_p\widetilde M$,
+pointing outwards from $M$.
+\end{proof}
+
+\begin{remark}
+The same proof applies if $M$ and $S$ have corners,
+with a modified construction of $S^+$.
+The last statement remains true
+if the corners of $M$ are convex. \varqed
+\end{remark}
+
+\begin{definition}
+Let $M$ be a manifold, and let $S,T$ be submanifolds.
+We say that $S$ and $T$ \term{intersect transversely},
+or that $S$ is \term{transverse to} $T$,
+if for all $p\in S\cap T$, we have $\T_pM=\T_pS+\T_pT$.
+Note that $S,T$ does not necessarily intersect, and they are not necessarily boundaryless.
+\end{definition}
+
+\begin{proposition} \label{thm-transverse}
+If $S$ is transverse to $T$,
+then $S\cap T$ is a submanifold of $M$.
+\qed
+\end{proposition}
+
+\begin{definition}
+Let $S_1,\dotsc,S_k\subset M$ be submanifolds of $M$.
+The set $\{S_1,\dotsc,S_k\}$ is said to be \term{transverse},
+if when $k>0$, $\{S_1,\dotsc,S_{k-1}\}$ is transverse \emph{(defined inductively on $k$)},
+and $S_k$ is transverse to everything in
+$\bigl\{\,\bigcap_{i\in I}S_i\mid I\subset\{1,\dotsc,k-1\}\,\bigr\}$.
+In this case, every possible intersection of the manifolds $S_i$ is a submanifold.
+\end{definition}
+
+The next lemma says that 
+transverse submanifolds can be made orthogonal to each other.
+
+\begin{lemma}\label{lem:orthogonal}
+Let $S_1,\dotsc,S_k\subset M$ be transverse closed submanifolds.
+Then there exists a Riemannian metric on $M$,
+such that whenever $p\in S_i\cap S_j$,
+the subspaces $\T_pS_i$ and $\T_pS_j$ of $\T_pM$ are orthogonal.
+\end{lemma}
+
+\begin{proof}
+By (\ref{lem:extension}), we may assume that
+$M$ and the $S_i$ are boundaryless.
+
+For every $p\in M$, choose a neighbourhood $U_p$ that
+does not intersect with any $S_i$ not containing $p$,
+such that $U_p$ is diffeomorphic to $\R^n$, and under this diffeomorphism,
+the $S_i$ containing $p$ (if any) are identified with some coordinate subspaces of $\R^n$.
+This is possible since we may construct
+smooth functions $f_1,\dotsc,f_n$ near $p$,
+such that each of these $S_i$ is locally cut out by the zeros of some of these $f_j$
+(each $f_j$ is used by at most one $S_i$),
+and such that $\d f_1,\dotsc,\d f_n$ form a basis for $\Tstar pM$.
+Using these $f_j$ as local coordinate functions,
+we get a desired diffeomorphism by the inverse function theorem.
+
+Let $g_p$ denote the metric on $U_p$ induced from $\R^n$.
+Let $\{\rho_p\}$ be a partition of unity subordinate to the open cover $\{U_p\}$.
+Then $\sum_p\rho_pg_p$ is a desired metric.
+\end{proof}
+
+One important result in intersection theory is the transversality theorem \cite[p.\,68]{gp}.
+Here is one of its important corollaries.
+
+\begin{lemma}\label{cor:transverse}
+Let $M$ be a boundaryless $n$-manifold,
+and let $S_1,\dotsc,S_k,T$ be submanifolds,
+where $\partial T=\emptyset$, but the $S_i$ may have corners.
+For any neighbourhood $U$ of $T$,
+$T$ can be moved by an isotopy within $U$,
+to become transverse to all $S_i$.
+
+Moreover, the isotopy can be taken to be fixed on any closed subset of $T$
+where $T$ is already transverse to all the $S_i$.
+\end{lemma}
+
+\begin{proof}
+By (\ref{lem:extension}), we may assume that the $S_i$ are boundaryless.
+See \cite[p.\,70]{gp} for a proof in this case.
+\end{proof}
+
+The next results are concerned with the existence of
+functions with certain properties.
+The gradient vector fields of these functions will be very useful.
+We will use the flow of these vector fields on the boundary of a handlebody,
+to manipulate the handles attached on it.
+
+\begin{lemma}\label{lem:function}
+Let $M$ be a closed $n$-manifold,
+and let $S_1,\dotsc,S_k\subset M$ be transverse compact submanifolds without boundary.
+%such that $\partial S_i\subset S_0\cup\cdots\cup S_{i-1}$ for all $i$,
+%Let $T$ be another closed $(n-1)$-submanifold,
+%which intersects each $S_i$ transversely.
+Then there exists a smooth function $f\:M\to[0,1]$, such that
+\begin{enum}
+\item $f^{-1}(0)=S:=S_1\cup\cdots\cup S_k$.
+\item $f$ has no critical values other than $0,1$.
+%\item For every $t\in(0,\delta)$, $f^{-1}(t)$ and $T$ intersect transversely.
+\end{enum}
+\end{lemma}
+
+\begin{proof}
+By (\ref{lem:orthogonal}), there exists a Riemannian metric on $M$,
+such that any two of $S_1,\dotsc,S_k$ intersect orthogonally.
+
+We claim that for small enough $\epsilon>0$ and $i=1,\dotsc,k$,
+there exists a smooth function $f_{i,\epsilon}\:M\to[0,1]$, such that
+\begin{enum}
+\item $\subsup f{i,\epsilon}{-1}(0)=S_i$.
+\item Whenever $f_{i,\epsilon}(p)\in(0,1)$, we have
+$\grad f_{i,\epsilon}(p)\neq0$,
+and $\grad f_{i,\epsilon}$ points orthogonally outwards from $S_i$,
+in the sense that its flow line through $p$
+is the unique minimising geodesic from $p$ to $S_i$.
+\end{enum}
+Namely, by (\ref{lem:diffeo}), we may define a function $d_{i,\epsilon}$ to be $1/\epsilon$ times the distance to $S_i$,
+and let $f_{i,\epsilon}=\rho\circ d_{i,\epsilon}$, where
+$\rho\:[0,+\infty)\to[0,1]$ is a smooth function, such that $\rho(r)=1$ when $r\geq1$,
+$\rho(0)=\rho'(0)=\cdots=0$, and $\rho'(r)>0$ if $0<r<1$.
+
+Denote $U_{i,\epsilon}=\subsup f{i,\epsilon}{-1}([0,1))$.
+Now we take $f=f_{1,\epsilon}\cdots f_{k,\epsilon}$,
+where we choose $\delta>\epsilon>0$ small enough, so that
+\begin{enum}
+\item $f_{i,2\delta}$ is defined for all $i$.
+\item For every path of length $\ell$ in $U_{i,2\delta}$,
+its projection to $S_i$ has length $<2\ell$.
+\item Whenever $p\in\bigcap_{i\in I}U_{i,\epsilon}$ for some $I\subset\{1,\dotsc,k\}$,
+there exists a path from $p$ to $\bigcap_{i\in I}S_i$ with length $<\delta$.
+\item Whenever a vector is parallel transported along a loop of length $<4\delta$,
+its direction changes by an angle $<\uppi/8$.
+\item Whenever a vector is parallel transported along a curve of length $<2\delta$ on $S_i$,
+the angle between the vector and $S_i$ changes by $<\uppi/8$.
+\end{enum}
+(iii) is possible, since if no such $\epsilon$ exists, we would have a contradiction
+against sequential compactness of $S$.
+(iv) is possible since the Riemann curvature tensor of $M$ is bounded.
+(v) is possible since the second fundamental forms of the $S_i$ are bounded.
+
+We claim that for any $p$ that is $\epsilon$-near $S$, $p$ is not a critical point of $f$.
+(For simplicity, two things are \term{$\epsilon$-near} if their distance is $<\epsilon$.)
+Indeed, suppose $p$ is $\epsilon$-near $S_i$ for $i\in I$,
+while not $\epsilon$-near the others.
+Denote $S_I:=\bigcap_{i\in I}S_i$ and $U_{I,\epsilon}:=\bigcap_{i\in I}U_{i,\epsilon}$.
+Note that 
+\[\grad f(p)=\sum_{i\in I}\frac{f(p)}{f_{i,\epsilon}(p)}\grad f_{i,\epsilon}(p).\]
+
+
+Let $p_i$ denote the projection of $p$ to $S_i$,
+and let $q$ be a point in $S_I$ that is $\delta$-near $p$.
+Let $\gamma$ be a path from $p$ to $q$ of length $<\delta$ (thus it falls in $U_{I,2\delta}$),
+and let $\gamma_i$ be the projection of $\gamma$ to $S_i$,
+which is a path from $p_i$ to $q$ of length $<2\delta$.
+Let $v_i\in\T_{p_i^{}}M$ be the vector pointing to $p$, of length $|\grad f_{i,\epsilon}(p)|$.
+Let $w_i\in\T_qM$ denote its parallel transport along $\gamma_i$.
+Then the angle between $w_i$ and $\T_qS_i$ is $>3\uppi/8$.
+Note that $w_i$ is obtained from $\grad f_{i,\epsilon}(p)\in\T_pM$
+by parallel translation along the path $p$---$p_i$---$q$.
+If we instead translate it directly along $\gamma$,
+the resulting vector, say $u_i$,
+would have a direction that differ from $w_i$ by $<\uppi/8$.
+Thus the angle between $u_i$ and $\T_pS_i$ is $>\uppi/4$.
+But the $S_i$ are transverse and orthogonal at $p$,
+hence by a standard argument in linear algebra, the $u_i$ are linearly independent,
+and so are the vectors $\grad f_{i,\epsilon}(p)$.
+This implies that $\grad f(p)\neq0$. 
+\end{proof}
+
+\begin{remark}
+This is not true for an arbitrary closed subset $S$.
+For example, consider $S=$ Cantor set $\subset M=S^1$. \varqed
+\end{remark}
+
+We will need a slightly more general form of this lemma,
+which follows from exactly the same construction
+(involving distance functions to submanifolds with boundary,
+which are not necessarily smooth near the boundary).
+
+\begin{corollary}\label{cor:function}
+Let $M$ be a closed $n$-manifold,
+and let $S_1,\dotsc,S_k\subset M$ be transverse compact submanifolds,
+possibly with boundary.
+Let $U$ denote an open neighbourhood of $\partial S_1\cup\cdots\cup\partial S_k$.
+Then there exists a smooth function $f\:M\setminus U\to[0,1]$, such that
+\begin{enum}
+\item $f^{-1}(0)=(S_1\cup\cdots\cup S_k)\setminus U$.
+\item $f$ has no critical values other than $0,1$. \qed
+\end{enum}
+\end{corollary}
+
+Finally, we mention two results concerning isotopies.
+
+\begin{lemma}[Isotopy extension theorem]\label{cor:isotopy-ext}
+If $\partial M=\emptyset$ and $S$ is compact,
+then every compactly supported isotopy $h\:S\times\R\to M$
+can be extended to a compactly supported diffeotopy on $M$.
+\end{lemma}
+
+\begin{proof}
+    \cite[Theorem~8.1.3]{hirsch}.
+\end{proof}
+
+\begin{lemma}\label{prop:move-disk}
+Let $M$ be a connected $n$-manifold.
+If $M$ is orientable,
+then two embeddings $D^n\hookrightarrow M$ are isotopic
+if and only if they have the same orientation.
+If $M$ is non-orientable, then all such embeddings are isotopic.
+\end{lemma}
+
+\begin{proof}
+We first consider the special case $M=\R^n$.
+We may assume the embedding $f\:D^n\to\R^n$ sends $0$ to $0$,
+preserving orientation.
+Using a smooth path in $\mathrm{GL}(n)$, i.e.\ a smooth family of linear transformations,
+we may assume $\d f(0)=\id$.
+We further shrink the disk linearly (w.r.t.\ the disk) by an isotopy,
+and then enlarge it linearly (w.r.t.\ $\R^n$) to recover $\d f(0)=\id$,
+so that if we denote $g(x):=f(x)-x$,
+then the norm of $\d g(x)$ (supremum of $|\d g(x)v|/|v|$ for $v\neq0$) is $<1/2$ for all $x\in D^n$.
+This will ensure that the linear homotopy $h_t$ from $f$ to the standard inclusion $D^n\hookrightarrow\R^n$
+is injective for all $t$, and thus it is an isotopy.
+
+For the general case, we may shrink $D^n$ into a coordinate chart,
+and then transport it along a finite sequence of coordinate charts.
+Doing this for both disks, we are reduced to the first case.
+\end{proof}
