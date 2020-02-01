@@ -66,6 +66,8 @@
 \def\qedsymbol{$◻$}
 \def\thmqedhere{\pushQED{\qed}\qedhere\popQED}
 
+\numberwithin{equation}{theorem}
+
 % renew theorem: https://tex.stackexchange.com/q/103013/
 \makeatletter
 \def\renewtheorem#1{%
@@ -91,7 +93,7 @@
 \def\thesection{\arabic{section}\texorpdfstring{}{.}} % pdf bookmark numbering
 \setcounter{secnumdepth}{1} % suppress subsection numbering
 
-\usepackage[style=alphabetic,sorting=anyvt]{biblatex}
+\usepackage[style=alphabetic,sorting=anyvt,useprefix=true]{biblatex}
 \usepackage{xpatch}
 \renewcommand*{\bibfont}{\small}
 \DeclareFieldFormat{labelalpha}{\mkbibbold{#1}}

@@ -6,7 +6,23 @@
 \def\abstractname{摘\quad 要}
 \def\contentsname{目录}
 \def\proofname{证明}
-\def\refname{参考文献}
+
+% bibliography
+\DefineBibliographyStrings{english}{
+    references = {参考文献},
+}
+
+\usepackage{setspace}
+\AtBeginBibliography{
+    \spacing{1}
+}
+
+% lengths
+\AtBeginDocument{
+    \addtolength{\abovedisplayskip}{-3pt}
+    \addtolength{\belowdisplayskip}{-3pt}
+    \addtolength{\belowdisplayshortskip}{-3pt}
+}
 
 % theorems & proofs
 \newtheoremstyle{cjk-theorem}{}{}{\KaiTi}{}{\bfseries}{.}{.5em}{}
