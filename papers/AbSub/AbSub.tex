@@ -36,7 +36,7 @@ The passage aims to provide a detailed proof for this theorem following \cite{Fr
 We first introduce several definitions needed to present the proof:
 
 \begin{defn}
-Let $\EC$ be a category with a zero object. A \textbf{generator} in $\EC$ is an object $G \in \EC$ such that $\EC(G, X) \neq \{0\}$ for every $X \neq 0$ in $\EC$; dually, a \textbf{cogenerator} in $\EC$ is an object $H \in \EC$ such that $\EC(X, H)\neq \{0\}$ for every $X \neq 0$ in $\EC$.
+Let $\EC$ be a category. A \textbf{generator} in $\EC$ is an object $G \in \EC$ such that the functor $\EC(G, -)\colon \EC \rightarrow \set$ is faithful; dually, a \textbf{cogenerator} in $\EC$ is an object $H \in \EC$ such that the functor $\EC(-, H)\colon \EC^\op \rightarrow \set$ is faithful.
 \end{defn}
 
 \begin{expl}
