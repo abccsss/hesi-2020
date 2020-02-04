@@ -17,16 +17,14 @@
 \begin{abstract}
     In this article, we first present the preliminaries in symplectic geometry: 
     the moduli spaces of simple pseudo-holomorphic curves and the related evaluation maps. 
-    Then we will define pseudo-cycle and introduce some basic propositions. 
-    After the preparations, we will define Gromov--Witten invariants $\Phi$ 
+    Then we will define pseudo-cycles and introduce some basic propositions. 
+    After the preparations, we will define Gromov--Witten invariant $\Phi$ 
     and introduce some examples and using a small conclusion, 
     we roughly prove the non-squeezing theorem. 
     Then we define the invariant $\Psi$. Finally, 
     we will introduce that the invariants we defined can be viewed 
     as special case of Gromov--Witten classes formulated by Kontsevich and Manin in 1994.
 \end{abstract}
-
-\tableofcontents
 
 \section{Introduction}
 The Gromov--Witten theory is a mathematical theory which corresponds to 
@@ -53,8 +51,8 @@ At last, we will roughly introduce the generalized Gromov--Witten classes.
 
 \section{Symplectic Preliminaries and Notations}
 
-We first introduced our notations about the objects, 
-for simplicity, we fix a Riemann surface $\Sigma$ with almost complex structure $j$ 
+We first introduce our notations.
+For simplicity, we fix a Riemann surface $\Sigma$ with almost complex structure $j$ 
 and local coordinates $s+it$, which we actually only consider it to be $\cp{1}$ 
 in the main part of this introduction with the natural almost complex structure. 
 In our setting, $M$ is a $2n$-dimensional symplectic manifold 
@@ -64,49 +62,47 @@ The moduli space $\maj$ consists of all simple $J$-holomorphic curves
 which represent a given homology class $A\in H_2(M)$. We have the following famous theorem.
 
 \begin{theorem}
+    \ 
     \begin{enumerate}
-        \item If $J\in \mathscr{J}_{\textrm{reg}}(A)$, 
+        \item If $J\in \mathscr{J}_{\mathrm{reg}}(A)$, 
         then the space $\maj$ is a smooth manifold of dimension $n(2-2g)+2c_1(A)$ and carries a natural orientation.
-        \item The set $\mathscr{J}_{\textrm{reg}}(A)$ has second category in $\mathscr{J}$. 
-        i.e. it contains the intersection of countably many open and dense subsets of $\mathscr{J}$.
+        \item The set $\mathscr{J}_{\mathrm{reg}}(A)$ has second category in $\mathscr{J}$. 
+        That is, it contains the intersection of countably many open and dense subsets of $\mathscr{J}$.
     \end{enumerate}
 \end{theorem}
 
 We define the energy of a smooth map $u\colon \Sigma\rightarrow M$ 
 to be the $L^2$-norm of the $1$-form $du\in \Omega^1(u^*TM)$
-\[E(u)=\frac{1}{2}\int_{\Sigma}|du|^2_Jdvol_\Sigma\]
-if $J$ is $\omega$-tame then for all $J$-holomorphic curve $u$
-
-\begin{displaymath}
-\begin{split}
-\frac{1}{2}|du|^2_Jdvol_\Sigma&=\frac{1}{2}\left(|\partial_su|_J^2+|\partial_tu|_J^2\right)ds\wedge dt \\
-&=\frac{1}{2}|\partial_su+J(u)\partial_tu|_J^2ds\wedge dt-\left\langle \partial_su,J(u)\partial_tu \right\rangle ds\wedge dt \\
-&=\frac{1}{2}\left(\omega(\partial_su,\partial_tu)+\omega(J(u)\partial_su,J(u)\partial_tu) \right)ds\wedge dt=u^*\omega
-\end{split}
-\end{displaymath}
-
-thus if $u\in \maj$
-\[E(u)=\omega(A)\]
+\[E(u)=\frac{1}{2}\int_{\Sigma}|du|^2_J\,d\mathrm{vol}_\Sigma.\]
+If $J$ is $\omega$-tame then for all $J$-holomorphic curve $u$
+\[ \begin{aligned}
+    \frac{1}{2}|du|^2_J\,d\mathrm{vol}_\Sigma&=\frac{1}{2}\left(|\partial_su|_J^2+|\partial_tu|_J^2\right)ds\wedge dt \\
+    &=\frac{1}{2}|\partial_su+J(u)\,\partial_tu|_J^2\,ds\wedge dt-\left\langle \partial_su,J(u)\,\partial_tu \right\rangle ds\wedge dt \\
+    &=\frac{1}{2}\bigl(\omega(\partial_su,\partial_tu)+\omega(J(u)\,\partial_su,J(u)\,\partial_tu) \bigr)\,ds\wedge dt=u^*\omega.
+\end{aligned} \]
+Thus if $u\in \maj$,
+\[E(u)=\omega(A).\]
 For $K>0$, an $\omega$-compatible almost complex structure $J\in\mathscr{J}(M,\omega)$ 
 is called \textbf{$K$-semi-positive} if every $J$-holomorphic sphere 
 $u\colon \cp{1}\rightarrow M$ with energy $E(u)\leq K$ has nonnegative Chern number, 
 i.e. 
-\[\int u^*c_1\geq0\]
+\[\int u^*c_1\geq0,\]
 and call $J$ \textbf{semi-positive} 
 if it is $K$-semi-positive for all $K>0$. We denote the set as $\mathscr{J}_+(M,\omega,K)$ and 
-\[\mathscr{J}_+(M,\omega)=\bigcap_{K>0}\mathscr{J}_+(M,\omega,K)\]
+\[\mathscr{J}_+(M,\omega)=\bigcap_{K>0}\mathscr{J}_+(M,\omega,K).\]
 The manifold $(M,\omega)$ is called \textbf{weakly monotone} 
-if for every spherical homology class $A\in H_2(M,\mathbb{Z})$
-\[\omega(A)>0,\quad c_1(A)\geq 3-n \quad \Longrightarrow \quad c_1(A)\geq 0\]
-It is called $\textbf{monotone}$ if there exists $\lambda>0$ s.t.
+if for every spherical homology class $A\in H_2(M,\mathbb{Z})$,
+\[\omega(A)>0,\quad c_1(A)\geq 3-n \quad \Longrightarrow \quad c_1(A)\geq 0.\]
+It is called $\textbf{monotone}$ if there exists $\lambda>0$ such that
 \[\omega(A)=\lambda c_1(A)\]
 for all spherical homology class $A$.
 
-Consider the reparametrization group $G=\textrm{PSL}(2,\mathbb{C})$, acts on $\maj\times \cp{1}$ by
-\[\phi \cdot(u,z)=(u\circ \phi^{-1},\phi(z)) \]
+Consider the reparametrization group $G=\mathrm{PSL}(2,\mathbb{C})$,
+which acts on the space $\maj\times \cp{1}$ by  % added 'the space' to avoid an underfull box
+\[\phi \cdot(u,z)=(u\circ \phi^{-1},\phi(z)). \]
 And denote the quotient space as $\waj=\maj\times_G \cp{1}$, 
-which is the domain of the evaluation map $ev\colon \waj\rightarrow M$ as $e(u,z)=u(z)$. 
-And the image is denoted by $X(A,J)=ev(\waj))$.
+which is the domain of the evaluation map $\mathrm{ev}\colon \waj\rightarrow M$ as $e(u,z)=u(z)$. 
+And the image is denoted by $X(A,J)=\mathrm{ev}(\waj))$.
 We also need to consider $p$-fold evaluation maps, we now introduce two different evaluation maps: 
 one way is the generalization of the above. 
 Before that, we introduce the concept of effective framing class.
@@ -119,71 +115,70 @@ and can be the classes of the components of a simplified cusp-curve $C$ which re
 
 And from Gromov compactness theorem, 
 there is only a finite number of possible framed classes $D$. 
-Here $j_n$ indicates that the cusp-curve $u=(u^1,u^2,\cdots,u^N)$ must satisfies
-\[u^n(\cp{1})\cap u^{j_n}(\cp{1})\neq \emptyset\]
+Here $j_n$ indicates that the cusp-curve $u=(u^1,u^2,\cdots,u^N)$ must satisfy
+\[u^n(\cp{1})\cap u^{j_n}(\cp{1})\neq \emptyset.\]
 
 Now we consider the universal moduli space
 \[\mathscr{M}(A^1,\cdots,A^N,\mathscr{J})\]
-which consists of all $(N+1)$-tuples $(u^1,\cdots,u^N,J)$ s.t. $J\in\mathscr{J}$, $u^j\in \mathscr{M}(A^j,J)$ 
+which consists of all $(N+1)$-tuples $(u^1,\cdots,u^N,J)$ such that $J\in\mathscr{J}$, $u^j\in \mathscr{M}(A^j,J)$ 
 and $u^i\neq u^j\circ \phi$ for $\phi\in G$ and $i\neq j$.
 
 Thus we can define the moduli space 
 $\mdj\subset \mathscr{M}(A^1,\cdots,A^N,\mathscr{J})\times (\cp{1})^{2N-2}$ 
-consists of all points $(u,w,z)$ with $w=(w_2,\cdots,w_N)\in\cp{N-1}$, 
-$z=(z_2,\cdots,z_N)\in\cp{N-1}$ and $u^j\in \mathscr{M}(A^j,J)$ s.t. 
+consisting of all points $(u,w,z)$ with $w=(w_2,\cdots,w_N)\in\cp{N-1}$, 
+$z=(z_2,\cdots,z_N)\in\cp{N-1}$ and $u^j\in \mathscr{M}(A^j,J)$ such that 
 $u=(u_1,\cdots,u^N)$ is a simple $J$-holomorphic curve cusp-curve with
-\[u^j_n(w_n)=u^n(z_n)\]
-we can show that there exists a set $\mathscr{J}_{\textrm{reg}}(D)\subset \mathscr{J}$ 
-of the second category s.t. $\mdj$ is a manifold of dimension $2\displaystyle \sum_{j=1}^{N}c_1(A^j)+2n+4(N-1)$, 
+\[u^j_n(w_n)=u^n(z_n).\]
+We can show that there exists a set $\mathscr{J}_{\mathrm{reg}}(D)\subset \mathscr{J}$ 
+of the second category such that $\mdj$ is a manifold of dimension $2\sum_{j=1}^{N}c_1(A^j)+2n+4(N-1)$, 
 which is then equal to $2c_1(A)+2n+4(N-1)$.
 
 We can define the space of simple unparametrized curves of type $D$
-\[\mathscr{C}(D,J)=\mdj/G^N\]
+\[\mathscr{C}(D,J)=\mdj/G^N.\]
 
 Fix $l\leq N$ and let $G_{l,N}$ be the subgroup
-\[G_{l,N}=\{\phi=(\phi_1,\cdots,\phi_N) |\phi_l=\id  \}\subset G^N\]
+\[G_{l,N}=\{\phi=(\phi_1,\cdots,\phi_N) \mid \phi_l=\id  \}\subset G^N,\]
 so $G$ acts on this space by acting on its $l$-th component in the usual way and we can thus define
 \[\mathscr{W}_l(D,J)=\mathscr{C}_l(D,J)\times_G \cp{1}\]
 as the quotient space, which is actually a manifold, and take the union
-\[\wdj=\bigcup_l \mathscr{W}_l(D,J)\]
-
+\[\wdj=\bigcup_l \mathscr{W}_l(D,J).\]
 Then we have the evaluation map
-\[ev\colon \wdj\rightarrow M\]
+\[\mathrm{ev}\colon \wdj\rightarrow M,\]
 which is defined on $\mathscr{W}_l(D,J)$ as
-\[(u^j,w_n,z_n,\zeta)\mapsto u^l(\zeta)\]
+\[(u^j,w_n,z_n,\zeta)\mapsto u^l(\zeta).\]
 
 Now consider the pairs $(D,T)$ where $D$ is a framed class of 
 simple cusp-curve and the label $T$ is a map from $\{1,2,\cdots,p \}$ to $\{1,2,\cdots,N \}$. 
 For each pair $(D,T)$, we define 
-\[X(D,T,J,p)=\{(x_1,\cdots,x_p)|x_j\in C_{T(j)},C\in\mathscr{C}(D,J)   \}\]
+\[X(D,T,J,p)=\{(x_1,\cdots,x_p)\mid x_j\in C_{T(j)},\ C\in\mathscr{C}(D,J)   \},\]
 and set
-\[\mathscr{W}(D,T,J,p)=\mdj\times_{G^N}(\cp{1})^p\]
+\[\mathscr{W}(D,T,J,p)=\mdj\times_{G^N}(\cp{1})^p,\]
 where the $n$-th factor of $\phi=(\phi_1,\cdots,\phi_N)\in G^N$ acts on $\mdj$ as before 
 and acts on the $j$-th factor of $(\cp{1})^p$ iff $T(j)=n$, so there is an evaluation map
 \[e_{D,T}\colon \mathscr{W}(D,T,J,p)\rightarrow M^p\]
 defined by
-\[(u,J,w,z,\zeta)=(u_{T(1)}(\zeta_1),\cdots,u_{T(p)}(\zeta_p))\]
-then we define another type of $p$-fold evaluation by fixing a $p$-tuple 
+\[(u,J,w,z,\zeta)=(u_{T(1)}(\zeta_1),\cdots,u_{T(p)}(\zeta_p)).\]
+Then we define another type of $p$-fold evaluation by fixing a $p$-tuple 
 \[\z=(z_1,\cdots,z_p)\in(\cp{1})^p\]
 and the evaluation on $\maj$ is given by
-\[ev_\z(u)=(u(z_1),\cdots,u(z_p))\]
+\[ev_\z(u)=(u(z_1),\cdots,u(z_p)),\]
 and we denote the image as 
-\[Y(A,J,\z)=e_\z(\maj)\subset M^p\]
-To compactify it and ensure the boundary is a finite union of lower dimensional strata. 
-We introduce a concept of $J$-effective homology class: $A$ is called \textbf{$J$-effective} 
-if it can be represented by a $J-$holomorphic sphere $u\colon \cp{1}\rightarrow M$.
+\[Y(A,J,\z)=e_\z(\maj)\subset M^p.\]
+To compactify it and ensure the boundary is a finite union of lower dimensional strata,
+we introduce a concept of $J$-effective homology class: $A$ is called \textbf{$J$-effective} 
+if it can be represented by a $J$-holomorphic sphere $u\colon \cp{1}\rightarrow M$.
 
 And we need our almost complex structure $J\in\mathscr{J}(M,\omega)$ 
-and the homology class $A$ satisfies the following condition.
+and the homology class $A$ to satisfy the following condition.
 
 \begin{enumerate}[label=(\arabic*)]
     \item Every $J$-effective homology class $B\in H_2(M,\mathbb{Z})$ has Chern number
-    \[c_1(B)\geq 2\]
+    \[c_1(B)\geq 2.\]
     Moreover, if $A=mB\in H_2(M,\mathbb{Z})$ is the $m$-fold multiple of a $J$-effective 
-    homology class $B\in H_2(M,\mathbb{Z})$ with $m>1$ then either $c_1(B)\geq 3$ or $p\leq 2m$
+    homology class $B\in H_2(M,\mathbb{Z})$ with $m>1$, then either $c_1(B)\geq 3$ or $p\leq 2m$.
 \end{enumerate}
 
-To find the boundary(denote as $\mathscr{V}(D,T,J,\z)$), 
+To find the boundary (denote as $\mathscr{V}(D,T,J,\z)$), 
 there are actually four cases for the possible limit behavior 
 of the points $e_\z(u_\nu)$ for a sequence in $\maj$. 
 These are that $u_\nu$ converges modulo bubbling
@@ -195,43 +190,43 @@ These are that $u_\nu$ converges modulo bubbling
     \item to a constant map.
 \end{enumerate}
 
-We first look at the first two cases, let $M\subset\cp{1}$ be the finite set 
+We first look at the first two cases. Let $M\subset\cp{1}$ be the finite set 
 at which holomorphic spheres bubble off. 
 Then $u_\nu$ converges on the complement of $X$ to a curve $v^0\circ \psi$ where
-\[v^0\in\maj\]
+\[v^0\in\maj,\]
 and $\psi\colon \cp{1}\rightarrow \cp{1}$ is a rational map of degree $m$. 
-Denote the space of such maps by Rat$_m$ and has real dimension $4m+2$. 
+Denote the space of such maps by $\mathrm{Rat}_m$ and has real dimension $4m+2$. 
 Suppose $l$ of the points $z_j$ lie in $X$ and WLOG assume to be $z_1,\cdots,z_l$. 
-Then we must consider limit curves of the form $(\psi,v^0,\cdots,v^N)$ s.t.
-\[v^\nu(0)=v^0(\psi(z_\nu))\qquad \nu=1,\cdots,l\]
+Then we must consider limit curves of the form $(\psi,v^0,\cdots,v^N)$ such that
+\[v^\nu(0)=v^0(\psi(z_\nu)),\qquad \nu=1,\cdots,l.\]
 The remaining intersection pattern of the limiting curve is unconstrained, and thus can be described by integers
 $j_{l+1},\cdots,j_N$ with $0\leq j_\nu\leq \nu-1$ and
-\[v^\nu(0)=v^{j_\nu}(w_\nu)\qquad \nu=l+1,\cdots,N\]
+\[v^\nu(0)=v^{j_\nu}(w_\nu),\qquad \nu=l+1,\cdots,N.\]
 for some points $w_\nu\in\cp{1}$. 
 Thus the intersection pattern of this curve can be coded in a framing $D$ of the form
-\[D=\{m,A^0,\cdots,A^n,j_{l+1},\cdots,j_N\}\]
-where there are positive integers $m_0,\cdots,m_N$ s.t. $m_0=m$ and
-\[\sum_{j=0}^{N}m_jA^j=A\]
-So we con consider the corresponding moduli space $\mathscr{M}(D,J,\z)$ 
+\[D=\{m,A^0,\cdots,A^n,j_{l+1},\cdots,j_N\},\]
+where there are positive integers $m_0,\cdots,m_N$ such that $m_0=m$ and
+\[\sum_{j=0}^{N}m_jA^j=A.\]
+So we can consider the corresponding moduli space $\mathscr{M}(D,J,\z)$ 
 which consists of all $2N+2-l$-tuples
 \[(\psi,v^0,\cdots,v^N,w_{l+1},\cdots,w_{N})\]
 satisfying the conditions and $v^j$ represents $A^j$. We have the following lemma:
 
-\begin{lemma}
+\begin{lemma} \label{lem-2-2}
     For generic $J$, the moduli space $\mathscr{M}(D,J,\z)$ is a manifold of dimension
     \[\dim\mathscr{M}(D,J,\z)=2n+2N+4m+2c_1(D)-2l+2\]
 \end{lemma}
 
 Now choose a map $T\colon \{1,\cdots,l\}\rightarrow \{1,\cdots,N\}$ and define the space
-\[\mathscr{V}(D,T,J,\z)=\frac{\mathscr{M}(D,J,\z)\times (\cp{1})^l}{G\times G^N_0}\]
-where $G_0=\{\phi\in G |\phi(0)=0  \}$, and the group $G\times G^N_0$ acts by
-\[\phi\cdot (\psi,v,w,\zeta)=(\phi_0\circ\psi,v^\nu\circ\phi_\nu^{-1},\phi_{j_\nu}(w_\nu),\phi_{T(\nu)}(\zeta_\nu))\]
+\[\mathscr{V}(D,T,J,\z)=\frac{\mathscr{M}(D,J,\z)\times (\cp{1})^l}{G\times G^N_0},\]
+where $G_0=\{\phi\in G \mid \phi(0)=0  \}$, and the group $G\times G^N_0$ acts by
+\[\phi\cdot (\psi,v,w,\zeta)=(\phi_0\circ\psi,v^\nu\circ\phi_\nu^{-1},\phi_{j_\nu}(w_\nu),\phi_{T(\nu)}(\zeta_\nu)),\]
 and the evaluation map
-\[e_{D,T,\z}(\psi,v,w,\zeta)=(v^{T(1)}(\zeta_1),\cdots,v^{T(l)}(\zeta_l),v^0(\psi(z_{l+1}),\cdots,v^0(\psi(z_N))\]
+\[e_{D,T,\z}(\psi,v,w,\zeta)=(v^{T(1)}(\zeta_1),\cdots,v^{T(l)}(\zeta_l),v^0(\psi(z_{l+1}),\cdots,v^0(\psi(z_N)).\]
 Now consider the case (c). The moduli space of corresponding simplified cusp-curves is dertermined by a framed class
 \[D=\{A^0,\cdots,A^N,j_1,\cdots,j_N  \}\]
 with $(N+1)$ components and Chern number
-\[c_1(D)\leq c_1(A)-(m-1)c_1(A^0)\]
+\[c_1(D)\leq c_1(A)-(m-1)\,c_1(A^0).\]
 Since $p\leq 2m$, the reparametrization map $\psi$ acts transitively on $p$-tuples $\z$ of distinct points, 
 so the set of points may accumulate anywhere on the limiting cusp-curve. 
 Thus we define the corresponding space $\mathscr{V}(D,T,J,\z)$ 
@@ -244,8 +239,8 @@ to be the space $\mathscr{W}(D,T,J,p)$ considered before, which has dimension
 &=\dim\maj-2
 \end{aligned} \]
 For case (d), the sequence $u_\nu(z)$ converges to a constant $J$-holomorphic curve 
-on the complement of a finite set $X$, and take the special case in (a) and (b) s.t. 
-$m=1$ and $A^)\in H_2(M,\mathbb{Z})$ is the zero homology class, 
+on the complement of a finite set $X$, and take the special case in (a) and (b) such that 
+$m=1$ and $A^0\in H_2(M,\mathbb{Z})$ is the zero homology class, 
 where we need to further assume that $J$ is $K$-semi positive for some $K>\omega(A)$.
 
 \section{Pseudo-cycles}
@@ -257,25 +252,25 @@ which is defined on a manifold $W$ of dimension $m$.
 In this case we denoted as $\dim B\leq m$.
 
 A $k$-dimensional \textbf{pseudo-cycle} in $M$ is a smooth map $f\colon V\rightarrow M$, 
-defined on an oriented $k$-dimensional manifold $V$ s.t. 
-\[\dim \Omega_f\leq \dim V-2\]
+defined on an oriented $k$-dimensional manifold $V$ such that 
+\[\dim \Omega_f\leq \dim V-2,\]
 where
-\[\Omega_f=\bigcap_{K\subset V,\: K\: \textrm{compact}}\overline{f(V-K)}\]
+\[\Omega_f=\bigcap_{K\subset V,\: K\: \mathrm{compact}}\overline{f(V-K)}.\]
 
-Two $k$-dimensional pseudo-cycles $f_0\colon V_0\rightarrow M$ and $f_1\colon V_1\rightarrow M$ is called \textbf{bordant} 
+Two $k$-dimensional pseudo-cycles $f_0\colon V_0\rightarrow M$ and $f_1\colon V_1\rightarrow M$ are called \textbf{bordant} 
 if there exists a $(k+1)$-dimensional oriented manifold $W$ with $\partial W=V_1-V_0$ 
-and a smooth map $F\colon W\rightarrow M$ s.t. 
-\[F|_{V_0}=f_0 \qquad F|_{V_1}=f_1 \qquad \dim \Omega_F\leq k-1\]
+and a smooth map $F\colon W\rightarrow M$ such that 
+\[F|_{V_0}=f_0, \qquad F|_{V_1}=f_1, \qquad \dim \Omega_F\leq k-1.\]
 
 Pseudo-cycles form an abelian group with addition given by disjoint union, 
 and the neutral element is the empty map defined on the empty manifold.
 
 Two pseudo-cycles $e\colon U\rightarrow M$ and $f\colon V\rightarrow M$ are called \textbf{transverse} if
-\[\Omega_e\cap \overline{f(V)}=\emptyset \qquad \Omega_f\cap\overline{e(U)}=\emptyset\]
+\[\Omega_e\cap \overline{f(V)}=\emptyset, \qquad \Omega_f\cap\overline{e(U)}=\emptyset,\]
 and if
 \[T_xM=\im de(u)+\im df(v)\]
 whenever $e(u)=f(v)=x$. If $e$ and $f$ are transverse, then the set
-\[\{(u,v)\in U\times V|e(u)=f(v)  \}\]
+\[\{(u,v)\in U\times V\mid e(u)=f(v)  \}\]
 is a compact manifold of dimension $\dim U+\dim V-\dim M$.
 
 We have the following lemma:
@@ -283,19 +278,19 @@ We have the following lemma:
 \begin{lemma}
 Let $e\colon U\rightarrow M$ and $f\colon V\rightarrow M$ be pseudo-cycles of complementary dimension.
     \begin{enumerate}
-        \item There exists a set Diff$_{\textrm{reg}}(M,e,f)\subset$Diff$(M)$ of the second category 
-        s.t. $e$ is transverse to $\phi\circ f$ for all $\phi\in$Diff$_{\textrm{reg}}(M,e,f)$
-        \item If $e$ is transverse to $f$ then the set $\{(u,v)\in U\times V|e(u)=f(v)  \}$ is finite. 
+        \item There exists a set $\mathrm{Diff}_{\mathrm{reg}}(M,e,f)\subset\mathrm{Diff}(M)$ of the second category 
+        such that $e$ is transverse to $\phi\circ f$ for all $\phi\in\mathrm{Diff}_{\mathrm{reg}}(M,e,f)$
+        \item If $e$ is transverse to $f$ then the set $\{(u,v)\in U\times V\mid e(u)=f(v)  \}$ is finite. 
         In this case define
         \[e\cdot f=\sum_{e(u)=f(v)}\nu(u,v)\]
         where $\nu(u,v)$ is the intersection number of $e(U)$ and $f(V)$ at point $x=e(u)=f(v)$.
-        \item The intersection number $e\cdot f$ only depends on the bordism classes of $e$ and $f$.
+        \item The intersection number $e\cdot f$ only depends on the bordism classes of $e$ and~$f$.
     \end{enumerate}
 \end{lemma}
 
 Given a class $\alpha\in H_d(M,\mathbb{Z})$, it can be represented by a map $f\colon P\rightarrow M$ 
 defined on a $d$-dimensional finite oriented simplicial complex $P$ without boundary, 
-i.e. the oriented faces of its top-dimensional simplices cancel each other out in pairs. 
+i.e.\ the oriented faces of its top-dimensional simplices cancel each other out in pairs. 
 So $\alpha=f_*[P]$. Now approximate $f$ by a map which is smooth on each simplex, 
 and consider the union of the $d$ and $(d-1)$-dimensional faces of $P$ 
 as a smooth $d$-dimensional manifold $V$ and approximate $f$ by a map 
@@ -306,8 +301,8 @@ Every $(m-d)$-dimensional pseudo-cycle $e\colon W\rightarrow M$ determines a hom
 \[\Phi_e\colon H_d(M,\mathbb{Z})\rightarrow \mathbb{Z}\]
 as follows:
 Represent the class $\beta\in H_d(M,\mathbb{Z})$ by a cycle $f\colon V\rightarrow M$, 
-which can be chosen s.t. it's transverse to $e$ according to the above lemma
-(Choose $\phi\in$Diff$_{\textrm{reg}}(M,e,f)$ of degree 1, 
+which can be chosen such that it is transverse to $e$ according to the above lemma
+(Choose $\phi\in$Diff$_{\mathrm{reg}}(M,e,f)$ of degree 1, 
 then replace $f$ with $\phi\circ f$), 
 and since any two such representations are bordant and the intersection number
 \[\Phi_e(\beta)=e\cdot f\]
@@ -324,7 +319,7 @@ And we have the following lemma:
 Let $e\colon U\rightarrow M$ be an $(m-d)$-dimensional pseudo-cycle. 
 If the $d$-dimensional pseudo-cycle $f\colon V\rightarrow M$ is 
 a weak representative of the homology class $\beta\in H_d(M)$, then 
-\[\Phi_e(\beta)=e\cdot f\]
+\[\Phi_e(\beta)=e\cdot f.\]
 \end{lemma}
 
 To define the Gromov--Witten invariants, we still need some theorems:
@@ -333,16 +328,16 @@ To define the Gromov--Witten invariants, we still need some theorems:
 Let $(M,\omega)$ be a compact symplectic manifold.
     \begin{enumerate}
         \item For every $J\in\mathscr{J}(M,\omega)$ there exists 
-        a finite collection of evaluation maps $e_{D,T}\colon \mathscr{W}(D,T,J,p)\rightarrow M^p$ s.t.
-        \[\bigcap_{K\subset \mathscr{W}(A,J,p),\: K\: \textrm{compact}}\overline{e_p(\mathscr{W}(A,J,p)-K})\subset \bigcup_{D,T}e_{D,T}(\mathscr{W}(D,T,J,p))\]
+        a finite collection of evaluation maps $e_{D,T}\colon \mathscr{W}(D,T,J,p)\rightarrow M^p$ such that
+        \[\bigcap_{K\subset \mathscr{W}(A,J,p),\: K\: \mathrm{compact}}\overline{e_p(\mathscr{W}(A,J,p)-K)}\subset \bigcup_{D,T}e_{D,T}(\mathscr{W}(D,T,J,p)).\]
         \item There exists a set 
-        \[\mathscr{J}_{\textrm{reg}}=\mathscr{J}_{\textrm{reg}}(M,\omega,A,p)\subset \mathscr{J}(M,\omega)\]
-        of the second category s.t. the set $\mathscr{W}(D,T,J,p)$ is a smooth oriented $\sigma$-compact manifold of dimension 
+        \[\mathscr{J}_{\mathrm{reg}}=\mathscr{J}_{\mathrm{reg}}(M,\omega,A,p)\subset \mathscr{J}(M,\omega)\]
+        of the second category such that the set $\mathscr{W}(D,T,J,p)$ is a smooth oriented $\sigma$-compact manifold of dimension 
         \[\dim \mathscr{W}(D,T,J,p)=2n+2c_1(D)+2p-2N-4\]
-        for $J\in\mathscr{J}_{\textrm{reg}}$. Here $N$ is the number of components of class $D$.
+        for $J\in\mathscr{J}_{\mathrm{reg}}$. Here $N$ is the number of components of class $D$.
         \item Assume that  $A$ is not a nontrivial multiple of a class 
-        $B$ with $c_1(B)=0$. If $J\in\mathscr{J}_+(M,\omega,K)\cap \mathscr{J}_{\textrm{reg}}$ for some $K>\omega(A)$, then
-        \[\dim \mathscr{W}(D,T,J,p)\leq \dim\mathscr{W}(A,J,p)-2\]
+        $B$ with $c_1(B)=0$. If $J\in\mathscr{J}_+(M,\omega,K)\cap \mathscr{J}_{\mathrm{reg}}$ for some $K>\omega(A)$, then
+        \[\dim \mathscr{W}(D,T,J,p)\leq \dim\mathscr{W}(A,J,p)-2.\]
     \end{enumerate}
 \end{theorem}
 
@@ -351,7 +346,7 @@ Using the language of pseudo-cycles, we can restate it as:
 \begin{theorem}
     The evaluation map $e_{A,J,p}\colon \mathscr{W}(A,J,p)\rightarrow M^p$ defined by 
     \[e_p(u,z_1,\cdots,z_p)=(u(z_1),\cdots,u(z_p))\]
-    determines a pseudo-cycle whenever $J\in\mathscr{J}_+(M,\omega,K)\cap \mathscr{J}_{\textrm{reg}}$ 
+    determines a pseudo-cycle whenever $J\in\mathscr{J}_+(M,\omega,K)\cap \mathscr{J}_{\mathrm{reg}}$ 
     for some $K>\omega(A)$.
 \end{theorem}
 
@@ -362,14 +357,14 @@ For the second case where we fix $\z$, we have the similar theorem
     $A\in H_2(M)$ and a $p$-tuple $\z=(z_1,\cdots.z_p)\in(\cp{1})^p$ of distinct points in $\cp{1}$. Then
     \begin{enumerate}
         \item For every $J\in\mathscr{J}(M,\omega)$ there exists a finite collection of evaluation maps
-        \[d_{D,T,\z}\colon \mathscr{V}(D,T,J,\z)\rightarrow M^p\]
-        s.t
-        \[\bigcap_{K\subset \mathscr{M}(A,J),\: K\: \textrm{compact}}\overline{e_\z(\maj-K)}\subset\bigcup_{D,T}e_{D,T,\z}(\mathscr{V}(D,T,J,\z))\]
+        \[d_{D,T,\z}\colon \mathscr{V}(D,T,J,\z)\rightarrow M^p,\]
+        such that
+        \[\bigcap_{K\subset \mathscr{M}(A,J),\: K\: \mathrm{compact}}\overline{e_\z(\maj-K)}\subset\bigcup_{D,T}e_{D,T,\z}(\mathscr{V}(D,T,J,\z)).\]
         \item There exists a set 
-        $\mathscr{J}_{\textrm{reg}}=\mathscr{J}_{\textrm{reg}}(M,\omega,A,\z)\subset \mathscr{J}(M,\omega)$ 
-        of the second category s.t. the set $\mathscr{V}(D,T,J,\z)$ is a 
-        finite dimensional smooth oriented $\sigma$-compact manifold for every $J\in\mathscr{J}_{\textrm{reg}}$
-        \item  Assume $J\in \mathscr{J}_{\textrm{reg}}$ and the pair $(J,A)$ satisfies (1), then
+        $\mathscr{J}_{\mathrm{reg}}=\mathscr{J}_{\mathrm{reg}}(M,\omega,A,\z)\subset \mathscr{J}(M,\omega)$ 
+        of the second category such that the set $\mathscr{V}(D,T,J,\z)$ is a 
+        finite dimensional smooth oriented $\sigma$-compact manifold for every $J\in\mathscr{J}_{\mathrm{reg}}$
+        \item  Assume $J\in \mathscr{J}_{\mathrm{reg}}$ and the pair $(J,A)$ satisfies \textup{(1)}, then
         \[\dim\mathscr{V}(D,T,J,\z)\leq\dim\maj-2\]
         for all $D\neq A$.
     \end{enumerate}
@@ -379,14 +374,14 @@ In the language of pseudo-cycles, it can be restated as
 
 \begin{theorem}
 The evaluation map $e_{A,J,\z}(u)=(u(z_1),\cdots,u(z_p)$ represents 
-a pseudo-cycle whenever $J\in \mathscr{J}_{\textrm{reg}}$ and the pair $(J,A)$ satisfies (1).
+a pseudo-cycle whenever $J\in \mathscr{J}_{\mathrm{reg}}$ and the pair $(J,A)$ satisfies \textup{(1)}.
 \end{theorem}
 
 \section{The Invariant \texorpdfstring{$\Phi$}{Φ}}
 
-In this section, we define the invariant $\Phi$, roughly speaking, 
+In this section, we define the invariant $\Phi$. Roughly speaking, 
 $\Phi_{A,p}(\alpha_1,\cdots,\alpha_p)$ counts the number of the set
-\[\{[u,z_1,\cdots,z_p]\in\mathscr{W}(A,J,p)|u(z_i)\in \alpha_i    \}\]
+\[\{[u,z_1,\cdots,z_p]\in\mathscr{W}(A,J,p)\mid u(z_i)\in \alpha_i    \}.\]
 We will see that in the weakly monotone case, 
 this is independent of the choice of $J$ and $\omega$ is not actually needed. 
 We will give the precise definition below.
@@ -397,14 +392,14 @@ of a class $B$ with $c_1(B)=0$ and the manifold is weakly monotone.
 
 We have proved before that every $(m-d)$-dimensional pseudo-cycle $e\colon U\rightarrow M$ 
 determines a homomorphism $\Phi_e\colon H_d(M,\mathbb{Z})\rightarrow \mathbb{Z}$ and hence 
-is an element of $H^d(M)=H^d(M,\mathbb{Z})/\textrm{torsion}=\homo(H_d(M,\mathbb{Z}),\mathbb{Z})$, 
+is an element of $H^d(M)=H^d(M,\mathbb{Z})/\mathrm{torsion}=\homo(H_d(M,\mathbb{Z}),\mathbb{Z})$, 
 which we denoted by $a_e=[\Phi_e]\in H^d(M)$.
 
 From the previous discussion, $e_{A,J,p}$ is a pseudo-cycle, so it determines a homomorphism
-\[\Phi_{A,J,p}\colon H_d(M^p,\mathbb{Z})\rightarrow \mathbb{Z}\]
+\[\Phi_{A,J,p}\colon H_d(M^p,\mathbb{Z})\rightarrow \mathbb{Z},\]
 with 
 \begin{equation}\label{equ:dim}
-    d=2(n-1)(p-1)+4-2c_1(A)
+    d=2(n-1)(p-1)+4-2c_1(A).
 \end{equation}
 For a homology class $\alpha\in H_d(M^p,\mathbb{Z})$, represent it by a cycle $f\colon V\rightarrow M^p$, 
 and put it in general position so that it transverse to $e_{A,J,p}$, 
@@ -417,17 +412,17 @@ which is a weak representative of $\alpha$ and the homomorphism $\Phi_{A,J,p}$
 only depends on the bordism class of the evaluation map $e_{A,J,p}$.
 
 The invariant $\Phi_{A,J,p}(\alpha)$ vanishes on all torsion elements $\alpha\in H_d(M^p,\mathbb{Z})$. 
-Since the free part $H_d(M^p,\mathbb{Z})/\textrm{Tor}$ is generated by 
+Since the free part $H_d(M^p,\mathbb{Z})/\mathrm{torsion}$ is generated by 
 product cycles $\alpha=(\alpha_1\times\alpha_2\times\cdots \alpha_p)$, 
-we often restricts $\Phi_{A,J,p}$ to such cycles and write
-\[\Phi_{A,J,p}(\alpha_1,\cdots,\alpha_p)=\Phi_{A,J,p}(\alpha_1\times\alpha_2\times\cdots \alpha_p)\]
+we often restrict $\Phi_{A,J,p}$ to such cycles and write
+\[\Phi_{A,J,p}(\alpha_1,\cdots,\alpha_p)=\Phi_{A,J,p}(\alpha_1\times\alpha_2\times\cdots \alpha_p).\]
 It is convenient to set $\Phi_{A,J,p}=0$ when the dimension condition (\ref{equ:dim}) is not satisfied.
 
 \begin{remark}
 Actually, the invariant $\Phi_{A,J,p}(\alpha,\cdots,\alpha_p)$ can be defined as 
-the intersection number of $e_{A,J,p}$ with a product cycle $f_1\times\cdots f_p$ 
+the intersection number of $e_{A,J,p}$ with a product cycle $f_1\times\cdots\times f_p$ 
 where $f_j\colon V_j\rightarrow M$ are pseudo-cycles representing the homology class $\alpha_j$, respectively. 
-This is a simple corollary of Lemma 1.2 by considering $f$ is a product cycle and $\phi$ a product diffeomorphism.
+This is a simple corollary of Lemma \ref{lem-2-2} by considering $f$ is a product cycle and $\phi$ a product diffeomorphism.
 \end{remark}
 
 It is an interesting fact that the invariant is actually independent of the choice of $J$ which used to define it.
@@ -437,7 +432,7 @@ It is an interesting fact that the invariant is actually independent of the choi
     $A$ is not a nontrivial multiple of a class $B$ with $c_1(B)=0$. Then the homomorphism
     \[\Phi_{A,p}=\Phi_{A,J,p}\colon H_d(M^p,\mathbb{Z})\rightarrow \mathbb{Z}\]
     is independent of the choice of the regular $\omega$-tame 
-    almost complex structure $J\in \mathscr{J}_{\textrm{reg}}(M,\omega)$.
+    almost complex structure $J\in \mathscr{J}_{\mathrm{reg}}(M,\omega)$.
 \end{proposition}
 
 \begin{proof}
@@ -446,7 +441,7 @@ It is an interesting fact that the invariant is actually independent of the choi
     \[\mathscr{W}(D,T,\{J_\lambda\}_\lambda,p)=\bigcup_{\lambda}\{\lambda\}\times\mathscr{W}(D,T,J_\lambda,p)\]
     are smooth manifolds for all $(D,T)$.
     
-    By Gromov's compactness theorem, the closure of the closure of 
+    By Gromov's compactness theorem, the closure of 
     the image of $\mathscr{W}(A,J_\lambda,p)$ under evaluation map 
     contain points in $M^p$ which lie on some cusp-curve 
     which represents class $A$. Thus, in order to compactify $X(A,J,p)$, 
@@ -457,19 +452,19 @@ It is an interesting fact that the invariant is actually independent of the choi
     \[ \begin{aligned}
         \dim\mathscr{W}(D,T,\{J_\lambda\}_\lambda,p)&= \dim \mdj+2p-6N+1\\
         &=2\sum_{j=1}^{N}c_1(A^j)+2n+4(N-1)+2p-6N+1\\
-        &=2\sum_{j=1}^{N}c_1(A^j)+2n+2p-2N-3
+        &=2\sum_{j=1}^{N}c_1(A^j)+2n+2p-2N-3.
     \end{aligned} \]
     If $N=1$, then $A=mA^1$ for $m\geq 2$, and $c_1(A^1)\neq0$, 
     if $J_\lambda\in\mathscr{J}_+(M,\omega,K)$ for some $K>\omega(A)$, then $c_1(A^1)>0$, so
-    \[1+\dim \maj\times_G(\cp{1})^p-\dim\mathscr{W}(D,T,\{J_\lambda\},p)\geq 2\]
+    \[1+\dim \maj\times_G(\cp{1})^p-\dim\mathscr{W}(D,T,\{J_\lambda\},p)\geq 2.\]
     If $N\geq 2$ then the above inequality also holds.
     Thus the evaluation maps
-    \[e_{A,J_0,p}\colon \mathscr{W}(A,J_0,p)\rightarrow M^p\qquad e_{A,J_1,p}\colon \mathscr{W}(A,J_1,p)\rightarrow M^p\]
+    \[e_{A,J_0,p}\colon \mathscr{W}(A,J_0,p)\rightarrow M^p,\qquad e_{A,J_1,p}\colon \mathscr{W}(A,J_1,p)\rightarrow M^p\]
     determine bordant pseudo-cycles and we are done. 
 \end{proof}
 
 A \textbf{deformation} of a symplectic form $\omega$ is 
-a smooth 1-parameter family of $\omega_t$,  $t\in[0,1]$ of forms starting from $\omega_0=\omega$. 
+a smooth 1-parameter family $\omega_t$,  $t\in[0,1]$ of forms starting from $\omega_0=\omega$. 
 The difference between deformation and isotopy is that 
 deformation do not require the cohomology class remain constant.
 
@@ -483,17 +478,17 @@ provided that $(M,\omega_t)$ is weakly monotone for all $t$.
     integrals of certain differential forms over the moduli space $\mathscr{W}(A,J,p)$. 
     Given a homology class $\alpha\in H_d(M^p)$ where $d$ satisfies the dimensional condition (\ref{equ:dim}), 
     we can define $\Phi_{A,J,p}(\alpha)$ as the integral
-    \[\Phi_{A,J,p}(\alpha)=\int_{\mathscr{W}(A,J,p)}e_{A,J,p}^*\tau\]
-    Where $\tau$ is closed and represents the Poincar\'e dual $a=PD([\alpha])\in H^{2np-d}(M^p)$, 
+    \[\Phi_{A,J,p}(\alpha)=\int_{\mathscr{W}(A,J,p)}e_{A,J,p}^*\tau,\]
+    where $\tau$ is closed and represents the Poincar\'e dual $a=\mathit{PD}([\alpha])\in H^{2np-d}(M^p)$, 
     then the degree of $\tau$ is
     \[ \begin{aligned}
         \deg \tau &=2np-d \\
         &=2np-2(np-n-p+1)-4+2c_1(A)\\
         &=2n+2p+2c_1(A)-6 \\
-        &=\dim\mathscr{W}(A,J,p)
+        &=\dim\mathscr{W}(A,J,p).
     \end{aligned} \]
     Thus $e_{A,J,p}^*\tau$ is a top-degree form on $\mathscr{W}(A,J,p)$. 
-    If one use this definition, there are some questions: 
+    If one uses this definition, there are some questions: 
     we must show that it is independent of differential form to represent the class, 
     and is independent of the almost complex structure $J$, and is finite.
 
@@ -503,27 +498,27 @@ provided that $(M,\omega_t)$ is weakly monotone for all $t$.
     it can be avoided since Sard's theorem. 
     The finiteness problem can be solved by choosing a differential form 
     which is supported near the image of a generic pseudo-cycle $f\colon V\rightarrow M^p$ 
-    which represents the Poincar\'e dual $a=PD(\alpha)$. 
+    which represents the Poincar\'e dual $a=\mathit{PD}(\alpha)$. 
     If $f$ is transverse to the evaluation map then the pull-back has compact support.
 \end{remark}
 
-In this sense, it's more similar to the definition in algebraic settings
-\[\langle \phi_1,\cdots,\phi_p \rangle_{g,p,\beta}=\int_{\left[\overline{M}_{g,p}(X,\beta)\right]^{\textrm{vir}}} \phi_1\cup\cdots\phi_p \]
+In this sense, it is more similar to the definition in algebraic settings
+\[\langle \phi_1,\cdots,\phi_p \rangle_{g,p,\beta}=\int_{\left[\overline{M}_{g,p}(X,\beta)\right]^{\mathrm{vir}}} \phi_1\cup\cdots\phi_p. \]
 
 \section{Examples and Applications}
 
-Let's look at some example:
+Let's look at some examples:
 
 \begin{example}
     Let $(M,\omega)$ be a compact symplectic 4-manifold and $A$ be a spherical homology class 
-    s.t. $c_1(A)=1$. Then if $a_p\in H_2(M)$, then
-    \[\Phi_{A,p}(\alpha_1,\cdots,\alpha_p)=\Phi_{A,p-1}(\alpha_1,\cdots,\alpha_{p-1})\cdot \int_A \alpha_p\]
+    such that $c_1(A)=1$. Then if $a_p\in H_2(M)$, then
+    \[\Phi_{A,p}(\alpha_1,\cdots,\alpha_p)=\Phi_{A,p-1}(\alpha_1,\cdots,\alpha_{p-1})\cdot \int_A \alpha_p.\]
     It can be easily seen through the definition using product cycles.
 \end{example}
 
 \begin{example}
     Let $(M,\omega)$ be a compact weakly monotone manifold and $A\neq 0$. Then
-    \[\Phi_{A,p}(\alpha_1,\cdots,\alpha_{p-1},[M])=0\]
+    \[\Phi_{A,p}(\alpha_1,\cdots,\alpha_{p-1},[M])=0.\]
 \end{example}
 
 Before starting the third example, we introduce a conclusion, 
@@ -541,8 +536,8 @@ And we have the following lemma.
 
 \begin{example}
     In $\cp{n}$, two points lie on a unique line. So this should be translated into
-    \[\Phi_L(\pt,\pt)=1\]
-    Let's calculate it in our previous definition.
+    \[\Phi_L(\pt,\pt)=1.\]
+    Let us calculate it in our previous definition.
     
     In this case, $L=[\cp{1}]\in H_2(\cp{n},\mathbb{Z})$ and $\pt\in H_0(\cp{n},\mathbb{Z})$. 
     And the dimensional condition gives
@@ -554,39 +549,38 @@ And we have the following lemma.
     Thus $J_0$ satisfies the regularity requirement needed for the definition for $\Phi_L$. 
     Since all the evaluation maps 
     \[e_D\colon \mathscr{M}(A_1,\cdots,A_N)\times(\cp{1})^{2N-2}\rightarrow M^{2N-2}\]
-    are transverse to the diagonal $\Delta_N\subset M^{2N-2}$
-    Thus $\Phi_L(\pt,\pt)=1$ 
+    are transverse to the diagonal $\Delta_N\subset M^{2N-2}$.
+    Thus $\Phi_L(\pt,\pt)=1$.
 \end{example}
 
-We have the following lemma
+We have the following lemma.
 
 \begin{lemma}
     Let $\widetilde{M}$ be the product of $\cp{1}$ with a symplectic manifold 
     $(M,\omega)$ and $\widetilde{A}\in H_2(\widetilde{M},\mathbb{Z})$ 
     be the homology class represented by the spheres $S^2\times\pt  $. 
     Then for every $J\in\mathscr{J}(M,\omega)$, 
-    the product almost complex structure $\widetilde{J}:=i\times J$ is regular for $\widetilde{A}$
+    the product almost complex structure $\widetilde{J}:=i\times J$ is regular for $\widetilde{A}$.
 \end{lemma}
 
 \begin{example}
     Consider the manifold $M=\cp{1}\times V$ where $\pi_2(V)=0$, 
     and consider the homology class $A=\left[\cp{1}\times \pt\right]\in H_2(M)$, then
-    \[\Phi_{A}(\pt)=1\]
+    \[\Phi_{A}(\pt)=1.\]
 \end{example}
 
 \begin{proof}
     Since $c_1(A)=2$, thus $d=0$, so the dimensional condition is satisfied.  
     And $(M,\omega)$ is weakly monotone since $\pi_2(V)=0$. 
     Then we calculate the dimensions
-    \[\dim\mathscr{W}(A,J)=2(n+2)=\dim M\]
-    choose the almost complex structure $i\times J$, then notice that $u[\cp{1}]=[A]$, 
+    \[\dim\mathscr{W}(A,J)=2(n+2)=\dim M.\]
+    Choose the almost complex structure $i\times J$, then notice that $u[\cp{1}]=[A]$, 
     so the evaluation map is surjective and thus a diffeomorphism. So $\Phi_{A}(\pt)=1$.
 \end{proof} 
 
 As a consequence of the fact that the evaluation map is of degree 1, 
 Gromov used this fact in \cite{gromov} in 1985 to prove the famous non-squeezing theorem, 
 which implies the rigidity of symplectic manifolds. We will give a sketch of proof here. 
-And before that
 
 \begin{lemma}
     Every non-parametrized $J$-holomorphic curve is absolutely area minimizing in its homology class.
@@ -610,32 +604,32 @@ And before that
     the center of the ball $B^{2n}(r)$. Since $J_0$ is standard, 
     this curve is holomorphic in the usual sense and is a minimal surface in $B^{2n}(r)$. 
     And from the result in minimal surface, the area is at least $\pi r^2$, thus
-    \[\pi r^2\leq\int_C \omega_0=\int_{\psi^{-1}(C')}\psi^*\omega<\int_{C'}\omega=\omega(A)\pi\lambda^2+\epsilon\]
-    and we're done.
+    \[\pi r^2\leq\int_C \omega_0=\int_{\psi^{-1}(C')}\psi^*\omega<\int_{C'}\omega=\omega(A)\pi\lambda^2+\epsilon,\]
+    and we are done.
 \end{proof}
 
 \section{The Invariant \texorpdfstring{$\Psi$}{Ψ}}
 
 As in the definition of $\Phi$, roughly speaking, this invariant $\Psi$ counts the number
-\[\Psi_{A,p}(\alpha_1,\cdots,\alpha_p)=\#\{ u\in\maj|u(z_j)\in\alpha_j  \}\]
+\[\Psi_{A,p}(\alpha_1,\cdots,\alpha_p)=\#\{ u\in\maj\mid u(z_j)\in\alpha_j  \}.\]
 The dimensional condition of $d$ will guarantee that this is indeed a finite set. 
 And we will give the precise definition below.
 
 As in the previous case, we consider the pseudo-cycle represented by $e_{A,J,\z}$ 
 and it determines a homomorphism
-\[\Psi_{A,J,\z}\colon H_d(M^p,\mathbb{Z})\rightarrow \mathbb{Z}\]
+\[\Psi_{A,J,\z}\colon H_d(M^p,\mathbb{Z})\rightarrow \mathbb{Z},\]
 where
-\[d=2n(p-1)-2c_1(A)\]
-Represent a homology class $\alpha=\alpha_1\times\cdots\alpha_p\in H_d(M,\mathbb{Z})$ by 
-\[f=f_1\times\cdots f_p\colon V_1\times\cdots V_p\rightarrow M^p\]
-put this in general position so that it becomes transverse to the maps $e_{D,T,\z}$.
+\[d=2n(p-1)-2c_1(A).\]
+Represent a homology class $\alpha=\alpha_1\times\cdots\times\alpha_p\in H_d(M,\mathbb{Z})$ by 
+\[f=f_1\times\cdots f_p\colon V_1\times\cdots\times V_p\rightarrow M^p.\]
+Put this in general position so that it becomes transverse to the maps $e_{D,T,\z}$.
 So we may define
-\[\Psi_{A,J,\z}(\alpha_1,\cdots,\alpha_p)=e_{A,J,\z}\cdot f\]
-by the previous lemmas, this depends only on the bordism class of $f$ 
+\[\Psi_{A,J,\z}(\alpha_1,\cdots,\alpha_p)=e_{A,J,\z}\cdot f.\]
+By the previous lemmas, this depends only on the bordism class of $f$ 
 and hence only the homology class of $\alpha$, 
 and depends only on the bordism class of the evaluation map $e_{A,J,\z}$.
 
-Again, we mention some conditions that needs to be added:
+Again, we mention some conditions that need to be added:
 
 \begin{enumerate}
     \item If $A=mB$ is a nontrivial multiple of a homology class $B$ 
@@ -644,13 +638,13 @@ Again, we mention some conditions that needs to be added:
     every $J$-effective homology class $A\in H_2(M)$ has Chern number $c_1(A)\geq 2$.
 \end{enumerate}
 
-In this case, we have the proposition
+In this case, we have the following proposition.
 
 \begin{proposition}
     Assume the above two conditions, the homomorphism
     \[\Psi_{A,p}=\Psi_{A,J,\z}\colon H_d(M^p,\mathbb{Z})\rightarrow \mathbb{Z}\]
     is independent of the choice of the regular $\omega$-tame almost complex structure 
-    $J\in \mathscr{J}——{\textrm{reg}}(M,\omega)$ and the $p$-tuple $\z\in (\cp{1})^p$ used to define it. 
+    $J\in \mathscr{J}_{\mathrm{reg}}(M,\omega)$ and the $p$-tuple $\z\in (\cp{1})^p$ used to define it. 
     Hence it only depends on the deformation class of $\omega$.
 \end{proposition}
 
@@ -658,25 +652,25 @@ In this case, we have the proposition
     The proof is similar to the proof of Proposition \ref{prop-4-2}, 
     which only need to consider the regular homotopy $\{J_\lambda\}$ and $\{\z_\lambda\}$, 
     so that we need to consider the bordism manifold
-    \[\mathscr{V}(D,T,\{J_\lambda\},\{\z_\lambda\})=\bigcup_{\lambda}\{\lambda\}\times\mathscr{V}(D,T,J_\lambda,\z_\lambda)\]
+    \[\mathscr{V}(D,T,\{J_\lambda\},\{\z_\lambda\})=\bigcup_{\lambda}{}\{\lambda\}\times\mathscr{V}(D,T,J_\lambda,\z_\lambda),\]
     and we need to show that this is a smooth manifold.
     
     Then following the similar argument we can show that the evaluation maps
-    \[e_{A,J_0,\z_0}\colon \mathscr{M}(A,J_0)\rightarrow M^p \qquad e_{A,J_1,\z_1}\colon \mathscr{M}(A,J_1)\rightarrow M^p\]
+    \[e_{A,J_0,\z_0}\colon \mathscr{M}(A,J_0)\rightarrow M^p, \qquad e_{A,J_1,\z_1}\colon \mathscr{M}(A,J_1)\rightarrow M^p\]
     determine bordant pseudo-cycles.
 \end{proof}
 
 In fact, this invariant can also be understood as integration over a moduli space, 
-represent the cohomology classes $a_j=PD(\alpha_j)\in H^{2n-d_j}(M)$ 
+represent the cohomology classes $a_j=\mathit{PD}(\alpha_j)\in H^{2n-d_j}(M)$ 
 by closed forms $\tau_j\in \Omega^{2n-d_j}(M)$ and define
-\[\Psi_{A,J,\z}(\alpha_1,\cdots,\alpha_p)=\int_{\maj}e_1^*\tau_1\wedge\cdots e_p^*\tau_p\]
+\[\Psi_{A,J,\z}(\alpha_1,\cdots,\alpha_p)=\int_{\maj}e_1^*\tau_1\wedge\cdots e_p^*\tau_p,\]
 where $e_j\colon \maj\rightarrow M$ denotes the evaluation map $e_j(u)=u(z_j)$. 
 The dimension condition means that
-\[\sum_{j=1}^p\deg \tau_j=2n+2c_1(A)=\dim\maj\]
-the difficulties have been mentioned in the case of $\Phi$.
+\[\sum_{j=1}^p\deg \tau_j=2n+2c_1(A)=\dim\maj.\]
+The difficulties have been mentioned in the case of $\Phi$.
 
 Also, we can compare this to the definition in algebraic setting:
-\[\langle \phi_1,\cdots,\phi_p \rangle'_{g,p,\beta}=\int_{\left[\overline{M}_{g,p}(X,\beta)\right]^{\textrm{vir}}} \prod e_k^*\phi_k\]
+\[\langle \phi_1,\cdots,\phi_p \rangle'_{g,p,\beta}=\int_{\left[\overline{M}_{g,p}(X,\beta)\right]^{\mathrm{vir}}} \prod e_k^*\phi_k.\]
 
 Actually, both $\Phi$ and $\Psi$ can be viewed as 
 special cases of the Gromov--Witten classes as formulated by Kontsevich and Manin in \cite{kontsevich-manin}.
@@ -689,26 +683,26 @@ and $\phi(z_i)=z_i$ is the identity map and denote
 $\mathscr{C}_{g,k}\subset\mathscr{J}(\Sigma)\times\Sigma^k $ such stable tuples.
 
 Then consider the quotient space
-\[\mathscr{M}_{g,k}=\frac{\mathscr{C}_{g,k}}{\textrm{Diff}(\Sigma)}\]
+\[\mathscr{M}_{g,k}=\frac{\mathscr{C}_{g,k}}{\mathrm{Diff}(\Sigma)},\]
 which is a manifold of dimension $6g-6+2k$. Then consider the space
 $\mathscr{C}_{g,k}(M,A)$ of all $(k+2)$-tuples $(u,j,z)$ where 
 $(j,z)\in \mathscr{C}_{g,k}$ and $u\colon \Sigma\rightarrow M$ is a simple 
 $(j,J)$-holomorphic curve representing the class $A$. 
 The group Diff$(\Sigma)$ acts on this space by
-\[\phi\cdot (u,j,z)=(u\circ\phi,\phi^*j,\phi^{-1}(z_1),\cdots,\phi^{-1}(z_p)\]
+\[\phi\cdot (u,j,z)=(u\circ\phi,\phi^*j,\phi^{-1}(z_1),\cdots,\phi^{-1}(z_p),\]
 and, for a generic $J\in\mathscr{J}(M,\omega)$, the quotient space
-\[\mathscr{M}_{g,k}(M,A)=\frac{\mathscr{C}_{g,k}(M,A)}{\textrm{Diff}(\Sigma)}\]
+\[\mathscr{M}_{g,k}(M,A)=\frac{\mathscr{C}_{g,k}(M,A)}{\mathrm{Diff}(\Sigma)}\]
 is a manifold of dimension $(n-3)(2-2g)+2c_1(A)+2k$, which give rise to a linear map
-\[GW_{A,g,k}\colon H^*(M^k)\rightarrow H^*(\mathscr{M}_{g,k})\]
+\[\mathit{GW}_{A,g,k}\colon H^*(M^k)\rightarrow H^*(\mathscr{M}_{g,k}),\]
 defined, heuristically by
-\[GW_{A,g,k}(a_1,\cdots,a_k)=PD(\pi_*PD(e_1^*a_1\wedge\cdots e_k^*a_k))\]
+\[\mathit{GW}_{A,g,k}(a_1,\cdots,a_k)=\mathit{PD}(\pi_*\mathit{PD}(e_1^*a_1\wedge\cdots e_k^*a_k))\]
 for $a_i\in H^*(M)$ where $e_i$ is the evaluation map and $\pi\colon \mathscr{M}_{g,k}(M,A)\rightarrow \mathscr{M}_{g,k}$ is the projection. 
 Note that 
-\[\deg GW_{A,g,k}(a_1,\cdots,a_k)=n(2-2g)+2c_1(A)-\sum_{i=1}^{k}\deg a_i\]
+\[\deg \mathit{GW}_{A,g,k}(a_1,\cdots,a_k)=n(2-2g)+2c_1(A)-\sum_{i=1}^{k}\deg a_i.\]
 The invariant $\Psi$ corresponds to the case where this degree is zero and is given by 
 evaluating the cohomology class at a point. 
 And the invariant $\Phi$ correspond to the case where the degree is the dimension of $\mathscr{M}_{g,k}$ 
-and is given by evaluating the cohomology class $GW_{A,g,k}(a_1,\cdots,a_k)$ 
+and is given by evaluating the cohomology class $\mathit{GW}_{A,g,k}(a_1,\cdots,a_k)$ 
 on the fundamental cycle $\left[ \mathscr{M}_{g,k} \right]$.
 
 \printbibliography
