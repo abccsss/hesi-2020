@@ -12,11 +12,16 @@
 \setmainfont[Path=../../fonts/,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]{STIX2Text}
 \setsansfont[Path=../../fonts/,Scale=MatchUppercase,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]{Lato}
 \setmonofont[Path=../../fonts/,Scale=.9,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold]{FiraMono}
-\setmathfont[Path=../../fonts/]{STIX2Math.otf}
-\setmathfont[Path=../../fonts/,Scale=.95]{LatoMath.otf}[version=sf]
-\setmathfont[Path=../../fonts/,Scale=.95]{LatoMath.otf}[range={bb,sfup->up,sfit->it,bfsfup->bfup,bfsfit->bfit}]
+\setmathfont[Path=../../fonts/,BoldFont=STIX2Math-Bold.otf]{STIX2Math.otf}
+\setmathfont[Path=../../fonts/,Scale=.95,BoldFont=LatoMath.otf,version=sf]{LatoMath.otf}
+\setmathfont[Path=../../fonts/,Scale=.95,BoldFont=LatoMath.otf,range={bb,sfup->up,sfit->it,bfsfup->bfup,bfsfit->bfit}]{LatoMath.otf}
 
 \Umathcode`/ = "0 "0 "2215    % / -> U+2215 division slash
+
+% bold math in bold text https://tex.stackexchange.com/q/41379
+\makeatletter
+\g@addto@macro\bfseries{\boldmath} 
+\makeatother
 
 % title & abstract
 \def\title#1\author#2{\headertitle{#1}\vspace*{0mm}\begin{center}{\sf\LARGE#1\par}\vspace{10mm}{\large#2}\end{center}\vspace{10mm}}
