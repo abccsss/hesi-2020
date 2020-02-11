@@ -18,6 +18,12 @@
 
 \Umathcode`/ = "0 "0 "2215    % / -> U+2215 division slash
 
+% patch 'text math' math alphabets in bold math
+\setmathfontface\mathrm[Path=../../fonts/,version=bold]{STIX2Text-Bold.otf}
+\setmathfontface\mathit[Path=../../fonts/,version=bold]{STIX2Text-BoldItalic.otf}
+\setmathfontface\mathbf[Path=../../fonts/,version=bold]{STIX2Text-Bold.otf}
+\setmathfontface\mathtt[Path=../../fonts/,Scale=.9,version=bold]{FiraMono-Bold.otf}
+
 % bold math in bold text https://tex.stackexchange.com/q/41379
 \makeatletter
 \g@addto@macro\bfseries{\boldmath} 
@@ -100,6 +106,7 @@
 \usepackage{xpatch}
 \renewcommand*{\bibfont}{\small}
 \DeclareFieldFormat{labelalpha}{\mkbibbold{#1}}
+\DeclareFieldFormat{extraalpha}{\mkbibbold{\mknumalph{#1}}}
 \DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
 \DeclareFieldFormat[book,inbook]{number}{\mkbibbold{#1}}
 \DeclareFieldFormat[article]{number}{(#1)}
@@ -129,6 +136,7 @@
 }
 \AtBeginBibliography{
   \DeclareFieldFormat{labelalpha}{#1}
+  \DeclareFieldFormat{extraalpha}{\mknumalph{#1}}
 }
 \AtEveryBibitem{
   \ifentrytype{online}{%
