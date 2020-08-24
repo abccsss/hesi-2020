@@ -1,0 +1,534 @@
+在本节中, 我们通过 $\upB \GL(n, \bbK)$ 的一个具体的构造, 来找出向量丛的所有示性类.
+当然, 本节的标题已经不小心透露了这个构造——向量丛的分类空间就是 Graßmann 流形.
+我们回忆, 向量丛的示性类就是分类空间的上同调类, 所以在这一节里,
+我们要计算 Graßmann 流形的上同调环.
+
+\subsection{Graßmann 流形}
+
+\begin{definition}
+    设 $0 \leq n \leq N$. 我们定义
+    \term{Stiefel 流形} $V_n (\bbK^N)$ 和
+    \term{Graßmann 流形} $G_n (\bbK^N)$ 如下：
+    \[ \begin{aligned}
+        V_n (\bbK^N) & = \{ \text{$\bbK^N$ 中所有线性无关的 $n$ 元有序向量组} \}, \\
+        G_n (\bbK^N) & = \{ \text{$\bbK^N$ 的所有 $n$ 维线性子空间} \}.
+    \end{aligned} \]
+    它们都带有自然的拓扑, 以及光滑流形结构. 定义
+    \[ \begin{aligned}
+        V_n (\bbK^\infty) & = \colim_{N \to \infty} V_n (\bbK^N), \\
+        G_n (\bbK^\infty) & = \colim_{N \to \infty} G_n (\bbK^N),
+    \end{aligned} \]
+    其中余极限由映射
+    $\bbK^N \hookrightarrow \bbK^{N+1} \hookrightarrow \cdots$ 诱导. 
+\end{definition}
+
+自然地, Stiefel 流形是 Graßmann 流形上的纤维丛:
+\[ \GL(n, \bbK) \to V_n(\bbK^N) \to G_n(\bbK^N). \]
+这是一个 $\GL(n, \bbK)$-主丛. 它与映射 $\bbK^N \hookrightarrow \bbK^{N+1}$ 相容, 故有主丛
+\[ \GL(n, \bbK) \to V_n(\bbK^\infty) \to G_n(\bbK^\infty). \]
+
+\begin{theorem}
+    无穷维 Stiefel 流形 $V_n(\bbK^\infty)$ 是可缩的, 从而
+    \[ \upB \GL(n, \bbK) \simeq G_n(\bbK^\infty). \]
+\end{theorem}
+
+\begin{proof}
+    通过 $\bbK^\infty$ 的同伦
+    \[ 
+        (x_1, x_2, \dotsc) \mapsto 
+        (1 - t) (x_1, x_2, \dotsc) +
+        t ( \underbrace{0, \dotsc, 0}_n, x_1, x_2, \dotsc ), 
+    \]
+    我们可以把 $V_n(\bbK^\infty)$ 移到前 $n$ 个坐标为 $0$ 的子空间中. 
+    请读者验证, 在 $V_n$ 的定义中要求的线性无关性不会被打破.
+    接下来, 通过 $V_n(\bbK^\infty)$ 的同伦
+    \[ (v_1, \dotsc, v_n) \mapsto (v_1 + t e_1, \dotsc, v_n + t e_n), \]
+    最后把 $\bbK^\infty$ 中除了前 $n$ 个坐标以外的部分都压缩回 $0$, 
+    我们就把 $V_n(\bbK^\infty)$ 形变收缩到了点 $(e_1, \dotsc, e_n)$. 
+\end{proof}
+
+我们可以用同样的方法, 
+构造出正交群、酉群和四元数酉群的万有主丛.
+
+\begin{proposition}
+    定义
+    \[ V'_n (\bbK^N) = \{ \text{$\bbK^N$ 中所有标准正交的 $n$ 元有序向量组} \}, \]
+    其中 $\bbK^N$ 带有一个 Euclid 度量 ($\bbK = \bbR$ 时)
+    或一个 Hermite 度量 ($\bbK = \bbC, \bbH$ 时).
+    类似地定义 $V'_n (\bbK^\infty)$. 
+    则自然的映射
+    \[ V'_n (\bbK^\infty) \to G_n (\bbK^\infty) \]
+    是正交群 ($\bbK = \bbR$ 时)、酉群 ($\bbK = \bbC, \bbH$ 时) 的万有主丛.
+\end{proposition}
+
+\begin{proof}
+    只需要验证 $V'_n (\bbK^\infty)$ 是可缩的.
+    请读者模仿上一个证明完成验证.
+\end{proof}
+
+\begin{corollary}
+    我们有
+    \[ \arraycolsep=.16em
+    \begin{array}{rcl}
+        \upB\GL(n, \bbR) \simeq & G_n (\bbR^\infty) & \simeq \upB\upO(n), \\
+        \upB\GL(n, \bbC) \simeq & G_n (\bbC^\infty) & \simeq \upB\upU(n), \\
+        \upB\GL(n, \bbH) \simeq & G_n (\bbH^\infty) & \simeq \upB\Sp(n).
+    \end{array} \]
+    特别地, 
+    \[ 
+        \upB\upO(1) \simeq \mathbb{RP}^\infty, \quad
+        \upB\upU(1) \simeq \mathbb{CP}^\infty, \quad
+        \upB\Sp(1) \simeq \mathbb{HP}^\infty. \thmqedhere
+    \]
+\end{corollary}
+
+这也说明, 任何空间上的 $\GL(n, \bbR)$-主丛和 $\upO(n)$-主丛一样多.
+类似的事实对 $\bbK = \bbC, \bbH$ 也成立.
+这样就证明了下面的结论, 虽然我们的证明路径大概是绕路最多的.
+
+\begin{corollary}
+    每个实向量丛都有 Euclid 度量.
+    每个复向量丛都有 Hermite 度量.
+    每个四元数向量丛都有 Hermite 度量. \qed
+\end{corollary}
+
+\subsection{向量丛的示性类}
+
+由定义, 向量丛的示性类就是 Graßmann 流形的上同调环的元素.
+因此, 我们想要计算出这个环.
+
+我们从一些定义开始.
+和上面一样, 我们记 $\bbK = \bbR, \bbC, \bbH$.
+
+\begin{definition}
+    设 $p \: E \to B$ 是 $\bbK$-向量丛, 设 $R$ 是环.
+    则 $E$ 的一个 $R$-\term{定向} (orientation) 由以下信息组成:
+    \begin{itemize}
+        \item
+            对每个 $b \in B$, 选取了纤维 $p^{-1} (b) \simeq \bbK^n$
+            的相对上同调类
+            \[ \pm 1 \in
+                H^{dn} (\bbK^n,\ \bbK^n \setminus \{ 0 \}; \ R) \simeq R, \]
+            其中 $d = \dim_{\bbR} \bbK$.
+            即, 我们在 $\pm 1$ 这两个选项中选定了一个.
+            这些选取方式满足,
+            每个点 $b$ 处的选取方式与 $b$ 附近的选取方式是相容的.
+    \end{itemize}
+    如果存在这样的 $R$-定向, 就称 $E$ 为 $R$-\term{可定向} (orientable) 的.
+\end{definition}
+
+我们把严格的叙述留给读者完成.
+
+\begin{definition}
+    我们说一个环 $R$ 是 $\bbK$-\term{可定向} 的, 如果以下等价的条件成立:
+    \begin{itemize}
+        \item
+            要么 $\bbK = \bbC, \bbH$, 要么 $2R = 0$.
+        \item
+            所有 $\bbK$-向量丛都是 $R$-可定向的.
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    这个无聊的定义可以进一步推广.
+    我们知道, 每个系数环 $R$ 定义了一个上同调理论.
+    在更一般的情况下, 我们考虑由\term{谱环}定义的\term{广义上同调}理论, 例如 $K$-理论.
+    谱环的 $\bbK$-可定向性是有意思的性质, 但我们不详细讨论.
+    本节接下来的讨论对可定向的谱环也都适用. \varqed
+\end{remark}
+
+\begin{theorem} \label{thm-2-main}
+    设 $R$ 是 $\bbK$-可定向的环.
+    \begin{itemize}
+        \item 
+            当 $\bbK = \bbR$ 时, 有分次环的同构
+            \[ H^\bullet (\upB\upO(n); R) \simeq R[w_1, \dotsc, w_n], \]
+            其中 $\deg w_i = i$. 
+            上同调类 $w_i$ 对应了实向量丛的示性类,
+            称为第 $i$ 个 \term{Stiefel--Whitney~类}. 
+        \item 
+            当 $\bbK = \bbC$ 时, 有分次环的同构
+            \[ H^\bullet (\upB\upU(n); R) \simeq R[c_1, \dotsc, c_n], \]
+            其中 $\deg c_i = 2i$. 
+            上同调类 $c_i$ 对应了复向量丛的示性类,
+            称为第 $i$ 个\term{陈类}.%
+                \footnote{以陈省身的名字命名, 英文转录为 Chern.} 
+        \item 
+            当 $\bbK = \bbH$ 时, 有分次环的同构
+            \[ H^\bullet (\upB\Sp(n); R) \simeq R[p_1, \dotsc, p_n], \]
+            其中 $\deg p_i = 4i$. 
+            上同调类 $p_i$ 对应了四元数向量丛的示性类,
+            称为第 $i$ 个 \term{Понтрягин~类}.%
+                \footnote{英文转录为 Pontryagin, 德文转录为 Pontrjagin, 二者均见于英文文献. 俄文手写体为 \textit{Понтрягин}.}
+    \end{itemize}
+\end{theorem}
+
+我们接下来的目标就是证明这个主要定理.
+
+\subsection{Thom 同构}
+
+假设我们有已定向的向量丛 $E \to B$.
+那么, 每个纤维 $\bbK^n$ 上就选好了一个相对于 $\bbK^n \setminus \{ 0 \}$
+的相对上同调类. 因为这些上同调类在局部上是相容的,
+所以我们可以把它拼起来, 得到一个整体的上同调类
+\[ u \in H^{dn}(E,\ E \setminus B;\ R), \]
+这里 $B$ 以明显的方式 (通过零截面) 嵌入到 $E$ 中.
+下面, 我们严格地叙述和证明这个想法. 
+
+\begin{definition}
+    \ 
+    \begin{itemize}[beginpenalty=10000]
+        \item
+            一个\term{球丛} (sphere bundle)
+            是一个纤维为球面 $S^n$ 的纤维丛,
+            其转移映射是球的旋转或翻转 (即 $\bbR^{n + 1}$ 的正交变换).
+        \item
+            一个\term{圆盘丛} (disk bundle)
+            是一个纤维为圆盘 $D^n$ 的纤维丛,
+            其转移映射是圆盘的旋转或翻转 (即正交变换).
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    设 $E \to B$ 是纤维为 $\bbR^n$ 的向量丛.
+    在这个向量丛上取一个 Euclid 度量.
+    \begin{itemize}
+        \item
+            在每个纤维上取出单位球面 $S^{n - 1}$, 得到的球丛记为
+            \[ \upS(E) \to B. \]
+        \item
+            在每个纤维上取出单位圆盘 $D^n$, 得到的圆盘丛记为
+            \[ \upD(E) \to B. \]
+        \item
+            定义 $E$ 的 \term{Thom 空间}为商空间
+            \[ \Th(E) = \upD(E) / \upS(E). \]
+            Thom 空间可以看成是给 $E$ 的每个纤维添加一个共同的无穷远点得到的空间.
+    \end{itemize}
+\end{definition}
+
+不难看出, Thom 空间的约化上同调就是 $(E,\ E \setminus B)$ 的相对上同调.
+这也可以理解成 ``在纤维方向上紧支'' 的上同调.
+如果这里 $B$ 是流形, $E$ 是光滑的向量丛,
+那么上同调类可以用微分形式来代表.
+如果使用那些在每个纤维上紧支的微分形式, 
+那么得到的 de~Rham 复形的上同调就是这个上同调.
+详细的讨论见 \cite{bott-tu}.
+
+\begin{theorem}[Thom 同构] \label{thm-2-thom}
+    设 $E \to B$ 是 $R$-可定向的向量丛, 其纤维为 $\bbR^n$.
+    选取 $E$ 的一个 $R$-定向.
+    \begin{itemize}
+        \item
+            存在唯一的上同调类
+            \[ u \in \widetilde{H}^n(\Th(E);\ R), \]
+            称为 \term{Thom 类}, 使得它限制在每个纤维 $S^n$ 上, 都是由定向确定的元素
+            \[ \pm 1 \in \widetilde{H}^n(S^n;\ R). \]
+        \item 
+            对每个 $q \in \bbZ$, 有同构
+            \[ {} \smallcup u \: H^q (B;\ R) \simeq \widetilde{H}^{q+n} (\Th(E);\ R). \]
+            这里, 我们约定负数上同调群为 $0$.
+    \end{itemize}
+\end{theorem}
+
+这里杯积 $\smallcup$ 的含义如下:
+在代数拓扑中, 对任何拓扑空间 $A \subset X$, 有杯积
+\[ \smallcup \: H^\bullet(X) \otimes H^\bullet(X,A) \to H^\bullet(X,A). \]
+在这里, 我们取 $X = \upD(E)$ 和 $A = \upS(E)$. 则
+\[ H^\bullet(\upD(E)) \simeq H^\bullet(B), \quad
+    H^\bullet(\upD(E),\ \upS(E)) \simeq \widetilde{H}^\bullet(\Th(E)). \]
+
+直观地看, Thom 类就是把每个纤维的上同调的生成元拼起来,
+所得到的整体的上同调类.
+
+在证明定理之前, 我们先证明一个引理.
+
+\begin{lemma}
+    记
+    \[ e^n = 1 \in H^n(D^n, S^{n - 1}) \simeq R. \]
+    则对任意两个空间 $A \subset X$, 相对上同调类的叉积映射
+    \[ 
+        {} \times e^n \:
+        H^q (X, A) \to
+        H^{q+n} (X \times D^n,\ X \times S^{n - 1} \cup A \times D^n)
+    \]
+    是同构.
+\end{lemma}
+
+\begin{proof}
+    先证明 $n = 1$ 的情况. 考虑三元组
+    \[ (
+        X \times D^1,\ 
+        X \times S^0 \cup A \times D^1,\ 
+        X \times \{1\} \cup A \times D^1
+    ) \]
+    的相对上同调长正合列. 我们有
+    \[ H^q (X \times D^1,\ X \times \{1\} \cup A \times D^1) \simeq 0, \]
+    因为 $X \times \{1\}$ 含入这两个空间的映射都是同伦等价.
+    因此, 上述长正合列就给出了所要的同构.
+
+    对一般的 $n$, 只需注意到对任何 $y \in H^q (X, A)$, 有
+    \[ y \times e^n = y \times e^1 \times \cdots \times e^1. \qedhere \]
+\end{proof}
+
+\begin{proof}[定理 \ref{thm-2-thom} 的证明]
+    我们从最简单的情况开始.
+
+    \begin{itemize}
+        \item[(1)] 
+            $E$ 是平凡丛 $B \times \bbR^n$.
+            在引理中取 $(X, A) = (B, \emptyset)$,
+            我们就得到了同构
+            \[ {} \times e^n \: H^q (\upD(E)) \simeq \widetilde{H}^{q+n} (\Th(E)). \]
+            因此, 我们定义
+            \[ u = 1 \times e^n \in \widetilde{H}^n(\Th(E)), \]
+            其中 $1 \in H^0(\upD(E))$.
+            则 $u$ 满足定理的要求.
+            而上述同构也保证了 $u$ 的唯一性,
+            因为 $1$ 是 $H^0(\upD(E))$ 中唯一的在每点限制都等于 $1$ 的上同调类.
+
+        \item[(2)]
+            $B = B_1 \cup B_2$, 其中 $B_1, B_2$ 是开子集,
+            且 $E|_{B_1}$ 和 $E|_{B_2}$ 是平凡丛.
+            记 $E_1 = p^{-1}(B_1)$, 及 $E_2 = p^{-1}(B_2)$.
+            考虑相对上同调的 Mayer--Vietoris 正合列
+            \begin{multline*}
+                \cdots \to H^q(\upD(E),\ \upS(E))
+                \xrightarrow{\alpha} H^q(\upD(E_1),\ \upS(E_1))
+                \oplus H^q(\upD(E_2),\ \upS(E_2)) \\
+                \xrightarrow{\beta} H^q(\upD(E_1 \cap E_2),\ \upS(E_1 \cap E_2)) \to \cdots.
+            \end{multline*}
+            由情况 (1), 存在 Thom 类 $u_i \in H^n(\upD(E_i),\ \upS(E_i))$ $(i=1,2)$.
+            这两个 Thom 类限制在 $E_1 \cap E_2$ 上也是 Thom 类, 从而由唯一性, 它们的限制相等.
+            因此, 它们可以粘成 $E$ 上的上同调类. 严格地说, 我们有 $\beta(u_1, u_2) = 0$,
+            从而存在 $u \in H^n(\upD(E),\ \upS(E))$, 使得 $\alpha(u) = (u_1, u_2)$.
+
+            再证明唯一性. 只需证明 $\alpha$ 是单射,
+            这是因为正合列的前一项是 
+            \[ H^{n - 1} (\upD(E_1 \cap E_2),\ \upS(E_1 \cap E_2)) \simeq H^{-1}(B) \simeq 0. \]
+
+        \item[(3)]
+            $B = B_1 \cup B_2 \cup B_3$, 其中 $B_i$ 是开子集,
+            且 $E|_{B_i}$ 是平凡丛. 对 $B_1$ 和 $B_2 \cup B_3$ 使用 (2) 的论述,
+            就完成了证明.
+
+        \item[($n$)]
+            $B = B_1 \cup \cdots \cup B_n$, 其中 $B_i$ 是开子集,
+            且 $E|_{B_i}$ 是平凡丛. 证明和 (3) 一样.
+
+        \item[]
+            $\cdots \cdots \cdots \cdots$
+
+        \item[($\infty$)]
+            $B = B_1 \cup B_2 \cup \cdots$, 其中 $B_i$ 是开子集,
+            且 $E|_{B_i}$ 是平凡丛. 这时, 我们想把无穷多个开子集上的上同调类拼起来.
+            这看起来很直观. 为了严格证明它,
+            我们使用 Mayer--Vietoris 序列的推广: \v{C}ech 上同调到普通上同调的谱序列
+            \[ E_1^{p, q} = \check{C}^p (\mathscr{B}, \mathscr{H}^q) \ \Rightarrow \ H^{p + q} (\upD(E),\ \upS(E);\ R), \]
+            其中 $\mathscr{B}$ 是开覆盖 $\{B_i\}$,
+            而 $\mathscr{H}^q$ 是 $B$ 上的预层, 定义为
+            \[ \mathscr{H}^q(U) = H^q(\upD(E|_U),\ \upS(E|_U);\ R) \quad (U \subset B). \]
+            事实上, $E_1^{p, q}$ 只有在 $q \geq n$ 时非零, 
+            而 $B_i$ 上的 Thom 类构成的元素 $\{u_i\}$ 在第 $(0, n)$ 格,
+            而且 $d\{u_i\} = 0$. 因此, 元素 $\{u_i\}$ 被保留在谱序列的每一页中,
+            最后成为 $H^n(\upD(E),\ \upS(E))$ 的一个元素 $u$.
+            这就是 Thom 类. \qedhere
+    \end{itemize}
+\end{proof}
+
+\subsection{Gysin 序列和 Euler 类}
+
+和上面一样, 设 $R$ 是系数环. 我们研究球丛,
+即纤维为 $S^n$ 且转移映射为正交变换的丛.
+
+\begin{theorem}[Gysin 序列]
+    设 $E \to B$ 是 $R$-可定向的 $S^n$-丛,
+    且已经选好了一个 $R$-定向.
+    则存在 \term{Euler 类}
+    \[ e = e(E) \in H^{n + 1} (B;\ R), \]
+    使得存在两个长正合列构成的图表
+    \[ \begin{adjustbox}{scale=.95, center}
+        \begin{tikzcd}[column sep=small]
+            \cdots \ar[r] & 
+            H^q (B) \ar[d, "\simeq"'] \ar[r, "p^*"] &
+            H^q (E) \ar[d, "\simeq"'] \ar[r, "\int"] &
+            H^{q - n} (B) \ar[d, "\smallcupcd u", "\simeq"'] \ar[r, "\smallcupcd e"] &
+            H^{q + 1} (B) \ar[d, "\simeq"'] \ar[r] & \cdots \\
+            \cdots \ar[r] &
+            H^q (\upD(E')) \ar[r] &
+            H^q (\upS(E')) \ar[r] &
+            H^q (\upD(E'),\ \upS(E')) \ar[r] &
+            H^{q + 1} (\upD(E')) \ar[r] & \cdots \rlap{\ ,}
+        \end{tikzcd}
+    \end{adjustbox} \]
+    其中 $E'$ 是 $E$ 所对应的 $\bbR^{n+1}$-丛.
+    第一行称为球丛 $E$ 的 \term{Gysin 序列}.
+\end{theorem}
+
+\begin{proof}
+    定义
+    \[ e = i^* u, \]
+    其中 $i \: B \to \Th(E)$ 是含入映射, 则定理是显然的.
+\end{proof}
+
+这里, 映射 $H^q (E) \to H^{q - n} (B)$ 被记作 $\int$ 的原因是,
+如果 $E$ 和 $B$ 是流形, 我们把上同调类用微分形式来代表,
+则这个映射对应于微分形式沿纤维的积分.
+这个操作把 $q$-形式变成 $(q - n)$-形式.
+详细的讨论见 \cite{bott-tu}.
+
+\begin{remark}
+    Thom 类和 Euler 类都依赖于定向的选取.
+    如果选取反的定向, 那么 Thom 类和 Euler 类都会反号. \varqed
+\end{remark}
+
+\begin{definition}
+    设 $E \to B$ 是 $R$-可定向的 $\bbR^n$-丛, 且已经选好了一个 $R$-定向.
+    我们定义 $E$ 的 \term{Euler 类}为
+    \[ e(E) = e(\upS(E)) \in H^n (B;\ R). \]
+\end{definition}
+
+Euler 类也是示性类, 但它依赖于向量丛的定向. 
+因此, 当 $R$ 不满足 $2R = 0$ 时,
+Euler 类是 $\upB\SO(n)$ 的上同调类, 而不是 $\upB\upO(n)$ 的上同调类.
+
+下面, 我们介绍 Thom 类和 Euler 类的乘积公式.
+
+\begin{proposition} \label{thm-2-product}
+    设 $E_1 \to B_1$ 和 $E_2 \to B_2$ 分别是 $R$-可定向的
+    $\bbR^{n_1}$-丛和 $\bbR^{n_2}$-丛, 且选好了各自的定向.
+    则 $E_1 \times E_2 \to B_1 \times B_2$
+    也是已定向的向量丛. 其 Thom 类是
+    \[ \begin{aligned}
+        u (E_1 \times E_2)
+        & = u (E_1) \otimes u(E_2) \\
+        & \in \widetilde{H}^{n_1} (\Th(E_1)) \otimes \widetilde{H}^{n_2} (\Th(E_2)) \\
+        & \subset \widetilde{H}^{n_1 + n_2} (\Th(E_1) \wedge \Th(E_2)) \\
+        & \simeq \widetilde{H}^{n_1 + n_2} (\Th(E_1 \times E_2)),
+    \end{aligned} \]
+    其中 $\wedge$ 表示带基点拓扑空间的压缩乘积 (smash product). 在同样的意义下, 我们还有
+    \[ e (E_1 \times E_2) = e (E_1) \otimes e (E_2). \]
+\end{proposition}
+
+\begin{proof}
+    第一个结论是由于 $u (E_1) \otimes u (E_2)$ 在纤维上的限制是
+    \[ 1 \otimes 1 \in \widetilde{H}^{n_1 + n_2} (S^{n_1} \wedge S^{n_2})
+        \simeq \widetilde{H}^{n_1 + n_2} (S^{n_1 + n_2}), \]
+    由 Thom 类的唯一性就得到了等式.
+    第二个等式是由于 Euler 类是 Thom 类在底空间上的限制.
+\end{proof}
+
+\begin{corollary}[乘积公式]
+    设 $E_1, E_2$ 是 $B$ 上的两个 $R$-可定向的向量丛, 且选好了各自的定向.
+    则 $E_1 \oplus E_2$ 也是已定向的向量丛, 且
+    \[ e (E_1 \oplus E_2) = e (E_1) \, e (E_2). \]
+\end{corollary}
+
+\begin{proof}
+    $E_1 \oplus E_2$ 是向量丛 $E_1 \times E_2$
+    沿着对角映射 $B \hookrightarrow B \times B$ 的拉回.
+    而这正是定义上同调的杯积的方法.
+    因此, 由上一结论, 我们就完成了证明.
+\end{proof}
+
+\subsection{主要定理的证明}
+
+现在, 我们就开始证明 (\ref{thm-2-main}) 了.
+我们需要一个结论, 来帮助我们描述 Graßmann 流形的性质.
+
+\begin{proposition} \label{thm-2-sbun}
+    可以选取合适的分类空间, 使得有球丛
+    \[ \arraycolsep=.16em
+    \begin{array}{rcl}
+        S^{ n - 1} \to & \upB \upO(n - 1) & \to \upB \upO(n), \\
+        S^{2n - 1} \to & \upB \upU(n - 1) & \to \upB \upU(n), \\
+        S^{4n - 1} \to & \upB \Sp (n - 1) & \to \upB \Sp (n).
+    \end{array} \]
+\end{proposition}
+
+\begin{proof}
+    我们有球丛
+    \[ 
+        S^{n-1} \simeq \upO(n) / \upO(n-1)
+        \to \upE \upO(n) / \upO(n - 1)
+        \to \upE \upO(n) / \upO(n) \simeq \upB \upO(n).
+    \]
+    其中, 中间一项同伦等价于 $\upB\upO(n - 1)$, 因为 $\upE\upO(n)$ 可缩. 
+    我们就得到了第一个球丛.
+    另外两个球丛是类似的. 
+\end{proof}
+
+为使叙述简便, 对 $\bbK = \bbR, \bbC, \bbH$, 我们分别记 $d = 1, 2, 4$, 及
+\[ G(n) = \upO(n),\ \upU(n),\ \Sp(n). \]
+
+\begin{corollary} \label{thm-2-bg-gysin}
+    设系数环 $R$ 是 $\bbK$-可定向的. 则有 Gysin 序列
+    \begin{multline*}
+        \cdots \to H^{q - dn} (\upB G(n))
+        \xrightarrow{\smallcup e} H^q (\upB G(n))
+        \xrightarrow{p^*} H^q (\upB G(n - 1)) \\
+        \xrightarrow{\int} H^{q - dn + 1} (\upB G(n)) \to \cdots.
+    \end{multline*}
+\end{corollary}
+
+\begin{proof}
+    $R$ 的可定向性蕴涵 (\ref{thm-2-sbun}) 给出的球丛是可定向的.
+\end{proof}
+
+\begin{proof}[定理 \ref{thm-2-main} 的证明]
+    我们先证明 $n = 1$ 的情况. 此时, Graßmann 流形就是射影空间. 因此, 我们要证明
+    \[ H^\bullet (\bbK \upP^\infty) \simeq R[x], \quad \deg x = d. \]
+    在 (\ref{thm-2-bg-gysin}) 中取 $n = 1$,
+    并注意到 $\upB G(0) \simeq \upB \{*\} \simeq \{*\}$, 我们得到同构
+    \[ {} \smallcup e \: H^{q - d} (\upB G(1)) \simeq H^q (\upB G(1)) 
+        \quad (q \geq 2). \]
+    当 $q = d = 1$ 时, 这个映射也是同构,
+    因为在正合列中, 它右边一项是 $0$,
+    它左边的映射 $p^* \: H^0(\upB G(1)) \to H^0(\upB G(0))$ 是同构.
+    因此, 我们就得到了
+    \[ H^\bullet(\upB G(1)) \simeq R[e], \quad \deg e = d. \]
+
+    下面考虑一般的情况. 我们对 $n$ 归纳, 假设我们已经证明了
+    \[ H^\bullet (\upB G(n-1)) \simeq R[c_1, \dotsc, c_{n-1}], \quad \deg c_i = di. \]
+    由 (\ref{thm-2-bg-gysin}), 当 $q \leq dn - 2$ 时, 有同构
+    \[ p^* \: H^q (\upB G(n)) \simeq H^q (\upB G(n-1)). \]
+    我们断言当 $d = 1$, $q = dn - 1$ 时, 这个映射也是同构.
+    我们先承认这个断言. 则 $\upB G(n-1)$ 的生成元 $c_1, \dotsc, c_{n-1}$
+    都在 $p^*$ 的像中. 因此, 环同态
+    \[ p^* \: H^\bullet (\upB G(n)) \to H^\bullet (\upB G(n-1)) \]
+    是分裂的满射 (这个分裂是自然的).
+    这就把 (\ref{thm-2-bg-gysin}) 切成了分裂的短正合列
+    \[ 0 \to H^{q - dn} (\upB G(n))
+        \xrightarrow{\smallcup e} H^q (\upB G(n))
+        \xrightarrow{p^*} H^q (\upB G(n - 1)) \to 0. \]
+    换言之, 如果定义 $c_n = e$, 那么对每个 $q$, 都有
+    \[ H^q(\upB G(n)) \simeq
+        H^q(\upB G(n-1)) \oplus c_n \cdot H^{q - dn}(\upB G(n)). \]
+    这就蕴涵了要证的结论.
+
+    最后, 我们补充上面的断言的证明. 这时, 我们的正合列 (\ref{thm-2-bg-gysin}) 是
+    \[ 0 \to H^{n-1} (\upB\upO(n))
+        \xrightarrow{p^*} H^{n-1} (\upB \upO (n-1))
+        \xrightarrow{\int} H^0 (\upB \upO (n))
+        \xrightarrow{\smallcup e} H^n (\upB \upO (n)) \to \cdots. \]
+    只需证明, 其中的映射 ${} \smallcup e$ 是单射.
+    这等价于 $e$ 不是 $R$-挠元.
+    因此, 我们只需找一个 $\bbR^n$-丛 $E$, 使得 $e(E)$ 不是挠元.
+    我们找的例子是
+    \[ E = \upE \upO (1)^n \to \upB \upO (1)^n =: B. \]
+    由 $n = 1$ 的情况, 我们知道 $e (\upE \upO (1)) = e = w_1$ 不是 $R$-挠元.
+    因此, 由 (\ref{thm-2-product}), 知
+    \[ e(E) = w_1^{\otimes n}
+        \in H^1(\upB \upO (1))^{\otimes n}
+        \subset H^n(\upB \upO (1)^n)\]
+    不是 $R$-挠元.
+\end{proof}
+
+这个证明蕴涵了下面的重要结论.
+
+\begin{corollary} \label{thm-2-top-equals-euler}
+    设 $E \to B$ 是 $\bbK^n$-丛, 设 $R$ 是 $\bbK$-可定向的环.
+    则在 $\bbK = \bbR, \bbC, \bbH$ 时, 分别有
+    \[ w_n(E) = e(E), \quad
+        c_n(E) = e(E), \quad
+        p_n(E) = e(E). \thmqedhere \]
+\end{corollary}

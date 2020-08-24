@@ -1,0 +1,98 @@
+% !TEX program = xelatex
+% !BIB program = biber
+
+\documentclass[twoside]{article}
+
+\input{../common/preamble}
+\input{../common/preamble-zh}
+\input{commands}
+
+\addbibresource{CC.bib}
+\nocite{*}
+
+\begin{document}
+
+\title{示性类与指标定理}
+\author{卜辰璟\footnote{卜辰璟，清华大学数学系数 72 班．}}
+
+\begin{abstract}
+    我们从代数拓扑、微分几何两种观点介绍示性类的理论, 
+    然后介绍 Atiyah--Singer 指标定理和等变上同调理论.
+\end{abstract}
+
+示性类是纤维丛的拓扑不变量. 
+它描述了纤维丛的拓扑性质, 这些性质也能反映出底空间的信息.
+对流形上的纤维丛而言, 示性类可以与微分几何的构造联系起来, 
+给出拓扑与几何之间的微妙联系. 
+著名的 Atiyah--Singer 指标定理就是这类结果之一,
+这个结果也是物理学的想法与数学的一个优美的结合.
+
+本文是 2019 秋季学期讨论班的讲义, 每节对应一次讨论的内容. 
+在阅读本文之前, 读者需要对代数拓扑和微分几何具有一定的了解.
+例如, 读者应该熟悉 \cite{may} 和 \cite{do-carmo} 的主要内容.
+
+\tableofcontents
+
+\bigskip
+\begin{trivlist}
+    \item [\textbf{主要参考\enspace}]
+        \S\S2--3: \cite{cohen};
+        \S4: \cite{milnor-stasheff};
+        \S5: \cite{rahman};
+        \S\S6--10: \cite{bgv};
+        \S\S11--12: \cite{libine}.
+\end{trivlist}
+
+\clearpage
+
+\section{分类空间} \label{sect-1}
+
+\input{1}
+
+\section{Graßmann 流形的上同调} \label{sect-2}
+
+\input{2}
+
+\section{乘积公式} \label{sect-3}
+
+\input{3}
+
+\section{几个应用} \label{sect-4}
+
+\input{4}
+
+\section{陈--Weil 理论 (上)} \label{sect-5}
+
+\input{5}
+
+\section{陈--Weil 理论 (下)} \label{sect-6}
+
+\input{6}
+
+\section{热核} \label{sect-7}
+
+\input{7}
+
+\section{Dirac 算子} \label{sect-8}
+
+\input{8}
+
+\section{指标定理 (上)} \label{sect-9}
+
+\input{9}
+
+\section{指标定理 (下)} \label{sect-10}
+
+\input{10}
+
+\section{等变上同调} \label{sect-11}
+
+\input{11}
+
+\section{局部化公式} \label{sect-12}
+
+\input{12}
+
+\printbibliography
+
+\end{document}

@@ -1,0 +1,142 @@
+\renewcommand{\:}{\colon}
+\newcommand{\Ahat}{\widehat{A}}
+\newcommand{\abs}[1]{\mathopen|#1\mathclose|}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbH}{\mathbb{H}}
+\newcommand{\bbK}{\mathbb{K}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbO}{\mathbb{O}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bfx}{\mathbf{x}}
+\newcommand{\cat}[1]{\ensuremath\textsf{#1}}
+\newcommand{\ch}{\operatorname{ch}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\colim}{\operatornamewithlimits{colim}}
+\newcommand{\contr}{\mathbin{\raisebox{.5ex}{$\lrcorner$}}}
+\newcommand{\dbar}{\oline2{\partial}{}}
+\renewcommand{\det}{\operatorname{det}}
+\newcommand{\dims}{\operatorname{dim}_{\mathrm{s}}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\frg}{\mathfrak{g}}
+\newcommand{\frk}{\mathfrak{k}}
+\newcommand{\frt}{\mathfrak{t}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\hoq}{\mathbin{/^{\mathrm{h}}}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\ind}{\operatorname{ind}}
+\newcommand{\smallcup}{
+    \mathchoice{
+        \mathbin{\tikz{
+            \path[use as bounding box] (0, 0) rectangle (1.4ex, 1ex);
+            \draw[line width=.07em] (.1ex, .8ex) arc (180:360:.6ex);
+        }}
+    }{
+        \mathbin{\tikz{
+            \path[use as bounding box] (0, 0) rectangle (1.4ex, 1ex);
+            \draw[line width=.07em] (.1ex, .8ex) arc (180:360:.6ex);
+        }}
+    }{
+        \mathbin{\tikz{
+            \path[use as bounding box] (0, 0) rectangle (1ex, .7ex);
+            \draw[line width=.049em] (.08ex, .56ex) arc (180:360:.42ex);
+        }}
+    }{
+        \mathbin{\tikz{
+            \path[use as bounding box] (0, 0) rectangle (.7ex, .5ex);
+            \draw[line width=.035em] (.05ex, .4ex) arc (180:360:.3ex);
+        }}
+    }
+}
+\newcommand{\smallcupcd}{
+    \mathchoice{
+        \mathbin{\tikz{
+            \path[use as bounding box] (0, 0) rectangle (1.4ex, 1ex);
+            \draw[line width=.07em, commutative diagrams/no head] (.1ex, .8ex) arc (180:360:.6ex);
+        }}
+    }{
+        \mathbin{\tikz{
+            \path[use as bounding box] (0, 0) rectangle (1.4ex, 1ex);
+            \draw[line width=.07em, commutative diagrams/no head] (.1ex, .8ex) arc (180:360:.6ex);
+        }}
+    }{
+        \mathbin{\tikz{
+            \path[use as bounding box] (0, 0) rectangle (1ex, .7ex);
+            \draw[line width=.049em, commutative diagrams/no head] (.08ex, .56ex) arc (180:360:.42ex);
+        }}
+    }{
+        \mathbin{\tikz{
+            \path[use as bounding box] (0, 0) rectangle (.7ex, .5ex);
+            \draw[line width=.035em, commutative diagrams/no head] (.05ex, .4ex) arc (180:360:.3ex);
+        }}
+    }
+}
+\newcommand{\scrH}{\mathscr{H}}
+\newcommand{\scrL}{\mathscr{L}}
+\newcommand{\scrO}{\mathscr{O}}
+\newcommand{\smallsqrt}[1]{{
+    \mathchoice{\textstyle}{}{}{}
+    \sqrt{\smash{#1}\vphantom{t}}
+}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\trs}{\operatorname{tr}_{\mathrm{s}}}
+\newcommand{\upB}{\mathrm{B}}
+\newcommand{\upD}{\mathrm{D}}
+\newcommand{\upE}{\mathrm{E}}
+\newcommand{\upe}{\mathrm{e}}
+\newcommand{\upi}{\mathrm{i}}
+\newcommand{\upj}{\mathrm{j}}
+\newcommand{\upk}{\mathrm{k}}
+\newcommand{\upO}{\mathrm{O}}
+\newcommand{\upP}{\mathrm{P}}
+\newcommand{\uppi}{\mathrm{π}}
+\newcommand{\upS}{\mathrm{S}}
+\newcommand{\upU}{\mathrm{U}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\spin}{\mathfrak{spin}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\Th}{\mathrm{Th}}
+\newcommand{\Ebar}{\mspace{2mu}\overline{\mspace{-2mu}E}}
+\newcommand{\Tbar}{\mspace{2mu}\overline{\mspace{-2mu}T}}
+\newcommand{\oline}[2]{\mspace{#1mu}\overline{\mspace{-#1mu}#2}}
+\newcommand{\term}[1]{\textbf{#1}}
+
+\AtBeginDocument{
+    \let\temp\phi
+    \let\phi\varphi
+    \let\varphi\temp
+    \let\temp\epsilon
+    \let\epsilon\varepsilon
+    \let\varepsilon\temp
+}
+
+\newcommand{\varqed}{\nolinebreak\hfill$◃$}
+\newcommand{\varqedhere}{\eqno ◃}
+
+\renewtheorem{definition}[theorem]{定义}
+\renewtheorem{fact}[theorem]{事实}
+\newtheorem*{theorem*}{定理}
+
+\theoremstyle{cjk-definition}
+\renewtheorem{notation}[theorem]{记号}
+\renewtheorem{exercise}[theorem]{习题}
+
+\hyphenation{Birk-häuser}
+\hyphenation{Grund-lehren}
+\hyphenation{Wis-sen-schaften}
+\hyphenation{Пон-тря-гин}
+
+\usepackage{enumitem}
+\setlist{itemsep=0pt}
+\setlist[enumerate]{nosep,label=\roman*)}
+
+\usepackage{adjustbox}
+\usepackage{cancel}
+\usepackage{cases}
