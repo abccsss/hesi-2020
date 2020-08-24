@@ -1,6 +1,5 @@
 \usepackage{indentfirst}
 \parindent=2em
-\linespread{1.25}
 
 % names in chinese
 \def\abstractname{摘\quad 要}
@@ -12,16 +11,22 @@
     references = {参考文献},
 }
 
+% spacing
 \usepackage{setspace}
+\setdisplayskipstretch{} %https://tex.stackexchange.com/q/529214
+
+\AtBeginDocument{
+    \spacing{1.25}
+}
 \AtBeginBibliography{
     \spacing{1}
 }
 
 % lengths
 \AtBeginDocument{
-    \addtolength{\abovedisplayskip}{-3pt}
-    \addtolength{\belowdisplayskip}{-3pt}
-    \addtolength{\belowdisplayshortskip}{-3pt}
+    \setlength{\abovedisplayskip}{8pt plus 4pt minus 4pt}
+    \setlength{\belowdisplayskip}{8pt plus 4pt minus 4pt}
+    \setlength{\belowdisplayshortskip}{8pt plus 4pt minus 4pt}
 }
 
 % theorems & proofs
@@ -34,12 +39,14 @@
 \renewtheorem{lemma}[theorem]{引理}
 \renewtheorem{corollary}[theorem]{推论}
 \renewtheorem{proposition}[theorem]{命题}
-\renewtheorem{definition}[theorem]{定义}
 
 \theoremstyle{cjk-definition}
+\renewtheorem{definition}[theorem]{定义}
 \renewtheorem{remark}[theorem]{注}
 \renewtheorem{example}[theorem]{例}
 \theoremstyle{cjk-theorem}
+
+\numberwithin{equation}{theorem}
 
 \makeatletter
 \renewenvironment{proof}[1][\proofname]{\par

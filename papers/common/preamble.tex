@@ -1,43 +1,179 @@
 \usepackage{geometry}
-\geometry{paperwidth=155mm,paperheight=235mm,outer=20mm,inner=20mm,top=25mm,bottom=20mm}
+\geometry{
+    paperwidth = 155mm,
+    paperheight = 235mm,
+    outer = 20mm,
+    inner = 20mm,
+    top = 25mm,
+    bottom = 20mm
+}
 
 % fonts & unicode
 \usepackage[PunctStyle=kaiming]{xeCJK}
 \usepackage{amsmath}
 \usepackage{unicode-math}
-\setCJKmainfont[Path=../../fonts/,BoldFont=fzhtk.ttf,ItalicFont=fzktk.ttf]{fzssk.ttf}
-\setCJKsansfont[Path=../../fonts/,BoldFont=SourceHanSansCN-Bold.otf,Scale=.97]{SourceHanSansCN-Normal.otf}
-\setCJKmonofont[Path=../../fonts/,BoldFont=SourceHanSansCN-Bold.otf,Scale=.9]{SourceHanSansCN-Normal.otf}
-\newCJKfontfamily{\KaiTi}[Path=../../fonts/,BoldFont=fzhtk.ttf,ItalicFont=fzssk.ttf]{fzktk.ttf}
-\setmainfont[Path=../../fonts/,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]{STIX2Text}
-\setsansfont[Path=../../fonts/,Scale=MatchUppercase,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]{Lato}
-\setmonofont[Path=../../fonts/,Scale=.9,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold]{FiraMono}
-\setmathfont[Path=../../fonts/,BoldFont=STIX2Math-Bold.otf]{STIX2Math.otf}
-\setmathfont[Path=../../fonts/,Scale=.95,BoldFont=LatoMath.otf,version=sf]{LatoMath.otf}
-\setmathfont[Path=../../fonts/,Scale=.95,BoldFont=LatoMath.otf,range={bb,sfup->up,sfit->it,bfsfup->bfup,bfsfit->bfit}]{LatoMath.otf}
 
-\Umathcode`/ = "0 "0 "2215    % / -> U+2215 division slash
+\setCJKmainfont{fzssk.ttf}[
+    Path = ../../fonts/,
+    BoldFont = fzhtk.ttf,
+    ItalicFont = fzktk.ttf
+]
+
+\setCJKsansfont{SourceHanSansCN-Normal.otf}[
+    Path = ../../fonts/,
+    BoldFont = SourceHanSansCN-Bold.otf,
+    Scale = .97
+]
+
+\setCJKmonofont{SourceHanSansCN-Normal.otf}[
+    Path = ../../fonts/,
+    BoldFont = SourceHanSansCN-Bold.otf,
+    Scale = .9
+]
+
+\newCJKfontfamily{\KaiTi}{fzktk.ttf}[
+    Path = ../../fonts/,
+    BoldFont = fzhtk.ttf,
+    ItalicFont = fzssk.ttf
+]
+
+\setmainfont{STIX2Text}[
+    Path = ../../fonts/,
+    Extension = .otf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
+]
+
+\setsansfont{Lato}[
+    Path = ../../fonts/,
+    Scale = MatchUppercase,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
+]
+
+\setmonofont{FiraMono}[
+    Path = ../../fonts/,
+    Scale = .9,
+    Extension = .otf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold
+]
+
+\setmathfont{STIX2Math.otf}[
+    Path = ../../fonts/,
+    BoldFont = STIX2Math-Bold.otf
+]
+
+\setmathfont{latinmodern-math.otf}[
+    Path = ../../fonts/,
+    range = {frak, bffrak}
+]
+
+\setmathfont{latinmodern-math.otf}[
+    Path = ../../fonts/,
+    range = {frak -> bffrak, bffrak},
+    version = bold
+]
+
+\setmathfont{LatoMath.otf}[
+    Path = ../../fonts/,
+    Scale = .95,
+    BoldFont = LatoMath.otf,
+    version = sf
+]
+
+\setmathfont{LatoMath.otf}[
+    Path = ../../fonts/,
+    Scale = .95,
+    BoldFont = LatoMath.otf,
+    range = {bb, sfup -> up, sfit -> it, bfsfup -> bfup, bfsfit -> bfit}
+]
+
+
+\Umathcode`/  =  "0 "0 "2215    % / -> U+2215 division slash
 
 % patch 'text math' math alphabets in bold math
-\setmathfontface\mathrm[Path=../../fonts/,version=bold]{STIX2Text-Bold.otf}
-\setmathfontface\mathit[Path=../../fonts/,version=bold]{STIX2Text-BoldItalic.otf}
-\setmathfontface\mathbf[Path=../../fonts/,version=bold]{STIX2Text-Bold.otf}
-\setmathfontface\mathtt[Path=../../fonts/,Scale=.9,version=bold]{FiraMono-Bold.otf}
+\setmathfontface\mathrm{STIX2Text-Bold.otf}[
+    Path = ../../fonts/,
+    version = bold
+]
+
+\setmathfontface\mathit{STIX2Text-BoldItalic.otf}[
+    Path = ../../fonts/,
+    version = bold
+]
+
+\setmathfontface\mathbf{STIX2Text-Bold.otf}[
+    Path = ../../fonts/,
+    version = bold
+]
+
+\setmathfontface\mathtt{FiraMono-Bold.otf}[
+    Path = ../../fonts/,
+    Scale = .9,
+    version = bold
+]
+
+\setmathfontface\mathrm{Lato-Regular.ttf}[
+    Path = ../../fonts/,
+    Scale = MatchUppercase,
+    version = sf
+]
+
+\setmathfontface\mathit{Lato-Italic.ttf}[
+    Path = ../../fonts/,
+    Scale = MatchUppercase,
+    version = sf
+]
+
+\setmathfontface\mathbf{Lato-Bold.ttf}[
+    Path = ../../fonts/,
+    Scale = MatchUppercase,
+    version = sf
+]
+
+\setmathfontface\mathtt{FiraMono-Regular.otf}[
+    Path = ../../fonts/,
+    Scale = .9,
+    version = sf
+]
+
 
 % bold math in bold text https://tex.stackexchange.com/q/41379
 \makeatletter
-\g@addto@macro\bfseries{\boldmath} 
+    \g@addto@macro\bfseries{\boldmath} 
 \makeatother
 
 % title & abstract
-\def\title#1\author#2{\headertitle{#1}\vspace*{0mm}\begin{center}{\sf\LARGE#1\par}\vspace{10mm}{\large#2}\end{center}\vspace{10mm}}
-\def\headertitle#1{\def\theheadertitle{#1}}
+\def\title#1\author#2{%
+    \headertitle{#1}
+    \vspace*{0mm}
+    \begin{center}
+        {\sf\LARGE#1\par}
+        \vspace{10mm}
+        {\large#2}
+    \end{center}
+    \vspace{10mm}
+}
+\def\headertitle#1{
+    \def\theheadertitle{#1}
+}
 
-\def\abstractname{ABSTRACT}
+\renewcommand{\abstractname}{ABSTRACT}
 \makeatletter
-\let\endabstract@orig\endabstract
-\def\endabstract{\endabstract@orig\vspace{5mm}}
+    \let\endabstract@orig\endabstract
+    \def\endabstract{\endabstract@orig\vspace{5mm}}
 \makeatother
+
+% section titles
+\usepackage{titlesec}
+\titleformat*{\section}{\Large\sffamily\mathversion{sf}}
+\titleformat*{\subsection}{\large\sffamily\mathversion{sf}}
 
 % headers and footers
 \usepackage{fancyhdr}
@@ -65,9 +201,9 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{definition}[theorem]{Definition}
 
 \theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{remark}[theorem]{Remark}
 \theoremstyle{plain}
@@ -80,10 +216,10 @@
 % renew theorem: https://tex.stackexchange.com/q/103013/
 \makeatletter
 \def\renewtheorem#1{%
-  \expandafter\let\csname#1\endcsname\relax
-  \expandafter\let\csname c@#1\endcsname\relax
-  \gdef\renewtheorem@envname{#1}
-  \renewtheorem@secpar
+    \expandafter\let\csname#1\endcsname\relax
+    \expandafter\let\csname c@#1\endcsname\relax
+    \gdef\renewtheorem@envname{#1}
+    \renewtheorem@secpar
 }
 \def\renewtheorem@secpar{\@ifnextchar[{\renewtheorem@numberedlike}{\renewtheorem@nonumberedlike}}
 \def\renewtheorem@numberedlike[#1]#2{\newtheorem{\renewtheorem@envname}[#1]{#2}}
@@ -105,8 +241,6 @@
 \usepackage[style=alphabetic,sorting=anyvt,useprefix=true]{biblatex}
 \usepackage{xpatch}
 \renewcommand*{\bibfont}{\small}
-\DeclareFieldFormat{labelalpha}{\mkbibbold{#1}}
-\DeclareFieldFormat{extraalpha}{\mkbibbold{\mknumalph{#1}}}
 \DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
 \DeclareFieldFormat[book,inbook]{number}{\mkbibbold{#1}}
 \DeclareFieldFormat[article]{number}{(#1)}
@@ -114,43 +248,52 @@
 \DeclareFieldFormat{pages}{#1}
 \renewbibmacro{in:}{}
 \renewbibmacro*{volume+number+eid}{%
-  \printfield{volume}%
-  \setunit*{\addnbspace}% originally: \setunit*{\adddot}
-  \printfield{number}%
-  \setunit{\addcomma\space}%
-  \printfield{eid}%
+    \printfield{volume}%
+    \setunit*{\addnbspace}% originally: \setunit*{\adddot}
+    \printfield{number}%
+    \setunit{\addcomma\space}%
+    \printfield{eid}%
 }
 \xapptobibmacro{author/editor+others/translator+others}{%
-  \setunit{\space}%
-  \printfield{year}%
-  \clearfield{year}%
+    \setunit{\space}%
+    \printfield{year}%
+    \clearfield{year}%
 }{}{}
 \xapptobibmacro{author/translator+others}{%
-  \setunit{\space}%
-  \printfield{year}%
-  \clearfield{year}%
+    \setunit{\space}%
+    \printfield{year}%
+    \clearfield{year}%
 }{}{}
-\renewbibmacro*{issue+date}{%
-  \printfield{issue}%
-  \newunit%
+    \renewbibmacro*{issue+date}{%
+    \printfield{issue}%
+    \newunit%
 }
 \AtBeginBibliography{
-  \DeclareFieldFormat{labelalpha}{#1}
-  \DeclareFieldFormat{extraalpha}{\mknumalph{#1}}
+    \DeclareFieldFormat{labelalpha}{#1}
+    \DeclareFieldFormat{extraalpha}{\mknumalph{#1}}
 }
 \AtEveryBibitem{
-  \ifentrytype{online}{%
-    \clearfield{year}%
-  }{}
+    \ifentrytype{online}{%
+        \clearfield{year}%
+    }{}
 }
 
 % tikz
 \usepackage{tikz}
 \usepackage{tikz-cd}
-\tikzset{>=latex}
+\tikzset{
+    > = latex
+}
 \tikzcdset{
-  arrow style=tikz,
-  arrows={/tikz/line width=.5pt},
-  diagrams={>={Straight Barb[scale=0.8]}},
-  nodes={inner xsep=3pt,inner ysep=3pt}
+    arrow style = tikz,
+    arrows = {
+        /tikz/line width = .5pt
+    },
+    diagrams = {
+        > = {Straight Barb[scale = 0.8]}
+    },
+    nodes = {
+        inner xsep = 3pt,
+        inner ysep = 3pt
+    }
 }
