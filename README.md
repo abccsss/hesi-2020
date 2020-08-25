@@ -40,7 +40,13 @@
 \end{document}
 ```
 
-编译的流程是 `xelatex` &rarr; `biber` &rarr; `xelatex` &times; 2。
+### 如何编译
+
+每一篇文章需要分别编译。使用下面的命令行进行编译：
+
+``` bash
+latexmk -xelatex YourPaper.tex
+```
 
 ## LaTeX 排版规范
 
