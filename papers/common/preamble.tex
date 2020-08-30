@@ -138,10 +138,14 @@
     version = sf
 ]
 
-
-% bold math in bold text https://tex.stackexchange.com/q/41379
+% bold math in bold text
+\usepackage{amsthm}
 \makeatletter
-    \g@addto@macro\bfseries{\boldmath} 
+    \g@addto@macro\bfseries{\boldmath}
+    \def\thmhead@plain#1#2#3{%
+        \thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}}%
+        \thmnote{ {\the\thm@notefont{\unboldmath(#3)}}}}
+    \let\thmhead\thmhead@plain
 \makeatother
 
 % title & abstract
@@ -191,7 +195,6 @@
 }
 
 % environments
-\usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
