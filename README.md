@@ -42,10 +42,17 @@
 
 ### 如何编译
 
-每一篇文章需要分别编译。使用下面的命令行进行编译：
+要编译整本《荷思》，需安装 Python 3，并运行以下命令行：
 
 ``` bash
-latexmk -xelatex YourPaper.tex
+pip install pypdf2
+python build.py
+```
+
+如果要单独编译一篇文章，进入该文章的文件夹，并运行：
+
+``` bash
+latexmk -pdf -xelatex YourPaper.tex
 ```
 
 ## LaTeX 排版规范

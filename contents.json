@@ -1,0 +1,39 @@
+{
+    "parts": [
+        {
+            "name": "专题介绍",
+            "articles": [
+                {
+                    "fileName": "CC",
+                    "title": "示性类与指标定理",
+                    "author": "卜辰璟"
+                }
+            ]
+        },
+        {
+            "name": "研究讨论",
+            "articles": [
+                {
+                    "fileName": "AbSub",
+                    "title": "On Freyd--Mitchell Embedding Theorem",
+                    "author": "吴雨宸"
+                },
+                {
+                    "fileName": "Handle",
+                    "title": "A Generalised Handle Theory",
+                    "author": "卜辰璟"
+                },
+                {
+                    "fileName": "ChenRui",
+                    "title": "Deformation Theory of Elliptic Curves",
+                    "author": "陈睿"
+                },
+                {
+                    "fileName": "HMS",
+                    "title": "An Introduction to Gromov--Witten Invariants from the Symplectic Viewpoint",
+                    "author": "张睿桐"
+                }
+            ]
+        }
+    ]
+}
