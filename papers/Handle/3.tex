@@ -106,11 +106,12 @@ Let $M$ be a manifold, and let $S,T$ be submanifolds.
 We say that $S$ and $T$ \term{intersect transversely},
 or that $S$ is \term{transverse to} $T$,
 if for all $p\in S\cap T$, we have $\T_pM=\T_pS+\T_pT$.
-Note that $S,T$ does not necessarily intersect, and they are not necessarily boundaryless.
+Note that $S,T$ does not necessarily intersect, and they are not necessarily boundaryless. \varqed
 \end{definition}
 
 \begin{proposition} \label{thm-transverse}
 If $S$ is transverse to $T$,
+and if their boundaries are contained in $\partial M$,
 then $S\cap T$ is a submanifold of $M$.
 \qed
 \end{proposition}
@@ -118,14 +119,17 @@ then $S\cap T$ is a submanifold of $M$.
 \begin{definition}
 Let $S_1,\dotsc,S_k\subset M$ be submanifolds of $M$.
 The set $\{S_1,\dotsc,S_k\}$ is said to be \term{transverse},
-if when $k>0$, $\{S_1,\dotsc,S_{k-1}\}$ is transverse \emph{(defined inductively on $k$)},
+if when $k>0$, $\{S_1,\dotsc,S_{k-1}\}$ is transverse (defined inductively on $k$),
 and $S_k$ is transverse to everything in
-$\bigl\{\,\bigcap_{i\in I}S_i\mid I\subset\{1,\dotsc,k-1\}\,\bigr\}$.
-In this case, every possible intersection of the manifolds $S_i$ is a submanifold.
+$\bigl\{\,\bigcap_{i\in I}S_i\mid I\subset\{1,\dotsc,k-1\}\,\bigr\}$. \varqed
 \end{definition}
 
+In this case, if we assume that $\partial S_i \subset \partial M$ for all $i$,
+then every possible intersection of the $S_i$ is a submanifold.
+
 The next lemma says that 
-transverse submanifolds can be made orthogonal to each other.
+transverse submanifolds can be made orthogonal to each other
+by choosing an appropriate metric.
 
 \begin{lemma}\label{lem:orthogonal}
 Let $S_1,\dotsc,S_k\subset M$ be transverse closed submanifolds.
@@ -175,7 +179,7 @@ By (\ref{lem:extension}), we may assume that the $S_i$ are boundaryless.
 See \cite[p.\,70]{gp} for a proof in this case.
 \end{proof}
 
-The next results are concerned with the existence of
+The next few results are concerned with the existence of
 functions with certain properties.
 The gradient vector fields of these functions will be very useful.
 We will use the flow of these vector fields on the boundary of a handlebody,

@@ -1,15 +1,17 @@
 Handle theory is a powerful tool in differential topology.
-Its main idea is to use handles
-as building blocks for manifolds.
+Its main idea is to use \term{handles}
+as basic building blocks for manifolds,
+just like cells are building blocks for CW complexes.
 
 \begin{definition}
     Let $0\leq\lambda\leq n$ be integers.
-    A \term{$\lambda$-handle} is a thickened version of the $\lambda$-disk:
+    A \term{$\lambda$-handle} of dimension $n$ 
+    is a thickened version of the $\lambda$-disk:
     \[ h^\lambda := D^\lambda \times D^{n-\lambda}. \]
-    It is an $n$-dimensional manifold with corner.
+    It is an $n$-dimensional manifold, possibly with corners. \varqed
 \end{definition}
 
-For example, for $n=3$, we have the following.
+For example, for $n=3$, the different types of handles are depicted below.
 \[ \begin{tikzpicture}[line width=.6, baseline=(base.base)]
     \tikzstyle{dp}=[dash pattern=on 2pt off 2pt]
     \draw (0,0) circle (.2);
@@ -91,19 +93,18 @@ A formal definition goes as follows.
     By abuse of language,
     the pair $(N,A)$ is called a \term{relative $n$-handlebody}.
     If $A=\emptyset$, then $N$ is called an \term{$n$-handlebody}.
-    It is \term{finite} if the above sequence is finite.
+    It is \term{finite} if the above sequence is finite. \varqed
 \end{definition}
 
-In the definition, \term{local finiteness} means that 
+In this definition, \term{local finiteness} means that 
 every point in $N$ has a neighbourhood that intersects 
 with only finitely many handles.
 This is needed to ensure that $N$ is a manifold.
 
-This definition is a bit sloppy,
+This definition is not completely rigorous,
 since attaching a handle will form corners on the manifold,
 and one needs to eliminate them in each step.
-We do not go into the details,
-for which the reader is referred to \cite{wall}.
+For details, the reader is referred to \cite{wall}.
 
 The handlebody was invented by Smale,
 and played a magical role in his proof of the
@@ -178,14 +179,14 @@ it is convenient to introduce some terminology here.
 \begin{definition}
     Two $n$-handlebodies are \term{similar}
     if their manifolds $N$ are diffeomorphic, and for every $\lambda$,
-    they have the same number of $\lambda$-handles.
+    they have the same number of $\lambda$-handles. \varqed
 \end{definition}
 
 For example, the two handlebodies shown in the above picture are similar.
 
 \begin{definition}
     A handlebody is \term{good} if 
-    every $\lambda$-handle is attached on handles of type $<\lambda$.
+    every $\lambda$-handle is attached on handles of type $<\lambda$. \varqed
 \end{definition}
 
 Thus, the rearrangement theorem can be reformulated as follows.
@@ -204,7 +205,7 @@ The other theorem allows handles to cancel.
     The \term{belt} of the handle $D^\lambda \times D^{n-\lambda}$
     is $\{0\}\times \partial D^{n-\lambda}$,
     and the \term{cobelt} is $\partial D^\lambda\times\{0\}$.
-    They are subsets of the boundary of the handle.
+    They are subsets of the boundary of the handle. \varqed
 \end{definition}
 
 \begin{theorem}[Cancellation]

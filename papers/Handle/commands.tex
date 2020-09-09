@@ -1,4 +1,4 @@
-\newcommand{\term}[1]{\textbf{\textup{#1}}}
+\newcommand{\term}[1]{\emph{#1}}
 
 \def\varqed{\nolinebreak\hfill$◃$}
 \def\varqedhere{\eqno ◃}
@@ -24,6 +24,7 @@
 
 \theoremstyle{definition}
 \newtheorem{notation}[theorem]{Notation}
+\newtheorem*{convention}{Convention}
 
 \AtBeginDocument{
     \renewcommand{\subsup}[3]{#1_{\smash{#2}}^{#3}}
