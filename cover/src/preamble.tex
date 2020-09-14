@@ -2,8 +2,8 @@
 \geometry{paperwidth=420mm,paperheight=297mm,left=0cm,right=0cm,top=.5cm,bottom=0cm}
 
 \usepackage[PunctStyle=kaiming]{xeCJK}
-\setCJKmainfont[Path=../fonts/,BoldFont=SourceHanSansCN-Bold.otf]{SourceHanSansCN-Normal.otf}
-\setmainfont[Path=../fonts/,BoldFont=SourceHanSansCN-Bold.otf]{SourceHanSansCN-Normal.otf}
+\setCJKmainfont[Path=../fonts/,BoldFont=NotoSansCJKsc-Bold.otf]{NotoSansCJKsc-DemiLight.otf}
+\setmainfont[Path=../fonts/,BoldFont=NotoSansCJKsc-Bold.otf]{NotoSansCJKsc-DemiLight.otf}
 \newfontfamily{\Acumin}[Path=../fonts/]{AcuminExtraCondSemibold.otf}
 
 \usepackage{xcolor}
@@ -26,9 +26,10 @@
             \node[darkblue] at (-\halfthk-77.5mm,-174mm) {\parbox{75mm}{#4}};
             \node[anchor=north,darkblue,scale=1.6] at (0mm,-145mm) {\rotatebox{-90}{\Acumin #2}};
             \node[anchor=north,darkblue,scale=1] at (0mm,-155.7mm) {年};
-            \node[anchor=north,darkblue,scale=1] at (0mm,-159.5mm) {第};
-            \node[anchor=north,darkblue,scale=1.6] at (0mm,-163.2mm) {\rotatebox{-90}{\Acumin #3}};
-            \node[anchor=north,darkblue,scale=1] at (0mm,-169.7mm) {期};
+            \draw[darkblue] (-2.5mm,-165mm) -- (2.5mm,-165mm);
+            \node[anchor=north,darkblue,scale=1] at (0mm,-169.5mm) {第};
+            \node[anchor=north,darkblue,scale=1.6] at (0mm,-173.2mm) {\rotatebox{-90}{\Acumin #3}};
+            \node[anchor=north,darkblue,scale=1] at (0mm,-179.7mm) {期};
 
             \fill[lightblue] (-165mm-\halfthk,10mm)--(165mm+\halfthk,10mm)--(165mm+\halfthk,-10mm)--(-165mm-\halfthk,-10mm);
             \fill[darkblue] (-165mm-\halfthk,-245mm)--(165mm+\halfthk,-245mm)--(165mm+\halfthk,-225mm)--(-165mm-\halfthk,-225mm);
@@ -46,9 +47,9 @@
                 (\halfthk,25mm)--(\halfthk,15mm)
                 (-\halfthk,-260mm)--(-\halfthk,-250mm)
                 (\halfthk,-260mm)--(\halfthk,-250mm); 
-            \draw (-\halfthk, 0mm) rectangle (\halfthk, -235mm);
-            \draw (-155mm-\halfthk, 0mm) rectangle (155mm+\halfthk, -235mm);
-            \draw (-165mm-\halfthk, 10mm) rectangle (165mm+\halfthk, -245mm);
+            % \draw (-\halfthk, 0mm) rectangle (\halfthk, -235mm);
+            % \draw (-155mm-\halfthk, 0mm) rectangle (155mm+\halfthk, -235mm);
+            % \draw (-165mm-\halfthk, 10mm) rectangle (165mm+\halfthk, -245mm);
         \end{tikzpicture}
     \end{center}
 }
