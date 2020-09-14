@@ -117,10 +117,10 @@
 也就是说, 一列函数的收敛性等价于它们的支集包含于一个公共的紧集,
 并且对每个 $n$, 它们的 $n$ 阶导数在这个紧集上一致收敛.
 
-例如, 任何一个连续函数 $g \: \bbR \to \bbR$ 都可以看作 $\bbR$ 上的分布:
+例如, 任何一个局部 $L^1$ 函数 $g \: \bbR \to \bbR$ 都可以看作 $\bbR$ 上的分布:
 对 $f \in C_{\mathrm{c}}^\infty (\bbR)$, 定义
-\[ g (f) = \int_{\bbR} f(x) \, g(x) \, dx. \]
-再例如, $\delta$ 函数
+\[ g (f) = \int_{\bbR} f(x) \, g(x) \, dx, \]
+就能将 $g$ 视作泛函. 再例如, $\delta$ 函数
 \[ \delta (f) = f (0) \]
 也是分布, 它可以看作在 $0$ 处取值 $+\infty$, 在别处取值 $0$, 但总积分为 $1$ 的函数.
 
@@ -139,12 +139,13 @@
     但这个过程其实依赖于 $M$ 的度量: 若 $s$ 是普通截面, $f \in \Gamma(E^{\vee})$,
     我们需要定义
     \[ s(f) = \int_M \langle f, s \rangle \, \mathrm{vol} , \]
-    其中 $\mathrm{vol}$ 是 $M$ 的体积形式, 
+    其中 $\mathrm{vol}$ 是 $M$ 的体积密度
+    (当 $M$ 可定向时, 它就是体积形式), 
     但这个表达式的值依赖于 $\mathrm{vol}$ 的选取.
     
     为了做到和度量无关, 我们可以将 $\Gamma_{\mathrm{dist}} (E)$ 定义为
-    \[ \Gamma \bigl( E^\vee \otimes (\wedge^n \, T^* M) \bigr) ^\vee, \]
-    其中 $n = \dim M$. 因为 $\wedge^n \, T^* M$ 是平凡线丛,
+    \[ \Gamma \bigl( E^\vee \otimes |{\wedge^n \, T^* M}| \bigr) ^\vee, \]
+    其中 $n = \dim M$. 因为密度线丛 $|{\wedge^n \, T^* M}|$ 是平凡线丛,
     所以这和之前的定义是同构的, 但同构的选取和度量有关.
     为了简洁性, 我们不采用这种做法. \varqed
 \end{remark}

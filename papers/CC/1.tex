@@ -287,9 +287,12 @@ $\mathrm{Bund}_{\cat{C}} (X)$ 是 $\cat{C}$-丛的同构类的集合.
             对 $g, h \in G$, 
             形式乘积 $0g$ 和 $0h$ 被认为是相同的. 
     \end{itemize}
-    我们赋予 $\upE G$ 作为
-    \[ \prod_{i = 1}^{\infty} {} (I \times G) / (0 \times G) \]
-    的子集的子空间拓扑. 
+    我们赋予 $\upE G$ 作为余极限
+    \[ \colim _{n \to \infty} \ \bigl\{
+        ( t_1 g_1, \ \dotsc, \ t_n g_n, \ 0, \ 0, \ \dotsc ) \in \upE G
+    \bigr\} \]
+    的余极限拓扑, 这里余极限的每一项可看作
+    $\prod _{i=1} ^{n} (I \times G) / (0 \times G)$ 的子集.
 
     我们定义 $G$ 在 $\upE G$ 上的右作用如下：
     \[
