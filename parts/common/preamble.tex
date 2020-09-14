@@ -13,28 +13,32 @@
 \usepackage{amsmath}
 \usepackage{unicode-math}
 
-\setCJKmainfont{fzssk.ttf}[
+\setCJKmainfont{NotoSerifCJKsc-Regular.otf}[
     Path = ../../fonts/,
-    BoldFont = fzhtk.ttf,
-    ItalicFont = fzktk.ttf
+    BoldFont = NotoSansCJKsc-Medium.otf,
+    ItalicFont = fzktk.ttf,
+    Scale = .97,
+    ItalicFeatures = {Scale = 1}
 ]
 
-\setCJKsansfont{SourceHanSansCN-Normal.otf}[
+\setCJKsansfont{NotoSansCJKsc-DemiLight.otf}[
     Path = ../../fonts/,
-    BoldFont = SourceHanSansCN-Bold.otf,
+    BoldFont = NotoSansCJKsc-Bold.otf,
     Scale = .97
 ]
 
-\setCJKmonofont{SourceHanSansCN-Normal.otf}[
+\setCJKmonofont{NotoSansCJKsc-DemiLight.otf}[
     Path = ../../fonts/,
-    BoldFont = SourceHanSansCN-Bold.otf,
+    BoldFont = NotoSansCJKsc-Bold.otf,
     Scale = .9
 ]
 
 \newCJKfontfamily{\KaiTi}{fzktk.ttf}[
     Path = ../../fonts/,
-    BoldFont = fzhtk.ttf,
-    ItalicFont = fzssk.ttf
+    BoldFont = NotoSansCJKsc-Medium.otf,
+    BoldFeatures = {Scale = .97},
+    ItalicFont = NotoSerifCJKsc-Regular.otf,
+    ItalicFeatures = {Scale = .97}
 ]
 
 \setmainfont{STIX2Text}[
@@ -170,6 +174,6 @@
         \makebox[2em][r]{\textbf{\textsf{#3}}}%
         \quad#1%
         \hfill\mbox{}\hfill\phantom{#2}\hfill\makebox[0em][r]{#2}%
-        \par\vspace{6pt}%
+        \par\vspace{8pt}%
     }%
 }
