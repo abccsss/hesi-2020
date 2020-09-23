@@ -585,7 +585,9 @@ which implies the rigidity of symplectic manifolds. We will give a sketch of pro
 \end{lemma}
 
 \begin{theorem}
-    If $\psi$ is a symplectic embedding of the ball $B^{2n}(r)$ into a cylinder $B^2(\lambda)\times V$ where $\pi_2(V)=0$, then $r\leq \lambda$.
+    If $\psi$ is a symplectic embedding of the ball $B^{2n}(r)$ 
+    into a cylinder $B^2(\lambda)\times V$ where $V$ is a closed 
+    symplectic manifold of dimension $2n-2$ s.t. $\pi_2(V)=0$, then $r\leq \lambda$.
 \end{theorem}
 
 \begin{proof}
@@ -597,13 +599,26 @@ which implies the rigidity of symplectic manifolds. We will give a sketch of pro
     Since the evaluation map which is independent of the choice of 
     almost complex structure and has degree 1, 
     there are $J'$-holomorphic curves through every point of $M$, 
-    and in particular, one curve through $\psi(0)$. 
+    and in particular, one curve $C'$ through $\psi(0)$. 
     This curve pulls back by $\psi$ to a $J_0$-holomorphic curve $C$ through 
     the center of the ball $B^{2n}(r)$. Since $J_0$ is standard, 
     this curve is holomorphic in the usual sense and is a minimal surface in $B^{2n}(r)$. 
     And from the result in minimal surface, the area is at least $\pi r^2$, thus
-    \[\pi r^2\leq\int_C \omega_0=\int_{\psi^{-1}(C')}\psi^*\omega<\int_{C'}\omega=\omega(A)\pi\lambda^2+\epsilon,\]
-    and we are done.
+    \[\pi r^2\leq\int_C \omega_0=\int_{\psi^{-1}(C')}\psi^*\omega<\int_{C'}\omega=\omega(A)=\pi\lambda^2+\epsilon,\]
+    here the inequality holds because $\psi(C)$ is only a part of $C'$ and we're done.
+\end{proof}
+
+\begin{theorem}[Gromov]
+    If $\phi \colon B^{2n}(r)\rightarrow \mathbb{R}^{2n}$ is a symplectic embedding 
+    s.t.\ $\phi(B^{2n})\subset B^2(R)\times \mathbb{R}^{2n-2}$, then $r\leq R$.
+\end{theorem}
+
+\begin{proof}
+    Choose $\lambda>0$ sufficiently large s.t.\ 
+    $B^{2n}(r)\hookrightarrow B^2(R)\times \mathbb{R}^{2n-2}$ 
+    induces a symplectic embedding $B^{2n}(r)\hookrightarrow B^2(R)\times V$ 
+    where $V:=\mathbb{R}^{2n-2}/\lambda \mathbb{Z}^{2n-2}$. 
+    Thus from the above theorem, $r\leq R$.
 \end{proof}
 
 \section{The Invariant \texorpdfstring{$\Psi$}{Ψ}}
