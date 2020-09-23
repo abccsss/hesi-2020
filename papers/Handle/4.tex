@@ -186,150 +186,153 @@ For example, consider the case $n=2$, $\lambda=1$ and $B$ is a point not in $O$.
 
 The next lemma makes clear how expanding fields work.
 The main idea of the proof is visualised below.
-\[\begin{tikzpicture}[line width=.6, baseline=(base.base)]
-    \tikzstyle{dp}=[dash pattern=on 2pt off 2pt]
-    \draw (-1,0) circle (0.3);
-    \draw (1,0) circle (0.3);
-    \draw[dp] (-1.3,0) arc (180:0:0.3 and 0.1);
-    \draw (-1.3,0) arc (180:360:0.3 and 0.1);
-    \draw[dp] (.7,0) arc (180:0:0.3 and 0.1);
-    \draw (.7,0) arc (180:360:0.3 and 0.1);
-    \draw[dp,fill=white] (.77,0) ellipse (.07 and .2);
-    \fill[white] (.72,0) ellipse (.07 and .2);
-    \draw (-.77,.2) -- (.77,.2);
-    \draw[dp] (-.77,-.2) -- (.77,-.2);
-    \draw (-.75,-.17) -- (.8,-.17);
-    \draw (.77,.2) arc (90:-90:.07 and .2);
-    \draw (0,.2) arc (90:-90:.07 and .2);
-    \draw[dp] (0,.2) arc (90:270:.07 and .2);
-    \draw (-1.15,-.25) arc (180:360:1.15);
-    \draw[dp] (-.85,-.25) arc (180:360:.85);
-    \draw (-.88,-.25) arc (180:360:.88);
-    \draw (0,-1.1) arc (90:-90:.05 and .15);
-    \draw[dp] (0,-1.1) arc (90:270:.05 and .15);
 
-    \draw[thin] (0,.15) -- (.82,.15) (.4,.18) -- (.44,.15) -- (.4,.12); 
-    \draw[thin] (.07,0) .. controls (.3,.1) and (.3,.1) .. (.84,.1) (.5,.125) -- (.54,.095) -- (.5,.07);
-    \draw[thin] (.04,-.17) .. controls (.4,.05) and (.4,.05) .. (.85,.05) (.56,.07) -- (.6,.05) -- (.565,.02);
-    \draw[thin] (.3,-.17) .. controls (.55,0) and (.55,0) .. (.85,0) (.61,.02) -- (.65,-.005) -- (.615,-.035);
-    \draw[thin] (.5,-.17) .. controls (.65,-.05) and (.65,-.05) .. (.85,-.05) (.66,-.03) -- (.7,-.057) -- (.67,-.095);
-    \draw[thin] (.7,-.17) .. controls (.75,-.1) and (.75,-.1) .. (.84,-.1);
-    
-    \draw[thin] (.04,.15) -- (-.74,.15) (-.3,.18) -- (-.34,.15) -- (-.3,.12); 
-    \draw[thin] (.07,0) .. controls (-.3,.1) and (-.3,.1) .. (-.72,.1) (-.4,.12) -- (-.44,.095) -- (-.4,.07);
-    \draw[thin] (.04,-.17) .. controls (-.4,.05) and (-.4,.05) .. (-.7,.05) (-.46,.067) -- (-.5,.045) -- (-.465,.015);
-    \draw[thin] (-.3,-.17) .. controls (-.5,0) and (-.5,0) .. (-.7,0) (-.51,.012) -- (-.55,-.008) -- (-.52,-.045);
-    \draw[thin] (-.45,-.17) .. controls (-.6,-.05) and (-.6,-.05) .. (-.7,-.05) (-.55,-.06) -- (-.59,-.07) -- (-.575,-.11);
-    \draw[thin] (-.6,-.17) .. controls (-.65,-.1) and (-.65,-.1) .. (-.72,-.1);
+\vbox{\begin{center}
+    \begin{tikzpicture}[line width=.6, baseline=(base.base)]
+        \tikzstyle{dp}=[dash pattern=on 2pt off 2pt]
+        \draw (-1,0) circle (0.3);
+        \draw (1,0) circle (0.3);
+        \draw[dp] (-1.3,0) arc (180:0:0.3 and 0.1);
+        \draw (-1.3,0) arc (180:360:0.3 and 0.1);
+        \draw[dp] (.7,0) arc (180:0:0.3 and 0.1);
+        \draw (.7,0) arc (180:360:0.3 and 0.1);
+        \draw[dp,fill=white] (.77,0) ellipse (.07 and .2);
+        \fill[white] (.72,0) ellipse (.07 and .2);
+        \draw (-.77,.2) -- (.77,.2);
+        \draw[dp] (-.77,-.2) -- (.77,-.2);
+        \draw (-.75,-.17) -- (.8,-.17);
+        \draw (.77,.2) arc (90:-90:.07 and .2);
+        \draw (0,.2) arc (90:-90:.07 and .2);
+        \draw[dp] (0,.2) arc (90:270:.07 and .2);
+        \draw (-1.15,-.25) arc (180:360:1.15);
+        \draw[dp] (-.85,-.25) arc (180:360:.85);
+        \draw (-.88,-.25) arc (180:360:.88);
+        \draw (0,-1.1) arc (90:-90:.05 and .15);
+        \draw[dp] (0,-1.1) arc (90:270:.05 and .15);
 
-    \node at (0,-0.6) {2};
-    \node at (.4,0.4) {1};
-    \node at (.7,-1.4) {1};
-    \node at (1.3,0.4) {0};
-    \node at (-1.3,0.4) {0};
-    \node (base) at (0,-1.7) {(a)};
-\end{tikzpicture}
-\qquad
-\begin{tikzpicture}[line width=.6, baseline=(base.base)]
-    \tikzstyle{dp}=[dash pattern=on 2pt off 2pt]
-    \fill[black!50] (.15,-.17) arc (180:0:.25);
-    \fill[white] (.25,-.17) arc (180:0:.15);
-    \fill[black!50] (.15,-.17) .. controls (-.1,-.6) and (.4,-.6) .. (.65,-.17);
-    \fill[white] (.25,-.17) .. controls (.05,-.47) and (.32,-.47) .. (.55,-.17);
-    \draw (-1,0) circle (0.3);
-    \draw (1,0) circle (0.3);
-    \draw[dp] (-1.3,0) arc (180:0:0.3 and 0.1);
-    \draw (-1.3,0) arc (180:360:0.3 and 0.1);
-    \draw[dp] (.7,0) arc (180:0:0.3 and 0.1);
-    \draw (.7,0) arc (180:360:0.3 and 0.1);
-    \draw[dp,fill=white] (.77,0) ellipse (.07 and .2);
-    \fill[white] (.72,0) ellipse (.07 and .2);
-    \draw (-.77,.2) -- (.77,.2);
-    \draw[dp] (-.77,-.2) -- (.77,-.2);
-    \draw (-.75,-.17) -- (.8,-.17);
-    \draw (.77,.2) arc (90:-90:.07 and .2);
-    \draw (0,.2) arc (90:-90:.07 and .2);
-    \draw[dp] (0,.2) arc (90:270:.07 and .2);
-    \draw (-1.15,-.25) arc (180:360:1.15);
-    \draw[dp] (-.85,-.25) arc (180:360:.85);
-    \draw (-.88,-.25) arc (180:360:.88);
-    \draw (0,-1.1) arc (90:-90:.05 and .15);
-    \draw[dp] (0,-1.1) arc (90:270:.05 and .15);
-    \draw (.15,-.17) arc (180:0:.25);
-    \draw (.25,-.17) arc (180:0:.15);
-    \draw (.15,-.17) .. controls (-.1,-.6) and (.4,-.6) .. (.65,-.17);
-    \draw (.25,-.17) .. controls (.05,-.47) and (.32,-.47) .. (.55,-.17);
-    \node (base) at (0,-1.7) {(b)};
-\end{tikzpicture}
-\qquad
-\begin{tikzpicture}[line width=.6, baseline=(base.base)]
-    \tikzstyle{dp}=[dash pattern=on 2pt off 2pt]
-    \draw (-1,0) circle (0.3);
-    \draw (1,0) circle (0.3);
-    \draw[dp] (-1.3,0) arc (180:0:0.3 and 0.1);
-    \draw (-1.3,0) arc (180:360:0.3 and 0.1);
-    \draw[dp] (.7,0) arc (180:0:0.3 and 0.1);
-    \draw (.7,0) arc (180:360:0.3 and 0.1);
-    \draw[dp,fill=white] (.77,0) ellipse (.07 and .2);
-    \fill[white] (.72,0) ellipse (.07 and .2);
-    \fill[black!50] (.15,-.17) .. controls (-.1,-.6) and (.4,-.6) .. (.65,-.17);
-    \fill[white] (.25,-.17) .. controls (.05,-.47) and (.32,-.47) .. (.55,-.17);
-    \fill[black!50] (.15,-.17) .. controls (.15,.1) and (.5,.12) .. (.82,.12)
-    				 .. controls (1.2,.12) and (1.2,-.1) .. (.82,-.1)
-    				 .. controls (.75,-.1) and (.65,-.1) .. (.65,-.17);
-    \fill[white] (.25,-.17) .. controls (.25,0) and (.5,.07) .. (.82,.07)
-    				 .. controls (1.05,.07) and (1.05,-.05) .. (.82,-.05)
-    				 .. controls (.75,-.05) and (.55,-.05) .. (.55,-.17); 
-    \draw (-.77,.2) -- (.77,.2);
-    \draw[dp] (-.77,-.2) -- (.77,-.2);
-    \draw (-.75,-.17) -- (.8,-.17);
-    \draw (.77,.2) arc (90:-90:.07 and .2);
-    \draw (0,.2) arc (90:-90:.07 and .2);
-    \draw (-1.15,-.25) arc (180:360:1.15);
-    \draw[dp] (-.85,-.25) arc (180:360:.85);
-    \draw (-.88,-.25) arc (180:360:.88);
-    \draw (0,-1.1) arc (90:-90:.05 and .15);
-    \draw[dp] (0,-1.1) arc (90:270:.05 and .15);
-    \draw (.15,-.17) .. controls (-.1,-.6) and (.4,-.6) .. (.65,-.17);
-    \draw (.25,-.17) .. controls (.05,-.47) and (.32,-.47) .. (.55,-.17);
-    \draw (.15,-.17) .. controls (.15,.1) and (.5,.12) .. (.82,.12)
-    				 .. controls (1.2,.12) and (1.2,-.1) .. (.82,-.1)
-    				 .. controls (.75,-.1) and (.65,-.1) .. (.65,-.17);
-    \draw (.25,-.17) .. controls (.25,0) and (.5,.07) .. (.82,.07)
-    				 .. controls (1.05,.07) and (1.05,-.05) .. (.82,-.05)
-    				 .. controls (.75,-.05) and (.55,-.05) .. (.55,-.17); 
-	\draw[thin] (.04,.15) -- (-.74,.15) (-.3,.18) -- (-.34,.15) -- (-.3,.12); 
-    \draw[thin] (.07,0) .. controls (-.3,.1) and (-.3,.1) .. (-.72,.1) (-.4,.12) -- (-.44,.095) -- (-.4,.07);
-    \draw[thin] (.04,-.17) .. controls (-.4,.05) and (-.4,.05) .. (-.7,.05) (-.46,.067) -- (-.5,.045) -- (-.465,.015);
-    \draw[thin] (-.3,-.17) .. controls (-.5,0) and (-.5,0) .. (-.7,0) (-.51,.012) -- (-.55,-.008) -- (-.52,-.045);
-    \draw[thin] (-.45,-.17) .. controls (-.6,-.05) and (-.6,-.05) .. (-.7,-.05) (-.55,-.06) -- (-.59,-.07) -- (-.575,-.11);
-    \draw[thin] (-.6,-.17) .. controls (-.65,-.1) and (-.65,-.1) .. (-.72,-.1);
+        \draw[thin] (0,.15) -- (.82,.15) (.4,.18) -- (.44,.15) -- (.4,.12); 
+        \draw[thin] (.07,0) .. controls (.3,.1) and (.3,.1) .. (.84,.1) (.5,.125) -- (.54,.095) -- (.5,.07);
+        \draw[thin] (.04,-.17) .. controls (.4,.05) and (.4,.05) .. (.85,.05) (.56,.07) -- (.6,.05) -- (.565,.02);
+        \draw[thin] (.3,-.17) .. controls (.55,0) and (.55,0) .. (.85,0) (.61,.02) -- (.65,-.005) -- (.615,-.035);
+        \draw[thin] (.5,-.17) .. controls (.65,-.05) and (.65,-.05) .. (.85,-.05) (.66,-.03) -- (.7,-.057) -- (.67,-.095);
+        \draw[thin] (.7,-.17) .. controls (.75,-.1) and (.75,-.1) .. (.84,-.1);
+        
+        \draw[thin] (.04,.15) -- (-.74,.15) (-.3,.18) -- (-.34,.15) -- (-.3,.12); 
+        \draw[thin] (.07,0) .. controls (-.3,.1) and (-.3,.1) .. (-.72,.1) (-.4,.12) -- (-.44,.095) -- (-.4,.07);
+        \draw[thin] (.04,-.17) .. controls (-.4,.05) and (-.4,.05) .. (-.7,.05) (-.46,.067) -- (-.5,.045) -- (-.465,.015);
+        \draw[thin] (-.3,-.17) .. controls (-.5,0) and (-.5,0) .. (-.7,0) (-.51,.012) -- (-.55,-.008) -- (-.52,-.045);
+        \draw[thin] (-.45,-.17) .. controls (-.6,-.05) and (-.6,-.05) .. (-.7,-.05) (-.55,-.06) -- (-.59,-.07) -- (-.575,-.11);
+        \draw[thin] (-.6,-.17) .. controls (-.65,-.1) and (-.65,-.1) .. (-.72,-.1);
 
-	\draw[thin] (.03,.17) -- (.8,.18) (.4,.2) -- (.44,.18) -- (.4,.15); 
-	\draw[thin] (.07,0) .. controls (.3,.15) and (.3,.15) .. (.8,.165) (.3,.155) -- (.34,.135) -- (.31,.095);
-	\draw[thin] (.4,.08) .. controls (.4,.11) and (.4,.14) .. (.82,.15);
-	\draw[thin] (.4,0) .. controls (.45,-.03) and (.5,.04) .. (.84,.04);
-	\draw[thin] (.35,-.17) .. controls (.4,-.05) and (.5,.02) .. (.84,.02) (.39,-.055) -- (.44,-.055) -- (.43,-.1);
-	\draw[thin] (.57,-.12) .. controls (.55,-.04) and (.6,.0) .. (.84,.0) (.56,-.03) -- (.61,-.03) -- (.6,-.07);
-	\draw[thin] (.67,-.06) .. controls (.65,-.04) and (.7,-.02) .. (.84,-.02);
-	
-	\draw[thin] (.7,-.11) .. controls (.75,-.125) and (.75,-.125) .. (.82,-.125);
-    \draw[thin] (.7,-.17) .. controls (.75,-.145) and (.75,-.145) .. (.82,-.145);
-    \node (base) at (0,-1.7) {(c)};
-\end{tikzpicture}\]
+        \node at (0,-0.6) {2};
+        \node at (.4,0.4) {1};
+        \node at (.7,-1.4) {1};
+        \node at (1.3,0.4) {0};
+        \node at (-1.3,0.4) {0};
+        \node (base) at (0,-1.7) {(a)};
+    \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}[line width=.6, baseline=(base.base)]
+        \tikzstyle{dp}=[dash pattern=on 2pt off 2pt]
+        \fill[black!50] (.15,-.17) arc (180:0:.25);
+        \fill[white] (.25,-.17) arc (180:0:.15);
+        \fill[black!50] (.15,-.17) .. controls (-.1,-.6) and (.4,-.6) .. (.65,-.17);
+        \fill[white] (.25,-.17) .. controls (.05,-.47) and (.32,-.47) .. (.55,-.17);
+        \draw (-1,0) circle (0.3);
+        \draw (1,0) circle (0.3);
+        \draw[dp] (-1.3,0) arc (180:0:0.3 and 0.1);
+        \draw (-1.3,0) arc (180:360:0.3 and 0.1);
+        \draw[dp] (.7,0) arc (180:0:0.3 and 0.1);
+        \draw (.7,0) arc (180:360:0.3 and 0.1);
+        \draw[dp,fill=white] (.77,0) ellipse (.07 and .2);
+        \fill[white] (.72,0) ellipse (.07 and .2);
+        \draw (-.77,.2) -- (.77,.2);
+        \draw[dp] (-.77,-.2) -- (.77,-.2);
+        \draw (-.75,-.17) -- (.8,-.17);
+        \draw (.77,.2) arc (90:-90:.07 and .2);
+        \draw (0,.2) arc (90:-90:.07 and .2);
+        \draw[dp] (0,.2) arc (90:270:.07 and .2);
+        \draw (-1.15,-.25) arc (180:360:1.15);
+        \draw[dp] (-.85,-.25) arc (180:360:.85);
+        \draw (-.88,-.25) arc (180:360:.88);
+        \draw (0,-1.1) arc (90:-90:.05 and .15);
+        \draw[dp] (0,-1.1) arc (90:270:.05 and .15);
+        \draw (.15,-.17) arc (180:0:.25);
+        \draw (.25,-.17) arc (180:0:.15);
+        \draw (.15,-.17) .. controls (-.1,-.6) and (.4,-.6) .. (.65,-.17);
+        \draw (.25,-.17) .. controls (.05,-.47) and (.32,-.47) .. (.55,-.17);
+        \node (base) at (0,-1.7) {(b)};
+    \end{tikzpicture}
+    \qquad
+    \begin{tikzpicture}[line width=.6, baseline=(base.base)]
+        \tikzstyle{dp}=[dash pattern=on 2pt off 2pt]
+        \draw (-1,0) circle (0.3);
+        \draw (1,0) circle (0.3);
+        \draw[dp] (-1.3,0) arc (180:0:0.3 and 0.1);
+        \draw (-1.3,0) arc (180:360:0.3 and 0.1);
+        \draw[dp] (.7,0) arc (180:0:0.3 and 0.1);
+        \draw (.7,0) arc (180:360:0.3 and 0.1);
+        \draw[dp,fill=white] (.77,0) ellipse (.07 and .2);
+        \fill[white] (.72,0) ellipse (.07 and .2);
+        \fill[black!50] (.15,-.17) .. controls (-.1,-.6) and (.4,-.6) .. (.65,-.17);
+        \fill[white] (.25,-.17) .. controls (.05,-.47) and (.32,-.47) .. (.55,-.17);
+        \fill[black!50] (.15,-.17) .. controls (.15,.1) and (.5,.12) .. (.82,.12)
+                        .. controls (1.2,.12) and (1.2,-.1) .. (.82,-.1)
+                        .. controls (.75,-.1) and (.65,-.1) .. (.65,-.17);
+        \fill[white] (.25,-.17) .. controls (.25,0) and (.5,.07) .. (.82,.07)
+                        .. controls (1.05,.07) and (1.05,-.05) .. (.82,-.05)
+                        .. controls (.75,-.05) and (.55,-.05) .. (.55,-.17); 
+        \draw (-.77,.2) -- (.77,.2);
+        \draw[dp] (-.77,-.2) -- (.77,-.2);
+        \draw (-.75,-.17) -- (.8,-.17);
+        \draw (.77,.2) arc (90:-90:.07 and .2);
+        \draw (0,.2) arc (90:-90:.07 and .2);
+        \draw (-1.15,-.25) arc (180:360:1.15);
+        \draw[dp] (-.85,-.25) arc (180:360:.85);
+        \draw (-.88,-.25) arc (180:360:.88);
+        \draw (0,-1.1) arc (90:-90:.05 and .15);
+        \draw[dp] (0,-1.1) arc (90:270:.05 and .15);
+        \draw (.15,-.17) .. controls (-.1,-.6) and (.4,-.6) .. (.65,-.17);
+        \draw (.25,-.17) .. controls (.05,-.47) and (.32,-.47) .. (.55,-.17);
+        \draw (.15,-.17) .. controls (.15,.1) and (.5,.12) .. (.82,.12)
+                        .. controls (1.2,.12) and (1.2,-.1) .. (.82,-.1)
+                        .. controls (.75,-.1) and (.65,-.1) .. (.65,-.17);
+        \draw (.25,-.17) .. controls (.25,0) and (.5,.07) .. (.82,.07)
+                        .. controls (1.05,.07) and (1.05,-.05) .. (.82,-.05)
+                        .. controls (.75,-.05) and (.55,-.05) .. (.55,-.17); 
+        \draw[thin] (.04,.15) -- (-.74,.15) (-.3,.18) -- (-.34,.15) -- (-.3,.12); 
+        \draw[thin] (.07,0) .. controls (-.3,.1) and (-.3,.1) .. (-.72,.1) (-.4,.12) -- (-.44,.095) -- (-.4,.07);
+        \draw[thin] (.04,-.17) .. controls (-.4,.05) and (-.4,.05) .. (-.7,.05) (-.46,.067) -- (-.5,.045) -- (-.465,.015);
+        \draw[thin] (-.3,-.17) .. controls (-.5,0) and (-.5,0) .. (-.7,0) (-.51,.012) -- (-.55,-.008) -- (-.52,-.045);
+        \draw[thin] (-.45,-.17) .. controls (-.6,-.05) and (-.6,-.05) .. (-.7,-.05) (-.55,-.06) -- (-.59,-.07) -- (-.575,-.11);
+        \draw[thin] (-.6,-.17) .. controls (-.65,-.1) and (-.65,-.1) .. (-.72,-.1);
 
-\begin{center}
+        \draw[thin] (.03,.17) -- (.8,.18) (.4,.2) -- (.44,.18) -- (.4,.15); 
+        \draw[thin] (.07,0) .. controls (.3,.15) and (.3,.15) .. (.8,.165) (.3,.155) -- (.34,.135) -- (.31,.095);
+        \draw[thin] (.4,.08) .. controls (.4,.11) and (.4,.14) .. (.82,.15);
+        \draw[thin] (.4,0) .. controls (.45,-.03) and (.5,.04) .. (.84,.04);
+        \draw[thin] (.35,-.17) .. controls (.4,-.05) and (.5,.02) .. (.84,.02) (.39,-.055) -- (.44,-.055) -- (.43,-.1);
+        \draw[thin] (.57,-.12) .. controls (.55,-.04) and (.6,.0) .. (.84,.0) (.56,-.03) -- (.61,-.03) -- (.6,-.07);
+        \draw[thin] (.67,-.06) .. controls (.65,-.04) and (.7,-.02) .. (.84,-.02);
+        
+        \draw[thin] (.7,-.11) .. controls (.75,-.125) and (.75,-.125) .. (.82,-.125);
+        \draw[thin] (.7,-.17) .. controls (.75,-.145) and (.75,-.145) .. (.82,-.145);
+        \node (base) at (0,-1.7) {(c)};
+    \end{tikzpicture}
+    \medskip
+
     \parbox{96mm}{\small\leftskip=1.5em\parindent=-1.5em
-    (a) A $4$-handlebody, where numbers indicate types of handles.
-    A $1$-handle is drawn with its expanding field.
-    (Of course what is seen here is a $3$-dimensional analogue of the real thing.)
-    
-    (b) Attach a $3$-handle,
-    where the shaded part indicates the image of the attaching map.
-    
-    (c) Stretch the attaching map using the expanding field,
-    and construct a new expanding field on the $1$-handle.}\vspace{1pt}
-\end{center}
+        (a) A $4$-handlebody, where numbers indicate types of handles.
+        A $1$-handle is drawn with its expanding field.
+        (Of course what is seen here is a $3$-dimensional analogue of the real thing.)
+        
+        (b) Attach a $3$-handle,
+        where the shaded part indicates the image of the attaching map.
+        
+        (c) Stretch the attaching map using the expanding field,
+        and construct a new expanding field on the $1$-handle.
+    }
+\end{center}}
 
 \begin{lemma}\label{lem:expanded}
     Let $(N,A)$ be a finite relative $n$-handlebody with $i$ handles,
